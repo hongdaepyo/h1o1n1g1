@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mem">
+
+ <select id="all" resultType="part02.dto.MemDTO">
+ 	select * from mem order by num desc
+ 
+ </select>
+ 
+ <insert id="ins" parameterType="part02.dto.MemDTO">
+ 	insert into mem values(mem_num_seq.nextval,#{name,jdbcType=VARCHAR}, #{age}, #{loc,jdbcType=VARCHAR})
+ </insert>
+ 
+ <update id="upt" parameterType="java.util.HashMap">
+	update mem set loc=#{loc} where num=#{num}
+ </update>
+ 
+ <delete id="del" parameterType="int">
+ 	delete from mem where num=#{num}
+ </delete>
+ 
+ <select id="keyNum" resultType="int" flushCache="true">
+ 	select mem_num_seq.nextval from dual
+ </select>
+ 
+ <!-- 다중 insert -->
+ <insert id="multiIns" parameterType="java.util.List">
+ 	insert all
+ 	 <foreach collection="list" item="element" index="no">
+ 	 	into mem
+ 	 	values(#{element.num}, #{element.name}, #{element.age}, #{element.loc})
+ 	 </foreach>
+ 	 select * from dual
+ </insert>
+ 
+ <!-- 다중 delete -->
+ <delete id="multiDel">
+   delete from mem
+   <where>
+   num in
+   <foreach collection="list" item="element" open="(" separator="," close=")">
+   	#{element}
+   </foreach>
+   </where>
+ </delete>
+ 
+  <delete id="multiDel2">
+   delete from mem
+   <where>
+   num in
+   <foreach collection="array" item="element" open="(" separator="," close=")">
+   	#{element}
+   </foreach>
+   </where>
+ </delete>
+</mapper>

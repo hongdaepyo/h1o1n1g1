@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="emp">
+	<sql id="sel">
+		select * from employees
+	</sql>
+
+	<select id="all" resultType="part01.dto.EmployeeDTO">
+		<include refid="sel"/>
+	</select>
+	
+	<select id="cnt" resultType="java.lang.Integer">
+		select count(*) from employees	
+	</select>
+	
+	<select id="search" parameterType="java.lang.String" resultType="part01.dto.EmployeeDTO">
+		<include refid="sel"/>
+		where first_name like '%' || #{first_name} || '%'
+		
+		<!-- like '%' + ${name}+ '%' -->
+	</select>
+	
+	<select id="part" parameterType="java.util.HashMap" resultType="part01.dto.EmployeeDTO">
+		<include refid="sel"/>
+		where first_name like '%' || #{first_name} || '%'
+		and salary>=#{salary}
+	</select>
+
+</mapper>
