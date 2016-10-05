@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery004_selector</title>
+<style type="text/css">
+
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+$(document).ready(function(){
+	//nth-child(n), nth-of-type(n) : n은 1부터시작
+	//div요소에서 모든 자식요소 중 2번째 요소가 p요소이면 스타일 적용
+	$("div p:nth-child(1)").css({"color":"red"});
+	
+	//div요소에서 2번째에 해당하는 p요소에 스타일적용
+	$("div p:nth-of-type(2)").css({"color":"blue"});
+});
+</script>
+</head>
+<body>
+ <div id="wrap">
+  <p>part01</p>
+  <span>line</span>
+  <p>part02</p>
+  <p>part03</p>
+ </div>
+</body>
+</html>

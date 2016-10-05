@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>script_013_Array</title>
+<style type="text/css">
+
+</style>
+
+</head>
+<body>
+<script type="text/javascript">
+var cars=["Saab","Volvo","BMW"];
+for(var index in cars)
+	document.write(cars[index]+"<br/>");
+	
+	document.write("<hr/>");
+	document.write(typeof cars+"<br/>");  //object
+	
+	document.write("<hr/>");
+	
+	var cars2 = new Array("Saab","Volvo","BMW");
+	for(var index in cars2)
+		document.write(cars2[index]+"<br/>");
+	document.write("<hr/>");
+		
+	var person=["John","Doe",26];
+	for(var index in person)
+		document.write(typeof person[index]+"<br/>");
+	document.write("<hr/>");
+	
+	var person2=[];
+	person2[0]="java";
+	person2[1]="script";
+	for(var index in person2)
+		document.write(person2[index]+"<br/>");
+	document.write("<hr/>");
+	
+	var point = new Array(10);
+	document.write(point.length+"<br/>"); //10
+	document.write("<hr/>");
+	
+	var point2 = new Array(10,20);
+	document.write(point2.length+"<br/>"); //2  갯수로 인식
+	document.write(point2[1]+"<br/>"); //20
+	
+</script>
+
+
+</body>
+</html>

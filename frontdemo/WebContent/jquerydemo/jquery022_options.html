@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	var arr = [ [ "불고기", "삼계탕", "비빔밥" ], [ "짜장면", "짬뽕", "탕수육" ],
+			[ "회덮밥", "덴뿌라", "우동" ] ];
+	$(document).ready(function() {
+			$('#menu').change(function() {
+						/* if ($(this).val() == 'm1') {
+							$('#sub').empty();
+							$('#sub').append('<option value="">음식선택</option>');
+							$('#sub').append('<option value="">' + arr[0][0]+ '</option>');
+							$('#sub').append('<option value="">' + arr[0][1]+ '</option>');
+							$('#sub').append('<option value="">' + arr[0][2]+ '</option>');
+						}else if($(this).val() == 'm2'){
+							$('#sub').empty();
+							$('#sub').append('<option value="">음식선택</option>');
+							$('#sub').append('<option value="">' + arr[1][0]+ '</option>');
+							$('#sub').append('<option value="">' + arr[1][1]+ '</option>');
+							$('#sub').append('<option value="">' + arr[1][2]+ '</option>');
+						}else if($(this).val() == 'm3'){
+							$('#sub').empty();
+							$('#sub').append('<option value="">음식선택</option>');
+							$('#sub').append('<option value="">' + arr[2][0]+ '</option>');
+							$('#sub').append('<option value="">' + arr[2][1]+ '</option>');
+							$('#sub').append('<option value="">' + arr[2][2]+ '</option>');
+						} */
+						$('#sub').empty();
+						$('#sub').append('<option value="">음식선택</option>');
+						$(arr[$('#menu').index($('#menu option:selected')-1)]).each(function(index, value){
+							$('#sub').append('<option>'+value+'</option>');
+						});
+						
+					});//end change
+					
+			$('#sub').change(function(){
+				alert('고객님은 '+$('#menu option:selected').text()+' '+$('#sub option:selected').text()+' 주문하셨습니다.')
+			});//end change
+			});
+	
+	//선생님답
+	
+	$(document).ready(function(){
+		$('#menu').change(function(){
+			var row = $('#menu option:selected').index();
+			//select요소의 option요소 삭제
+			$.each($('#sub option'),function(index, value){
+				if(index!=0){
+					$(this).remove();
+				}
+			});
+			//select요소에 option요소 추가
+			$.each(arr[row-1],function(index, value) {
+				$('#sub'),append('<option>'+value+'</option>');
+			});
+			
+			$('#sub').change(function(){
+				var value="고객님은"
+				value += $('#menu option:selected').text() + ' ';
+				value += $('#sub').val();
+				value += " 주문하셨습니다.";
+				alert(value);
+			});
+		});
+	});
+	/* $(arr[$('#menu').index(#menu option:selected)]-1).each(function(index, value){
+		$('#sub').empty();
+		$('#sub').append('<option value="">음식선택</option>');
+	  $('#sub').append('<option>'+value+'</option>');
+	}*/
+</script>
+</head>
+<body>
+	<select id="menu" name="menu">
+		<option value="">메뉴선택</option>
+		<option value="m1">한식</option>
+		<option value="m2">중식</option>
+		<option value="m3">일식</option>
+	</select>
+
+	<select id="sub">
+		<option value="">음식선택</option>
+
+	</select>
+</body>
+</html>

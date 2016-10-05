@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>script_010_String</title>
+<style type="text/css">
+</style>
+<script type="text/javascript">
+	
+</script>
+</head>
+<body>
+
+	<script type="text/javascript">
+		var data = "It's alright";
+		document.write(data+"<br/>");
+		
+		var data2 = 'It\'s alright';
+		document.write(data2+"<br/>");
+		
+		var data3 = "Hello\
+		Dolly";
+		document.write(data3+"<br/>");
+
+		document.write(data3.length+"<br/>");
+		
+		/*
+		특정범위 데이터를 리턴해주는 3가지 메소드
+		1. slice(start, end);
+		2. substring(start, end);
+		3. substr(start, length);
+		*/
+		
+		document.write("<hr/>");
+		
+		var str = "Apple, Banana, Kiwi";
+		//7인덱스부터 13미만(0인덱스부터 시작)
+		document.write(str.slice(7,13)+"<br/>");
+		//뒤에서부터 시작할때는 인덱스가 -1부터 시작
+		document.write(str.slice(-12,-6)+"<br/>");
+		//7인덱스부터 13미만(0인덱스부터 시작)
+		document.write(str.substring(7,13)+"<br/>");
+		//결과값 없음. substring()은 음수값을 지원안한다.
+		document.write(str.substring(-12,-6)+"<br/>");
+		//7인덱스부터 6칸 가져온다.
+		document.write(str.substr(7,6)+"<br/>");
+		
+		document.write("<hr/>");
+		
+		var str = "Please visit Microsoft! and Microsoft\<br/>Microsoft";  // \<br/> 브라우저에서 줄바꿈.
+		
+		//Please visit W3Schools! and Microsoft Microsoft
+		document.write(str.replace("Microsoft","W3Schools")+"<br/>");
+		
+		// /   /은 정규식표현.  i는 대소문자 구분없앤다. g는 1개만 바뀌는것이 아닌 전부를 바꾼다.
+		//Please visit W3Schools! and W3Schools W3Schools
+		document.write(str.replace(/Microsoft/ig,"W3Schools"));
+		
+		document.write("<hr/>");
+		
+		var text1 = "Hello World";
+		document.write(text1.toUpperCase()+"<br/>");
+		document.write(text1.toLowerCase()+"<br/>");
+		
+		document.write("<hr/>");
+		
+		var text2 = "javascript";
+		//Hello World javascript  문자열 연결시 그사이에 공백과 기호를 넣어줄수가 있다
+		document.write(text1.concat(" ",text2)+"<br/>");
+		
+		var str2="HELLO WORLD";
+		// H
+		document.write(str2.charAt(0)+"<br/>");
+		//charCodeAt(0)  0번째 인덱스의 아스키 코드값으로 리턴.
+		document.write(str2.charCodeAt(0)+"<br/>");  //72
+		// H charAt과 동일한 결과
+		document.write(str2[0]);
+		
+		document.write("<hr/>");
+		
+		var txt="a,b,c,d,e"; //string
+		var arr=txt.split(","); //string -> array
+		document.write(arr[1]+"<br/>"); //b
+		for(var i in arr){  // i는 인덱스
+			//index 번호 출력
+			//document.write(i + "<br/>");
+			document.write(arr[i]+"<br/>");
+		}
+		
+		document.write("<hr/>");
+		var txt2 = "abcde";
+		var arr2=txt2.split("");
+		for(var index in arr2)
+			document.write(arr2[index]+"<br/>");
+		
+		document.write("<hr/>");
+		
+		 var str3 = "The rain in SPAIN stays mainly in the plain";
+		 var res = str3.match(/ain/g);
+		 //검색데이터와 일치하는 문자열이 없으면 null을 반환
+		 document.write(res+"<br/>");  //ain,ain,ain
+		 
+		 var res = str3.search("ain");
+		 //검색데이터와 일치하는 문자열이 없으면 -1을 리턴
+		 document.write(res+"<br/>"); //5 index
+		 
+			document.write("<hr/>");
+		 
+		 var data = 10;
+		 document.write(typeof data +","+typeof String(data)+"<br/>");
+		 
+	</script>
+</body>
+</html>

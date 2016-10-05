@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery039_control</title>
+<style type="text/css">
+  div{
+    width:100px;
+    height:100px;
+    border:1px solid black;
+    background-color: red;
+  }
+
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+/*
+ * dequeue() : 체이닝 기법을 이용해 선택요소에 적용된 모든 애니메이션이 제거된다.
+   finish() : 선택한 요소에 적용된 애니메이션 동작 과정은 모두 생략하고 최종완료 시점만 보여주고 종료한다.
+   			  즉 과정은 생략하고 결과만 보여준다.
+ */
+$(document).ready(function(){
+	$('div').animate({height:'300px'},'slow')
+			.animate({height:'100px'},'slow')
+	        .animate({width:'300px'},'slow')
+	        .animate({width:'100px'},'slow');
+	$('div').finish();
+	//$('div').finish();
+ });
+
+</script>
+</head>
+<body>
+<div>&nbsp;</div>
+</body>
+</html>

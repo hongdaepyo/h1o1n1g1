@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery030_event_focus</title>
+<style type="text/css">
+
+
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+/*
+ * focus(), focusin()
+   : 선택한 요소에 포커스가 이동되었을 때 이벤트 발생
+    focus()은 강제적으로 이벤트를 실행할 수 있고
+    focusin()은 강제적으로 이벤트를 실행할 수 없다.
+    
+    blur(), focusout()
+    : 선택한 요소에 포커스가 다른 요소로 이동되어 사라졌을때 발생되는 이벤트이다.
+    blur()은 강제적으로 이벤트를 실행할 수 있고
+    focusout()은 강제적으로 이벤트를 실행할 수 없다.
+    -------------------------------------------------------
+   마우스로 포커스 이동: mouseover(), mouseout()
+   키보드로 포커스 이동: focus(), blur()
+ */
+ $(document).ready(function(){
+	$('#fname').focus();
+	//$('#fname').focusin();//길이가 정해져 있는 것(ex. 주민번호)
+	
+	/* $('#fname').focusin(function(){
+		alert('이름입력');
+	}); */
+	$('#fname').blur(function(){
+		if($('#fname').val().length==0){
+			$('#sname').text("아이디는 영문과 숫자로 입력");
+			$('#fname').focus();
+		}else{
+			$('#sname').text('아이디 입력');
+		}
+	});
+ });
+
+</script>
+</head>
+<body>
+ <span>이름</span>
+ <input type="text" name="fname" id="fname" />
+ <span id="sname">아이디를 입력하세요.</span>
+ <span><br/>나이</span>
+ <input type="text" name="fage" id="fage" />
+</body>
+</html>

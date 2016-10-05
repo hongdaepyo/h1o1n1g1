@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>script_037_window_screen</title>
+<style type="text/css">
+#wrap{
+  width:1000px;
+  height:800px;
+  background-color: yellow;
+  margin:auto;
+}
+
+#pop{
+  width:200px;  
+  height:200px;
+  background-color: gray;
+  position: absolute;
+  /* top:420px;
+  left:860px; */
+}
+</style>
+
+<script type="text/javascript">
+window.onload = function(){
+document.getElementById("pop").style.left=(document.body.clientWidth/2)-(document.getElementById("pop").offsetWidth/2)+"px";
+document.getElementById("pop").style.top=(document.body.clientHeight/2)-(document.getElementById("pop").offsetHeight/2)+"px";
+
+function resize(){
+	document.getElementById("pop").style.left=(document.body.clientWidth/2)-(document.getElementById("pop").offsetWidth/2)+"px";
+	document.getElementById("pop").style.top=(document.body.clientHeight/2)-(document.getElementById("pop").offsetHeight/2)+"px";
+	}
+	
+window.resize=resize;
+};
+
+
+</script>
+</head>
+<body>
+ <div id="wrap"></div>
+ 
+ <div id="pop" >
+  <button> 닫기</button>
+ </div>
+</body>
+</html>
+
+
+
+
+
+

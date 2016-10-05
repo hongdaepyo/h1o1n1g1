@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>script_022_parentNode</title>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+
+
+</script>
+</head>
+<body>
+<div id = "wrap">
+	<p id = "p1">content1</p><p id = "p2">content2</p><p id = "p3">content3</p>
+</div>
+<script type="text/javascript">
+	document.getElementById("p2").parentNode.style.color = "blue";
+	//<p>와<p> 사이에 엔터 공백이 있으면 previousSibling이 공백 테스트노드로 읽어버려서 그걸 선택하기 때문에 공백을 지워야 한다.
+	document.getElementById("p2").previousSibling.style.fontSize = "20px";
+	//<p>와<p> 사이에 엔터 공백이 있으면 nextSibling이 공백 테스트노드로 읽어버려서 그걸 선택하기 때문에 공백을 지워야 한다.
+	document.getElementById("p2").nextSibling.style.border="4px solid black";	
+
+
+</script>
+</body>
+</html>

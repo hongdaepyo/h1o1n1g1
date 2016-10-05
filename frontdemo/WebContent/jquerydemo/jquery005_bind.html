@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery005_bind</title>
+<style type="text/css">
+
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+$(document).ready(function(){
+	//bind("이벤트",콜백함수);
+	/* $('button').bind('click',function(){
+		alert("eventListener call");
+	}); */
+	
+	//이벤트 메소드(콜백함수);
+	$('button').click(function(){
+		alert("eventListener call2");
+	});
+});
+</script>
+</head>
+<body>
+<button id="btn">commit</button>
+</body>
+</html>

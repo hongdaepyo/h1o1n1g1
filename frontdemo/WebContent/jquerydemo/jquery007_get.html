@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery007_get</title>
+<style type="text/css">
+
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(document).ready(function(){
+		var dnode=$('div').text();  //문자열리턴
+		var dnode2=$('div').html();  //자식요소와 문자열리턴
+		//alert(dnode+","+dnode2);
+		var inode=$('input').val();
+		//alert(inode);
+		$('button').bind('click',function(){
+			$('span').text('dom');
+			$('input').val('library');
+		});
+	});
+</script>
+</head>
+<body>
+<button>click</button>
+<div>
+	<span>javascript</span>
+</div>
+<input type="text" value="jquery" />
+</body>
+</html>

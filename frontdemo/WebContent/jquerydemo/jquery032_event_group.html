@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery032_event_group</title>
+<style type="text/css">
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+/*
+ * 그룹 이벤트 등록
+   1 bind() : 선택한 요소에 한 개 이상의 이벤트 등록
+   2 on() : 선택한 요소에 한개 이상의 이벤트 등록, 사용 방식에 따라 이벤트를 등록한 이후에도
+   			동적으로 생성된 이벤트를 등록한 요소와 새 요소에도 이벤트 등록 가능. jquery1.7부터 지원
+   3 delegate() : 선택한 요소에 지정한 하위 요소 이벤트 등록
+   4 one() :선택한 요소에 이벤트 등록, 단 한번만 이벤트 발생
+ */
+ 
+ 
+ $(document).ready(function(){
+	/* $('h1 a').on('mouseover focus',function(){
+		$(this).css({'color':'red'});
+	});
+	
+	$('h1 a').on('mouseout blur',function(){
+		$(this).css({'color':'blue'});
+	});
+	 */
+	$('h1 a').on({'mouseover focus':function(){
+		$(this).css({'color':'red'});
+	},
+	'mouseout blur':function(){
+		$(this).css({'color':'blue'});
+	 }
+	});
+	 
+	 $(document).on('mouseover focus','h2 a',function(){
+			$(this).css({'color':'red'});
+	 });
+	 $(document).on('mouseout blur','h2 a',function(){
+			$(this).css({'color':'blue'});
+	 });
+	 $('h2').append('<a href="#">new element</a>');
+	 
+	 
+	 //$('상위요소').delegate('하위요소',이벤트, 콜백함수);
+	 $('h3').delegate('a','mouseover focus',function(){
+		 //$('h3 a').css({'color':'green'});
+		 $('h3 a').css({'color':'green'});
+	 });
+	 
+	 $('h3').delegate('a','mouseout blur',function(){
+		 //$('h3 a').css({'color':'black'});
+		 $('h3 a').css({'color':'black'});
+	 });
+	 
+	 var num=0;
+	 $('button#btn').one('click',function(){
+		 $('span').text(++num);
+	 });
+	 
+	 $('button#clear').on('click',function(){
+		 //$('h1 a').off(); //h1 a 요소의 모든 이벤트 제거
+		 $('h1 a').off('blur mouseout');  //h1 a 요소의 특정 이벤트 제거
+	 });
+ });
+
+</script>
+</head>
+<body>
+	<h1>
+		<a href="#">버튼</a>
+	</h1>
+	<h2></h2>
+	<h3>
+	 <a href="#">하위요소1</a>
+	 <a href="#">하위요소2</a>
+	</h3>
+	
+	<button id="btn">one</button>
+	<span>0</span>
+	
+	<button id='clear'>이벤트 제거</button>
+	
+	
+
+</body>
+</html>

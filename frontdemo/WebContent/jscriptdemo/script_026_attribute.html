@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>script_025_attribute</title>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+
+
+</script>
+</head>
+<body>
+<!-- 
+	요소의 속성값 변경 및 불러오는 방법
+	요소선택.속성명							:요소의 지정한 속성값을 불러옴
+	요소선택.속성명="값"						:요소의 지정한 속성값을 새값으로 변경
+	요소선택.getAttribute("속성")			:요소의 지정한 속성값을 불러옴
+	요소선택.setAttribute("속성","값")		:요소의 지정한 속성값을 새값으로 변경
+	
+ -->
+<img src="images/aa.jpg" width="200" height="200"/>
+<img src="images/aa.jpg" width="200" height="200"/>
+
+<script type="text/javascript">
+var imgNode = document.getElementsByTagName("img")[0];
+	// http://localhost:8090/frontdemo/jscriptdemo/images/aa.jpg
+	document.write(imgNode.src+"<br/>");
+	imgNode.src= "images/bag.jpg";
+
+var imgNode = document.getElementsByTagName("img")[1];
+	// images/aa.jpg
+	document.write(imgNode.getAttribute("src"))
+	imgNode.setAttribute("src","images/pg.jpg");
+	
+</script>
+</body>
+</html>

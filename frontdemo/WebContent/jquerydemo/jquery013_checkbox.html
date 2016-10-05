@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery013_checkbox</title>
+<style type="text/css">
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(document).ready(function() {
+		$('button').bind('click', function() {
+			$('.chk:checked').parent().parent().remove();
+		});
+
+		$(".check_all").bind('click', function() {
+			if ($('.check_all').prop('checked')) {
+				$('.chk').prop("checked", "true");
+			} else {
+				$('.chk').removeProp("checked");
+			}
+
+		});
+	});
+</script>
+</head>
+<body>
+	<div class="wrap">
+		<button>삭제</button>
+		<table>
+			<tr>
+				<th><input type="checkbox" class="check_all" />전체선택</th>
+				<th>제목</th>
+				<th>작성자</th>
+			</tr>
+
+			<tr>
+				<td><input type="checkbox" class="chk"></td>
+				<td>title1</td>
+				<td>writer1</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="chk"></td>
+				<td>title2</td>
+				<td>writer2</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="chk"></td>
+				<td>title3</td>
+				<td>writer3</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="chk"></td>
+				<td>title4</td>
+				<td>writer4</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="chk"></td>
+				<td>title5</td>
+				<td>writer5</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

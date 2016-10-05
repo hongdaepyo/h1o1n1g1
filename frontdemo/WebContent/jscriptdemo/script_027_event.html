@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>script_026_event</title>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+
+
+</script>
+</head>
+<body>
+<h1 id = "title">마우스 아웃</h1>
+<a href = "#" id = "btn"><img src = "images/aa.jpg" alt = "버튼" width="100" height="100" /> </a>
+<p id = "img_src"></p>
+
+<script type="text/javascript">
+var theBtn = document.getElementById("btn");
+var s = document.getElementById("img_src");
+
+/*
+      문서 객체에 이벤트 핸들러를 적용하는 방법
+      요소선택.이벤트 종류 =function(){실행문;};
+ */
+
+theBtn.onmouseover = function(){
+	document.getElementById("title").innerHTML="마우스 오버";
+	document.getElementsByTagName("img")[0].src="images/bag.jpg";
+};
+
+theBtn.onmouseout = function(){
+	document.getElementById("title").innerHTML="마우스 아웃";
+	document.getElementsByTagName("img")[0].src="images/aa.jpg";
+	
+}
+</script>
+
+</body>
+</html>

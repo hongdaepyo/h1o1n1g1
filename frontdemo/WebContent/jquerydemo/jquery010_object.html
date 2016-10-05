@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery010_object</title>
+<style type="text/css">
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(document).ready(function() {
+		var btnNode = document.getElementById("btn");
+		var btnEle = $('#btn');
+		document.write(btnNode + "," + btnEle + "<br/>");
+		// dom->jQuery                 jQuery->dom
+		document.write($(btnNode) + "," + btnEle[0] + "<br/>");
+	});
+</script>
+</head>
+<body>
+	<button id="btn">commit</button>
+</body>
+</html>

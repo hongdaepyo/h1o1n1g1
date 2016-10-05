@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>css_014_margin</title>
+<style type="text/css">
+*{
+  border-width:0;
+  margin: 0;
+  padding: 0
+}
+
+.rap{
+   width: 160px;
+   height: 260px;
+   background-color: yellow;
+}
+
+.aa{
+ width: 100px;
+ height:100px;
+ background-color: red;
+ border-top:10px solid black;
+ border-bottom:10px solid black;
+ margin-bottom:10px;  
+}
+ 
+.bb{
+ width:100px;
+ height: 100px;
+ background-color: blue;
+ border-top:10px solid gray;
+ border-bottom:10px solid gray;
+ margin-top:10px;
+}
+
+
+span.sp1{
+  background-color: aqua;
+}
+
+span.sp2{
+ background-color: lime;
+  /* margin:10px; */
+  /* padding:20px; */
+}
+
+#m1{
+  width:100px; 
+  height:100px;
+  background-color: blue;
+  /* #m2의 margin값이 top에 적용되도록 하기 위해서 설정한다.*/
+  padding-top:1px;
+ 
+}
+
+#m2{
+ width:80px;
+ height:80px;
+ background-color: yellow;
+ margin:10px;
+}
+
+div span{
+margin:20px;
+}
+
+</style>
+</head>
+<body>
+<!-- 
+블록요소일때 두 요소가 나란이 좌우, 상하로 배열이 되여 있을때 
+ 서로 마진값이 겹치면 하나만 적용되고 다른 마진값은 무시된다(같은값이나 다르다면 큰값이 적용됨).
+ -->
+	<div class="rap">
+		<div class="aa">one</div>
+		<div class="bb">two</div>
+	</div>
+	<!-- 인라인 요소를 배치할때에는 블록요소로 감싸서 배치한다. -->
+   <div>
+	<span class="sp1">span1</span><span class="sp2"> span2</span>
+	</div>
+	<div class="aa">one</div>
+	
+	<div id="m1">	 
+	  <div id="m2">test</div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

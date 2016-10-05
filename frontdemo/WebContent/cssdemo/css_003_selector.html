@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>css_003_selector</title>
+<style type="text/css">
+/*
+  body h1{color:red}     0002
+  h1{color:red}          0001
+  h1,h2{color:red}       0001 (각각)
+  h1.blue{}              0011
+  #id1{color:red}        0100
+  #id1.blue{color:red}   0110
+  #id1.blue p{color:red} 0111
+  
+  !important은 우선순위 계산이 무시되고 무조건 적용된다.
+  #id1.blue p{color:red !important}
+ */
+ .unit{
+   color:red
+ }
+ 
+ p{
+ color:blue !important
+ }
+</style>
+</head>
+<body>
+ <p>우선순위는 요소들에 적용할 스타일이 중복될 때 적용되는 스타일을 
+ 계산하는 방법이다.</p>
+ <p class="unit">요소들에 스타일을 적용하기 위해서는 선택자를
+ 지정해서 설정할 수 있다.</p>
+</body>
+</html>

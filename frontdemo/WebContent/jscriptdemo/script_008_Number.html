@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>script_008_Number</title>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+
+<script type="text/javascript">
+ var data=123;
+ var str=data.toString();
+ var obj=new Number(123);
+ //number,string,object
+ document.write(typeof data+","+typeof str+","+typeof obj+"<br/>");
+ //123,123,123
+ document.write(data+","+str+","+obj+"<br/>");
+ 
+ var res=data/"korea";
+ var res2=data/"10";
+ //Nan,12.3    NaN=>Not a Number
+ document.write(res+","+res2+"<br/>");
+ 
+ var a=new Number(100);
+ var b=new Number(100);
+ var c=100;
+ var d=100;
+ //false, true
+ document.write((a==b)+","+(c==d)+"<br/>");
+ 
+ //valueOf() : 객체에 저장된 값을 리턴한다.
+ //number
+ document.write(typeof a.valueOf()+"<br/>");
+ 
+ //true
+ document.write((a.valueOf()==b.valueOf())+"<br/>");
+ 
+ var k=200;
+ //toString() : 숫자를 문자열로 변환
+ //string
+ document.write(typeof k.toString()+"<br/>");
+
+ var m="5";
+ var p="3";
+ document.write(m+p+"<br/>");
+ 
+ document.write(typeof parseInt(m)+"<br/>");
+ document.write((parseInt(m)+parseInt(p))+"<br/>");
+</script>
+</body>
+</html>

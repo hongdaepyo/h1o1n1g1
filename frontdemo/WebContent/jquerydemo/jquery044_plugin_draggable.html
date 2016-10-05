@@ -1,0 +1,41 @@
+!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jQuery UI Draggable - Default functionality</title>
+<link rel="stylesheet" type="text/css"
+	href="css\ui-lightness\jquery-ui-1.10.4.custom.min.css">
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+
+div {
+	width: 150px;
+	height: 150px;
+	padding: 0.5em;
+}
+
+#draggable:hover {
+	cursor: move;
+}
+</style>
+<script type="text/javascript" src="js\jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js\jquery-ui-1.10.4.custom.min.js"></script>
+<script>
+	$(function() {
+		$("#draggable").draggable();
+	});
+</script>
+</head>
+<body>
+
+	<div id="draggable" class="ui-widget-content">
+		<p>Drag me around</p>
+	</div>
+
+
+</body>
+</html>

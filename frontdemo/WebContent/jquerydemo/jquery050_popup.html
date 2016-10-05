@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#pop_wrap {
+	position: absolute;
+	top: 200px;
+	left: 100px;
+	z-index: 30;
+	display: none;
+	box-shadow: 0 2px 10px #000;
+}
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<!-- UI 플러그인 연동 -->
+<script type="text/javascript" src="js/jquery-ui-1.10.4.custom.min.js"></script>
+<!-- 쿠키 플러그인 연동 -->
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+
+<script>
+/*
+ * $.cookie('the_cookie'); //cookie취득  
+ * $.cookie('the_cookie', 'the_value'); //cookie를 셋팅
+ * $.cookie('the_cookie', 'the_value', { expires: 7 }); //쿠키의 유효기간을 7일간으로 지정  
+ * $.cookie('the_cookie', '', { expires: -1 }); //cookie 삭제
+ * $.cookie('the_cookie', null); //cookie 삭제
+ */ 
+	$(document).ready(function() {
+		/*팝업 연동*/
+		if ($.cookie("pop") != "no")
+			$("#pop_wrap").show();
+		$("#pop_wrap").css("cursor", "move").draggable();
+
+		$("#pop_wrap area:eq(0)").on("click", function() {
+			$("#pop_wrap").fadeOut("fast");
+			return false;
+		});
+
+		$("#pop_wrap area:eq(1)").on("click", function() {
+			$.cookie("pop", "no", {
+				expires : 1
+			});
+			$("#pop_wrap").fadeOut("fast");
+			return false;
+		});
+	});
+</script>
+</head>
+<body>
+	<div>
+		<p id="pop_wrap">
+			<img src="images/popup.jpg" alt="검색이 잘 되는 키워드는 따로 있다!" usemap="#pop" />
+			<map name="pop" id="pop">
+				<area shape="rect" coords="255,332,290,345" href="#" alt="창닫기" />
+				<area shape="rect" coords="95,332,215,345" href="#" alt="하루동안 창 닫기" />
+			</map>
+		</p>
+	</div>
+</body>
+</html>

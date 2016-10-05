@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>css_024_menu</title>
+<style type="text/css">
+/*수평 네비게이션*/
+*{
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+}
+
+body{
+  margin-left:10px;
+}
+
+.menulist{
+  width:294px;
+  height:34px;
+  background-color: yellow;
+  border-left:2px solid black;
+}
+
+dd{
+  float:left;
+  height:30px;
+  border:2px solid black;
+  width: 96px;
+  border-left-width:0px;
+}
+
+dt{
+ width:0px;
+ height:0px;
+ visibility: hidden;
+ text-indent:-2000;
+}
+
+dl dd a{
+ display: block;
+ width:96px;
+ height:30px;
+ text-align: center;
+ text-decoration: none;
+ color:#000000;
+ /*       글씨크기/라인높이*/
+ font:bold 16px/30px nanumgothic,"굴림체",dotum,sans-serif;
+}
+
+a:HOVER {
+	text-decoration: underline;
+	color:red;
+	font-size:18px;
+}
+
+</style>
+</head>
+<body>
+	<dl class="menulist">
+		<dt>메뉴목록</dt>
+		<dd>
+			<a href="#">교육센터</a>
+		</dd>
+		<dd>
+			<a href="#">교육안내</a>
+		</dd>
+		<dd>
+			<a href="#">교육일정</a>
+		</dd>
+	</dl>
+</body>
+</html>

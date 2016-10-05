@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>script_016_RegExp</title>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+
+
+</script>
+</head>
+<body>
+<script type="text/javascript">
+var str = "The Best things in best life are best free";
+document.write(str.search(/best/)+"<br/>"); //19  //대소문자 구분
+document.write(str.search(/best/i)+"<br/>");  //4 //i 대소문자 구분안함
+
+document.write("<hr/>");
+
+var str2 = "The Best things in best life are best free";
+document.write(str2.search(/best/g)+"<br/>"); 
+document.write(str2.search(/best/ig)+"<br/>");
+
+document.write("<hr/>");
+
+var str3 = "The Best things in best Y life are best free";
+
+document.write(str3.match(/best/)+"<br/>");  //best
+document.write(str3.match(/best/i)+"<br/>");  //Best
+document.write(str3.match(/best/ig)+"<br/>"); //Best,best,best
+
+document.write("<hr/>");
+
+var patt = /e/;
+document.write(patt.test(str3)+"<br/>"); //true
+
+var patt = /y/i;
+document.write(patt.test(str3)+"<br/>"); //true
+
+var patt2 = /K/;
+document.write(patt2.test(str3)+"<br/>"); //false
+
+document.write("<hr/>");
+//일치하는 값이 없으면 null을 리턴한다.
+document.write(patt.exec(str3)+"<br/>"); //Y
+
+
+
+</script>
+
+</body>
+</html>

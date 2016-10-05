@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+/*
+ 1. 모든 서브메뉴를 감춘다.
+ 2. 첫번째 메이메뉴의 서브메뉴를 보여준다.
+ 3. 특정 메인메뉴에서 클릭하면
+   1) 기존의 서브메뉴를 감춘다.
+   2) 이벤트가 발생된 메인메뉴의 서브메뉴를 보여준다.
+ */
+	$(document).ready(function(){
+		//모든 서브메뉴를 감춘다.
+		$('ul#menu li ul').hide();
+		$.each($('ul.menu'),function(){
+			//$('#menu.expandfirst ul:first').show();
+			$('#'+this.id+'.expandfirst ul:first').show();
+		});
+		
+		$('ul.menu li a').click(function(){
+			var checkElement=$(this).next();
+			var parent=$(this).parent().parent().prop('id');
+			if(checkElement.is('ul')&& !(checkElement.is(':visible'))){
+				//기존에 보여줬던 서브메뉴를 감춘다.
+				$('#'+parent+' ul:visible').slideUp('slow');
+				
+				//새로선택한 메인 메뉴의 서브메뉴를 보여준다.
+				checkElement.slideDown('normal');
+			}else{
+				
+			}
+				
+		});
+	});
+
+</script>
+</head>
+<body>
+<h2>2: Accordion with first submenu expanded at page load</h2>
+
+	<p>
+		Same as the first example but with the first submenu expanded when the
+		page loads. This is achieved by adding a CSS class <strong>expandfirst</strong>
+		to the unordered list.
+	</p>
+
+	<ul id="menu" class="menu expandfirst">  <!-- 클래스명이 menu와 expandfirst 두개. 공백으로 구분  -->
+		<li><a href="#">Weblog Tools</a>
+			<ul>
+				<li><a href="http://www.pivotx.net/">PivotX</a></li>
+				<li><a href="http://www.wordpress.org/">WordPress</a></li>
+				<li><a href="http://www.textpattern.com/">Textpattern</a></li>
+				<li><a href="http://typosphere.org/">Typo</a></li>
+			</ul></li>
+		<li><a href="#">Programming Languages</a>
+			<ul>
+				<li><a href="http://www.php.net/">PHP</a></li>
+				<li><a href="http://www.ruby-lang.org/en/">Ruby</a></li>
+				<li><a href="http://www.python.org/">Python</a></li>
+				<li><a href="http://www.perl.org/">PERL</a></li>
+				<li><a href="http://java.sun.com/">Java</a></li>
+				<li><a href="http://en.wikipedia.org/wiki/C_Sharp">C#</a></li>
+			</ul></li>
+		<li><a href="http://www.i-marco.nl/weblog/">Marco's blog (no
+				submenu)</a></li>
+		<li><a href="#">Cool Stuff</a>
+			<ul>
+				<li><a href="http://www.apple.com/">Apple</a></li>
+				<li><a href="http://www.nikon.com/">Nikon</a></li>
+				<li><a href="http://www.xbox.com/en-US/">XBOX360</a></li>
+				<li><a href="http://www.nintendo.com/">Nintendo</a></li>
+			</ul></li>
+		<li><a href="#">Search Engines</a>
+			<ul>
+				<li><a href="http://search.yahoo.com/">Yahoo!</a></li>
+				<li><a href="http://www.google.com/">Google</a></li>
+				<li><a href="http://www.ask.com/">Ask.com</a></li>
+				<li><a href="http://www.live.com/?searchonly=true">Live
+						Search</a></li>
+			</ul></li>
+	</ul>
+</body>
+</html>

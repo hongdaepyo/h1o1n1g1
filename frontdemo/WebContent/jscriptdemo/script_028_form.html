@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>script_028_form</title>
+<style type="text/css">
+</style>
+<script type="text/javascript">
+	
+</script>
+</head>
+<body>
+	<!-- 
+	method 속성 : 클라이언트의 데이터를 서버로 보내기 위한 방법을 설정한다.
+        값 get은 폼의 내용을 서버로 전송할때 255바이트 이하까지만 전송할 수 있고
+         주소표시줄에 전송되는 값이 노출이 된다.
+        값 post은 폼의 내용을 서버로 전송할때 255바이트보다 크거나 보안이 필요한데이터를
+         보낼때 설정한다.
+ -->
+	<form name="log_f" method="post" action="#">
+		<fieldset>
+			<legend>회원 로그인</legend>
+			<!-- 라벨 이름을 클릭하면 입력란에 포커스를 마추게끔 함 라벨의 for랑 input의 id랑 같아야한다. 
+ 			    한페이지에 id값은 유일해야 한다  -->
+			<label for="my_id">아이디</label> <input type="text" name="my_id"
+				id="my_id" /> <label for="my_pass">비밀번호</label> <input type="text"
+				name="my_pass" id="my_pass" /> <input type="submit" value="login" />
+		</fieldset>
+	</form>
+	
+	<!--  
+	폼요소에서 입력요소 선택
+	1. document.getElementById("아이디명") : 폼요소를 아이디로 선택할때 사용
+	2. document.폼이름.입력요소 이름 : 폼요소를 이름으로 선택할때 사용
+	 -->
+	<script type="text/javascript">
+		document.log_f.onsubmit=function() {
+			// var my_id = document.getElementById("my_id");
+			// var my_pass = document.getElementById("my_pass");
+			
+			//폼name.폼요소안의 요소name 
+			var my_id=document.log_f.my_id;
+			var my_pass=document.log_f.my_pass;
+			alert(my_id.value + " , " + my_pass.value);
+			
+		};
+	</script>
+</body>
+</html>

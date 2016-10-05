@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery006_bind</title>
+<style type="text/css">
+
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+ $(document).ready(function(){
+	 $('[type="button"]').bind('click',function(){
+		/* var data=$('#fname').val();
+		if(data.length!=0){
+			$('form').submit(); */
+		if($('#fname').val()!=""){
+			$('form').submit();
+		};
+	 });
+ });
+</script>
+</head>
+<body>
+ <form name="frm" action="test.jsp" method="get">
+   <label for="fname">이름</label>
+   <input type="text" name="fname" id="fname" />
+   <input type="button" value="commit" />
+ </form>
+</body>
+</html>

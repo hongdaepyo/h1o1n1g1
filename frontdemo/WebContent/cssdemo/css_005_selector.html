@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>css_005_selector</title>
+<style type="text/css">
+/* 선택자 조합*/
+
+/* >은 자식선택자이다.*/
+div>span{
+	color: yellow
+}
+
+div font{
+  background-color:olive
+}
+
+/* +는 인접을 의미(아래에 인접해있는 것에만 적용) */
+div+p{
+  color:red
+}
+/* [속성명="값"] 속성자 선택자이다. */
+p[class="one"]{
+	border-style:solid;
+	border-width:1px;
+	border-color: orangee
+}
+
+/*,(쉼표)는 그룹화 선택자이다.*/
+img,address{
+	border-style:solid;
+	border-width:5px;
+	border-color:purple
+}
+
+</style>
+</head>
+<body>
+	<div>
+		<p>
+			div요소의 <font>자식요소</font>
+		</p>
+		<span>div요소의 자식요소</span>
+	</div>
+
+	<p>다양한 선택자를 지정하는 방법</p>
+
+	<p class="one">속성에대한 선택자를 지정할 수 있다.</p>
+	<div>
+		<p>
+			<span>div요소의 자손요소</span>
+		</p>
+	</div>
+
+	<img src="./image/aa.jpg" width="100" height="100" alt="고수" />
+
+	<address>서울 종로구 종로2가</address>
+	<div class="one">box</div>
+
+</body>
+</html>

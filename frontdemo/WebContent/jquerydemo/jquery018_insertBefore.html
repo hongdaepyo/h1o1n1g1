@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery018_insertBefore</title>
+<style type="text/css">
+
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+  $(document).ready(function(){
+	 $('button:nth-of-type(1)').click(function(){
+		 //$('기존요소').before('추가요소');
+		 //$(''#myList').before('<li>first</li>');
+		//$('#myList').before('<li>first</li>'); 
+		//$('<li>first</li>').insertBefore('#myList');
+		
+		////////////////////////////////////////////////////
+		//$('기존요소').after('추가요소')
+		//$('#myList').after('<li>third</li>');
+		//$('추가요소').insertAfter('기존요소');
+		$('<li>third</li>').insertAfter('#myList');
+	 });
+	 
+	 $('button:nth-of-type(2)').click(function(){
+		 //clone(): 선택한 요소를 복사한다.
+		 //첫번째 ul의 자식요소들을 복사한다.
+		 var copy=$('ul:nth-of-type(1)').children().clone();
+		$('ul:nth-of-type(2)').append(copy);
+	 });
+  });
+</script>
+</head>
+<body>
+<button>click</button>
+<button>clone</button>
+<ul>
+  <li id="myList">content</li>
+</ul>
+<ul>
+</ul>
+</body>
+</html>

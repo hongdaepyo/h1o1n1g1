@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>css_030_login</title>
+<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+body {
+	margin: 50px;
+}
+
+.loginMenu {
+	width: 278px;
+	height: 98px;
+	border: 1px solid #00B3DC;
+	position: relative;
+}
+
+.loginMenu * {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.loginMenu #id {
+	width: 150px;
+	height: 20px;
+	left: 20px;
+	top: 10px;
+	border: 1px solid #00BFFF;
+}
+
+.loginMenu #password {
+	width: 150px;
+	height: 20px;
+	left: 20px;
+	top: 38px;
+	border: 1px solid #00BFFF;
+}
+
+.loginMenu #remember {
+	width: 14px;
+	height: 14px;
+	left: 178px;
+	top: 13px;
+}
+
+.loginMenu label {
+	width: 74px;
+	height: 15px;
+	left: 200px;
+	top: 12px;
+	font: 12px Arial;
+}
+
+.loginMenu #loginBtn {
+	width: 60px;
+	height: 20px;
+	left: 178px;
+	top: 38px;
+}
+
+.loginMenu span {
+	width: 100px;
+	height: 20px;
+	top: 70px;
+	left: 30px;
+}
+
+.loginMenu legend {
+	text-indent: -300px;
+}
+
+.loginMenu span a {
+	font-size: 14px;
+	color: #00BFFF;
+	text-decoration: none;
+}
+
+.loginMenu span a:hover {
+	font-weight: bold;
+	letter-spacing: -1px; /*문자 사이의 간격 결정*/
+	color: black;
+	border-bottom: 2px solid black;
+}
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(document).ready(function() {
+		var patt = 	i;
+		var patt2 = /[\w\W]{7,10}
+		$('#loginBtn').click(function() {
+			var id = $('#id').val();
+			var pass = $('#password').val();
+			alert(patt.test(pass));
+			if (patt.test(id) && patt2.test(pass)) {
+				$('form').prop('action', 'jquery021_logout.jsp');
+				$('form').submit();
+				document.write("형식에 맞습니다." + "<br/>");
+			} else {
+				alert("형식에 맞지 않습니다.");
+			}
+
+		});
+	});
+</script>
+</head>
+<body>
+	<div id="wrap">
+		<form method="post" action="#">
+			<fieldset class="loginMenu">
+				<legend class="hidden"> 로그인 </legend>
+				<input type="text" id="id" name="id" tabindex="1" title="아이디입력"
+					accesskey="i" /> <input type="password" id="password"
+					name="password" tabindex="2" title="비밀번호입력" accesskey="p" /> <input
+					type="checkbox" id="remember" tabindex="3" name="remember"
+					accesskey="r" /> <label for="remember">아이디 저장</label> <input
+					type="image" id="loginBtn" src="images/signin.gif" accesskey="l"
+					tabindex="4" /> <span><a href="#">회원가입</a></span>
+
+			</fieldset>
+
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery017_append</title>
+<style type="text/css">
+
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+$(document).ready(function(){
+	$('button').click(function(){
+		//before, after은 형제요소 추가.//append는 자식요소 추가.
+		//append: 뒤에 추가, prepend: 뒤에 추가
+		//$('부모요소').append('추가자식요소')
+		//$('#my').append('<li>second</li>');
+		
+		//$('추가자식요소').appendTo('부모요소');
+		//$('<li>third</li>').appendTo('#my');
+		
+		//$('부모요소').append('추가자식요소')
+		$('#my').prepend('<li>second</li>');
+		//$('추가자식요소').appendTo('부모요소')
+		$('<li>third</li>').prependTo('#my');
+		
+		//alert($('#my').children().length);
+	});
+});
+</script>
+</head>
+<body>
+<button>append</button>
+ <ul id="my">
+  <li>first</li>
+ </ul>
+</body>
+</html>

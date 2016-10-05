@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery016_before_after</title>
+<style type="text/css">
+
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+$(document).ready(function(){
+	$('button').click(function(){
+		//$('기존요소').before('새로운 요소');
+		$('#myList').before('<li id="bNode">before</li>');
+		//$('기존요소').after('새로운 요소');
+		$('#myList').after('<li id="aNode">after</li>');
+		$(this).off();
+	});
+});
+</script>
+</head>
+<body>
+<button>commit</button>
+<ul>
+  <li id="myList">content</li>
+</ul>
+</body>
+</html>

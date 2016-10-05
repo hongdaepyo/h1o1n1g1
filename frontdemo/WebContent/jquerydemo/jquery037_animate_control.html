@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery037_animate_control</title>
+<style type="text/css">
+ h1{
+  	width: 50px;
+  	height: 30px;
+  	background-color: red;
+  	font-size:100%;
+  }
+  
+  h2{
+  	width: 50px;
+  	height: 30px;
+  	background-color: green;
+  	font-size:100%;
+  }
+  
+  div{
+  width:100px;
+  height:100px;
+  border:1px solid black;
+  display:none;
+  }
+
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+/*
+ * stop(): 현재 실행중인 효과를 모두 정지시킨다.
+   delay() : 스택에 대기 중인 애니메이션 효과를 지연시킨다.
+  대기 중인 효과가 지정한 시간만큼 지연된후 발생된다.
+  $(요소선택).stop();
+  $(요소선택).delay(지연시간).애니메이션 또는 효과메서드()
+ */
+ $(document).ready(function(){
+	$('h1').animate({marginLeft:"250px"},5000);
+		
+	$('h2').animate({marginLeft:"250px",opacity:0.3,width:'100px'},5000);
+	
+	$('div:nth-of-type(1)').delay(2000).fadeIn('slow');
+	$('div:nth-of-type(2)').delay(2500).fadeIn('slow');
+	$('div:nth-of-type(3)').delay(3000).fadeIn('slow');
+	
+	$('#stopBtn').click(function(){
+		$('h1, h2').stop();
+	});
+		
+ });
+</script>
+</head>
+<body>
+<button id="stopBtn">stop</button>
+<h1>content1</h1>
+<h2>content2</h2>
+<div style="background-color: red">&nbsp;</div>
+<div style="background-color: green">&nbsp;</div>
+<div style="background-color: blue">&nbsp;</div>
+</body>
+</html>

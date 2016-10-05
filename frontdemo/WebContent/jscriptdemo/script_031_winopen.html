@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>script_031_winopen</title>
+<style type="text/css">
+</style>
+<script type="text/javascript">
+	window.onload = function() {
+		var pNode = document.getElementsByTagName("p")[0];
+		pNode.onclick = function() {
+			  //window.open("url경로","창이름","옵션");
+			  //옵션: 가로, 세로, 스크롤바, 툴바, 주소
+			window.open("script_031_bom_popup.html", "",
+							"width=500, height=500, scrollbars=no, toolbars=no, location=no");
+		}
+	}
+</script>
+</head>
+<body>
+	<p>팝업창 띄우기</p>
+</body>
+</html>

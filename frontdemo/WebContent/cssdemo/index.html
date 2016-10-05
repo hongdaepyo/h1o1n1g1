@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+/*전체 가로 1000px, 세로 800px*/
+* {
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+}
+
+.wrap1 {
+	width: 998px;
+	height: 98px;
+	position: absolute;
+	border: 1px solid red;
+}
+
+.wrap2 {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 1000px;
+	height: 780px;
+	position: absolute;
+	top: 100px;
+	z-index: 1;
+}
+
+.wrap3 {
+	width: 998px;
+	height: 98px;
+	position: absolute;
+	border: 1px solid purple;
+	top: 900px;
+}
+
+.menulist {
+	width: 1000px;
+	height: 100px;
+	background-color: red;
+}
+
+.wrap2 .dv1 {
+	float: left;
+	width: 198px;
+	height: 778px;
+	border: 1px solid yellow;
+}
+
+.wrap2 .dv2 {
+	float: left;
+	width: 578px;
+	height: 568px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	border: 1px solid lime;
+}
+
+.wrap2 .dv2 p {
+	display: block;
+	font: 20px arial;
+	position: absolute;
+	top: 20px;
+}
+
+.wrap2 .dv4 {
+	float: left;
+	width: 578px;
+	height: 198px;
+	margin-left: 10px;
+	margin-right: 10px;
+	border: 1px solid gray;
+}
+
+.wrap2 .dv3 {
+	float: right;
+	width: 198px;
+	height: 778px;
+	border: 1px solid blue;
+}
+
+.dropdown {
+	float: left;
+	display: block;
+	width: 248px;
+	height: 100px;
+	color: white;
+	font: bold 16px/30px;
+	border-left: 1px dotted red;
+	text-align: center;
+	line-height: 30px;
+}
+
+.btn01 {
+	background-color: #ffcc99;
+	width: 248px;
+	height: 100px;
+	color: white;
+	font-size: 30px;
+	border-left-width:0px;
+}
+.btn02 {
+	background-color: #ffcc99;
+	width: 248px;
+	height: 100px;
+	color: white;
+	font-size: 30px;
+}
+.btn03 {
+	background-color: #ffcc99;
+	width: 248px;
+	height: 100px;
+	color: white;
+	font-size: 30px;
+}
+.btn04 {
+	background-color: #ffcc99;
+	width: 248px;
+	height: 100px;
+	color: white;
+	font-size: 30px;
+}
+
+.dropdown-content1 {
+	display: none;
+	position: absolute;
+	background-color: #ffcc99;
+	z-index: 2;
+}
+.dropdown-content2 {
+	display: none;
+	position: absolute;
+	background-color: #ffcc99;
+	z-index: 2;
+}
+.dropdown-content3 {
+	display: none;
+	position: absolute;
+	background-color: #ffcc99;
+	z-index: 2;
+}
+.dropdown-content4 {
+	display: none;
+	position: absolute;
+	background-color: #ffcc99;
+	z-index: 2;
+}
+
+.dropdown-content a{
+	color: black;
+}
+
+.dropdown-content a:hover {background-color: white;
+}
+
+.dropdown:hover .dropdown-content1{
+display: block;
+}
+.dropdown:hover .dropdown-content2{
+display: block;
+}
+.dropdown:hover .dropdown-content3{
+display: block;
+}
+.dropdown:hover .dropdown-content4{
+display: block;
+}
+
+.dropdown:hover, button{
+background-color: black;
+}
+
+ul * {
+	list-style-type: none;
+}
+ul li{
+width:248px;
+height:100px;
+background-color: #ffcc99;
+color: white;
+font-size: 30px;
+}
+
+</style>
+</head>
+<body>
+
+	<div class="wrap1">
+		<div class="dv1"></div>
+		<div class="dropdown">
+			<button class="btn01">MENU 01</button>
+			<div class="dropdown-content1">
+				<ul>
+					<li class="item"><a href="#"></a>
+						<div class="menuBtn">
+							<p>sub11</p>
+						</div></li>
+					<li class="item"><a href="#"></a>
+						<div class="menuBtn">
+							<p>sub12</p>
+						</div></li>
+					<li class="item"><a href="#"></a>
+						<div class="menuBtn">
+							<p>sub13</p>
+						</div></li>
+					<li class="item"><a href="#"></a>
+						<div class="menuBtn">
+							<p>sub14</p>
+						</div></li>
+					<li class="item"><a href="#"></a>
+						<div class="menuBtn">
+							<p>sub15</p>
+						</div></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="dropdown">
+			<button class="btn02">MENU 02</button>
+			<div class="dropdown-content2">
+				<ul>
+					<li class="item"><a href="#"></a>
+						<div class="menuBtn">
+							<p>sub21</p>
+						</div></li>
+					<li class="item"><a href="#"></a>
+						<div class="menuBtn">
+							<p>sub22</p>
+						</div></li>
+					<li class="item"><a href="#"></a>
+						<div class="menuBtn">
+							<p>sub23</p>
+						</div></li>
+					<li class="item"><a href="#"></a>
+						<div class="menuBtn">
+							<p>sub24</p>
+						</div></li>
+					<li class="item"><a href="#"></a>
+						<div class="menuBtn">
+							<p>sub25</p>
+						</div></li>
+				</ul>
+			</div>
+		</div>
+
+
+		<div class="dropdown">
+			<button class="btn03">MENU 03</button>
+			<div class="dropdown-content3">
+				<ul>
+					<li class="item"><a href="#"></a>
+						<div class="menuBtn">
+							<p>sub31</p>
+						</div></li>
+					<li class="item"><a href="#"></a>
+						<div class="menuBtn">
+							<p>sub32</p>
+						</div></li>
+					<li class="item"><a href="#"></a>
+						<div class="menuBtn">
+							<p>sub33</p>
+						</div></li>
+					<li class="item"><a href="#"></a>
+						<div class="menuBtn">
+							<p>sub34</p>
+						</div></li>
+					<li class="item"><a href="#"></a>
+						<div class="menuBtn">
+							<p>sub35</p>
+						</div></li>
+				</ul>
+			</div>
+		</div>
+
+
+		<div class="dropdown">
+			<button class="btn04">MENU 04</button>
+			<div class="dropdown-content4">
+				<ul>
+					<li class="item"><a href="#"></a>
+						<div class="menuBtn">
+							<p>sub41</p>
+						</div></li>
+					<li class="item"><a href="#"></a>
+						<div class="menuBtn">
+							<p>sub42</p>
+						</div></li>
+					<li class="item"><a href="#"></a>
+						<div class="menuBtn">
+							<p>sub43</p>
+						</div></li>
+					<li class="item"><a href="#"></a>
+						<div class="menuBtn">
+							<p>sub44</p>
+						</div></li>
+					<li class="item"><a href="#"></a>
+						<div class="menuBtn">
+							<p>sub45</p>
+						</div></li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+	<div class="wrap2">
+		<div class="dv1"></div>
+		<div class="dv2">
+			<p>So So한 이야기</p>
+		</div>
+		<div class="dv3"></div>
+		<div class="dv4"></div>
+	</div>
+
+	<div class="wrap3"></div>
+	<div class="dv1"></div>
+</body>
+</html>

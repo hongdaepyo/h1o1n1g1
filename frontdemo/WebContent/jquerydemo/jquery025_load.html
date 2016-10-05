@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery025_load</title>
+<style type="text/css">
+
+
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+/*
+ * 로딩이벤트
+ 1. load() : 선택한 이미지 또는 프레임 요소에 연동된 소스가 로딩이 완료된 후 이벤트가 발생
+ 2. ready() : 지정한 HTML문서 객체가 로딩이 완료된 후 이벤트가 발생
+ */
+ $(document).ready(function(){
+	$('#wrap').append('<p>레디완료</p>'); 
+ });
+ 
+ $('iframe').load(function(){//이미지나 iframe 로드할 때에만 사용
+	$('#wrap').append('<p>로딩완료</p>');
+ });
+</script>
+</head>
+<body>
+<div id="wrap"></div>
+ <iframe src="jquery024_wrap.html" frameborder="0" width="300px" height="300px"></iframe>
+</body>
+</html>

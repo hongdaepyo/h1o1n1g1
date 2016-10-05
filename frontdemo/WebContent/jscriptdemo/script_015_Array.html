@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>script_014_Array</title>
+<style type="text/css">
+</style>
+<script type="text/javascript">
+	
+</script>
+</head>
+<body>
+	<script type="text/javascript">
+		var fruits = [ "Banana", "Orange", "Apple", "Mango" ];
+		//array->string
+		document.write(typeof fruits.toString() + "<br/>");
+		document.write(typeof String(fruits) + "<br/>");
+
+		document.write("<hr/>");
+		document.write(fruits.join() + "<br/>"); //Banana,Orange,Apple,Mango
+		document.write(typeof fruits.join() + "<br/>"); //string
+		document.write(fruits.join(" * ") + "<br/>"); // Banana * Orange * Apple * Mango
+		document.write(typeof fruits.join(" * ")+"<br/>"); //string
+		
+		document.write("<hr/>");
+		document.write(fruits.push("kiwi")+"<br/>");  //5  push = fruits 에 추가하고 총 갯수 리턴
+		document.write(fruits+"<br/>"); 	//Banana,Orange,Apple,Mango,kiwi
+		document.write(fruits.pop()+"<br/>"); //kiwi      스택방식으로 빼냄.
+		document.write(fruits+"<br/>"); //Banana,Orange,Apple,Mango
+		document.write(fruits+"<br/>"); 
+		
+		document.write(fruits.unshift("kiwi")+"<br/>");  //5  
+		document.write(fruits+"<br/>");  //kiwi,Banana,Orange,Apple,Mango  kiwi가 첫번째에 삽입됨.
+		document.write(fruits.shift()+"<br/>"); //kiwi
+		document.write(fruits+"<br/>");   //Banana,Orange,Apple,Mango
+		document.write("<hr/>");
+		
+		var fruits2 = [ "Banana", "Orange", "Apple", "Mango" ];
+		//2인덱스부터 1개 인덱스를 삭제하고 데이터를 추가.
+		fruits2.splice(2,1,"Lemon","kiwi");
+		document.write(fruits2+"<br/>");//Banana,Orange,Lemon,kiwi,Mango
+		document.write("<hr/>");
+		
+		var myGirls = ["Cecilie","Lone"];
+		var myBoys = ["Emil","Tobias","Linus"];
+		document.write(myGirls.concat(myBoys)+"<br/>");
+		document.write("<hr/>");
+		
+		document.write(fruits2.sort()+"<br/>"); //Banana,Lemon,Mango,Orange,kiwi
+		document.write(fruits2+"<br/>");  //Banana,Lemon,Mango,Orange,kiwi
+		document.write(fruits2.sort().reverse()+"<br/>"); //kiwi,Orange,Mango,Lemon,Banana
+		document.write(fruits2+"<br/>"); //kiwi,Orange,Mango,Lemon,Banana
+		document.write("<hr/>");
+		
+		var point = [40,100,1,5,10];
+		document.write(point+"<br/>"); //40,100,1,5,10
+		document.write(point.sort()+"<br/>"); //1,10,100,40,5
+		document.write("<hr/>");
+		
+		document.write(point.sort(function(a,b){return a-b})+"<br/>"); //1,5,10,40,100
+		document.write(point+"<br/>");  //1,5,10,40,100
+		
+		document.write(point.sort(function(a,b){return b-a})+"<br/>"); //100,40,10,5,1
+		document.write(point+"<br/>");  //100,40,10,5,1
+		document.write("<hr/>");
+		
+		var data = new Array(1,2,3);
+		function getSum(total, num){
+			return total + num;	
+		}
+		document.write(data.reduce(getSum)+"<br/>");
+		
+		
+	</script>
+</body>
+</html>

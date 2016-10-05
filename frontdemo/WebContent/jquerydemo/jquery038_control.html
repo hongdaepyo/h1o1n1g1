@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery038_control</title>
+<style type="text/css">
+  div{
+    width:100px;
+    height:100px;
+    border:1px solid black;
+    background-color: red;
+  }
+  
+  p{
+    width:100px;
+    height:100px;
+    border:1px solid black;
+    background-color: blue;
+  }
+
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+/*
+ * queue() : 큐에 저장된 함수를 반환하거나, 큐에 함수를 저장하고 저장한 이후에
+ 			 적용된 메서드는 모두 제거한다.
+   ClearQueue() : 큐에 들어와서 대기중인 메서드 중 최초에 들어와 실행중인 메서드만
+                  제외하고 모든 대기중인 메서드는 제거한다.
+                  
+   $(요소선택).queue(); 선택한 요소의 큐에 대기중인 메서드 리턴한다.
+   $(요소선택).queue(function(){}); 선택한 요소의 큐에 함수를 저장한다. 저장된 이후에 대기 중인 메서드는 모두 제거한다.
+   $(요소선택).clearQueue(); 선택한 요소에 가장 먼저 들어와 실행중인 메서드만 제외하고 모든 대기중인 메서드를 제거한다.
+ */
+ 
+ $(document).ready(function(){
+	$('div').animate({height:'300px'},'slow')
+	        .animate({width:'300px'},'slow');
+	$('div').queue(function(){});//이후의 애니메이션은 모두 제거 된다.
+	        
+	$('div').animate({height:'100px'},'slow')
+	        .animate({width:'100px'},'slow');
+	
+	$('span:nth-of-type(1)').text($('div').queue().length);
+	
+	$('p').animate({height:'300px'},'slow')
+    .animate({width:'300px'},'slow');
+   
+    $('p').animate({height:'100px'},'slow')
+    .animate({width:'100px'},'slow');
+	$('p').clearQueue();//처음 설정해놓은 애니메이션만 적용
+	//모드 queue()에서 제거가 된다.
+	$('span:nth-of-type(2)').text($('p').queue().length);
+ });
+
+</script>
+</head>
+<body>
+<span>0</span>
+<div>&nbsp;</div>
+<span>0</span>
+<p>&nbsp;</p>
+</body>
+</html>

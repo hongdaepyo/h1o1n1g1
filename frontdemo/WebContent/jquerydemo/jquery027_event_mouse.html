@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery027_event_mouse</title>
+<style type="text/css">
+ div{
+  width:100px;
+  height:100px;
+  border: 1px solid black;
+ }
+
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+$(document).ready(function(){
+	$('#box1').mouseover(function(){
+		$(this).text('mouseover');
+	});
+	
+	$('#box1').mouseout(function(){
+		$(this).text('mouseout')
+	});
+	
+	$('#box2').hover(function(){
+		$(this).text('mouseover');
+	},function(){
+		$(this).text('mouseout');
+	});
+});
+
+</script>
+</head>
+<body>
+<div id="box1">mouseover<br/> mouseout</div>
+<div id="box2">hover</div>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery003_selector</title>
+<style type="text/css">
+
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+ $(document).ready(function(){
+	//button요소의 부모요소
+	$("button").parent().css({"width":"200px","height":"200px","border":"1px solid black"});
+	//ul의 모든 자식요소
+	$("ul").children().css({"color":"red"});
+	//ul요소 다음
+	$("ul").next().css({"background-color":"yellow"});
+	//ul요소 이전
+	$('ul').prev().css({"background-color":"aqua"});
+	//li요소들 중에서 짝수
+	$('li:even').css({"border":"2px solid black"});
+ });
+</script>
+</head>
+<body>
+<div id="wrap">
+	<button id="btn">click</button>
+	
+	<ul>
+	 <li>list1</li>
+	 <li>list2</li>
+	 <li>list3</li>
+	</ul>
+	
+	<p>line</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery019_remove_empty</title>
+<style type="text/css">
+  #line_1{
+   background-color:red;
+   border:1px solid black;
+   width:800px;
+   height:60px;
+  }
+  
+  #line_2{
+   background-color: blue;
+   border:1px solid black;
+   width:800px;
+   height:60px;
+  }
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(document).ready(function(){
+		//선택한 요소의 모든 하위 요소를 삭제한다.
+		$('#line_1').empty();
+		//선택한 요소를 삭제한다.
+		$('#line_2').remove();
+	});
+</script>
+</head>
+<body>
+ <ul>
+  <li id="line_1">content1</li>
+  <li id="line_2">content2</li>
+ </ul>
+</body>
+</html>

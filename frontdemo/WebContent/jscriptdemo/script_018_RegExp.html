@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>script_017_RegExp</title>
+<style type="text/css">
+
+</style>
+
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+<script type="text/javascript">
+//총길이 6자에서 10자까지
+//영문자로만  시작한다.
+//영문자, 숫자, 특수문자만을 사용한다.
+//대소문자 구분안한다.
+//숫자, 특수문자는 반드시 포함되여 있어야 한다.
+//공백은 입력할 수 없다
+		
+				
+ var id="wk12!wikdd";
+ 
+ 
+ // \w : 영문자+숫자+_   \W : \w를 제외한 특수문자  \d : 0~9  \s : 공백있을시 true
+ var patt  = /^[A-z][\w\W]{5,9}$/i;
+ var patt2 = /[\W\d]/g;
+ 
+ var ptt = /^(?=[.A-z])(?!.*[\s])(?=.*[0-9]{1,})(?=.*[`!@#$%\^&*()-]{1,})(?=.*[~`!@#$%\^&*()-A-z0-9]).{6,10}$/g;
+
+ 	if(patt.test(id.replace(/\s/g,''))==true){
+ 		if(patt2.test(id.replace(/\s/g,''))==true){
+ 			document.write("형식에 맞습니다."+"<br/>");
+ 		}else {
+ 			document.write("형식에 맞지 않습니다."+"<br/>");
+ 		}
+ 	}
+
+
+ /*  document.write(patt.test(id.replace(/\s/g,''))+"<br/>"); */ 
+ 	 document.write(pat.test(id));  
+ 
+</script>
+</body>
+</html>
+
+
+
+
+
+

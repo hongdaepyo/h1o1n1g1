@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>css_002_selector</title>
+<style type="text/css">
+ /* 선택자 우선순위 */
+ /* 0001 */
+ p{
+   color:red;
+   font-size: 30px;
+ }
+ 
+ p{
+   background-color:yellow;
+   color:blue /*우선순위가 같을때 마지막에 정의된 스타일이 적용됨*/
+ }
+ 
+ /* 0010 */
+ .order{
+   color:green;
+ }
+ /* 0100 */
+ #unit{
+   color:orange
+ }
+
+</style>
+</head>
+<body>
+ <!--
+ 하나의 요소에 여러 스타일이 설정되어 있을 때 우선순위가 높은 스타일이 적용된다.
+ 선택자(selector)우선순위
+ 요소명:  0001
+ class: 0010
+ id   : 0100
+ inline:1000 
+  -->
+  <p>test1</p>
+  <p class="order" id="unit">test2</p>
+  <p>test3</p>
+  <p class="order" style="color:purple">test4</p>
+  
+</body>
+</html>

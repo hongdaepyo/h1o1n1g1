@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery024_wrap</title>
+<style type="text/css">
+ div{
+ 	border:1px solid black;
+ }
+ 
+ .ct4{
+   background-color: yellow;
+ }
+
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+/*
+ * $('요소선택').unwrap(); 선택한 요소의 부모요소를 삭제
+ $('요소선택').wrap(새요소); 선택한 요소를 새요소로 각각 감쌈
+ $('요소선택').wrapAll(새요소); 선택한 요소를 새 요소로 한꺼번에 감쌈
+ $('요소선택').wrapInner(새요소); 선택한 요소에 하위 요소를 새 요소로 감쌈
+ */
+ $(document).ready(function(){
+	 $('strong').unwrap(); /* 부모요소인 h1요소 제거*/
+	 $('.ct1').wrap('<div/>');
+	 $('.ct4').wrapAll('<div/>');
+	 $('li').wrapInner('<h3/>'); /*h3요소로 <li>태그의 하위요소를 감쌈*/
+ });
+ 
+</script>
+</head>
+<body>
+ <h1 id='tit_1'><strong>객체 조작 및 생성</strong></h1>
+ <p class='ct1'>content1</p>
+ <p class='ct2'>content2</p>
+ <p class='ct1'>content3</p>
+ <p class='ct4'>content4</p>
+ <p class='ct4'>content5</p>
+ <ul>
+  <li>content6</li> <!-- <li><h3>content6</h3></li> -->
+  <li>content7</li> <!-- <li><h3>content7</h3></li> -->
+ </ul>
+</body>
+</html>

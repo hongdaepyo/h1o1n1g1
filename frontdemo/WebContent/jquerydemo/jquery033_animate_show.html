@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery033_animate_show</title>
+<style type="text/css">
+
+
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+$(document).ready(function(){
+	$('#btnshow').click(function(){
+		$('img').show('slow', function(){
+			alert('show 완료');
+		});
+	});
+	
+	$('#btnhide').click(function(){
+		$('img').hide(300,function(){
+			alert('hide 완료');
+		});
+	});
+	
+	$('#btntoggle').click(function(){
+		$('img').toggle('100');
+	});
+});
+
+</script>
+</head>
+<body>
+ <button id="btnshow">show</button>
+ <button id="btnhide">hide</button>
+ <button id="btntoggle">toggle</button><br/>
+ <img src="images/aa.jpg"/>
+ 
+ 
+</body>
+</html>

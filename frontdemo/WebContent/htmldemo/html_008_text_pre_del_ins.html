@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>html_008_text_pre_del_ins</title>
+</head>
+<body>
+<!-- 
+  <pre>태그
+  1 Pre-Formatted Text 약어로 정형화된 텍스트를 나타내는 블록요소이다.
+  2 실행을 했을때 입력된 모양그대로 출력이 된다.
+ -->
+
+<pre>
+태그에서는 스페이스바(공백), 엔터, 탭등이 적용되지 않는다.
+3   +   2 =    5
+5   +   7 =    12
+ <code>
+ function getNumber(){
+ return number;
+ }
+ </code>
+
+</pre>
+
+<!-- 
+  <del>태그
+  1 삭제된 텍스트를 의미하는 요소이다.
+  
+  <ins>태그
+  1 추가된 텍스트를 의미하는 요소이다.
+ -->
+
+ <dl>
+       <dt>상품</dt>
+ <!-- 
+        절대경로 : src="/frontend/htmldemo/image/bag.jpg"
+        상대경로 : src="./image/bag.jpg"
+        -->
+        <dd><img src="./images/bag.jpg" width="200" height="200" alt="가방할인" /></dd>
+        <dd>상품정가:<del>10,000원</del></dd>
+        <dd>할인가:<ins> 5,000원</ins></dd>        
+     </dl>
+ <!-- 
+  첨자
+  1 sup: SuperScript(위첨자)를 의미하는 요소이다.
+  2 sub: sub_Script(아래첨자)를 의미하는 요소이다.
+  -->
+     
+<h3>첨자</h3>
+<p>위첨자: x<sup>2</sup></p>
+<p>아래첨자: H<sub>2</sub></p>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>script_033_window_setInterval</title>
+<style type="text/css">
+</style>
+<script type="text/javascript">
+	var i = 0;
+	window.onload = function() {
+		//setInterval("실행한 스크립트",시간간격);
+		//일정한 시간 간격으로 스크립트를 반복하여 실행시킬때 사용한다.
+		//3초가 지나면 함수를 수행한다.
+		// var auto = window.setInterval("console.log(i++)", 1000);
+		var auto = window.setInterval(function () {
+			var pNode = document.getElementById("cnt");
+			pNode.innerHTML = i++;
+		}, 3000);
+
+		var bNode = document.getElementById("stop");
+
+		bNode.onclick = function() {
+			//clearInterval(참조변수);
+			//auto에 참조되어 있는 setInterval()을 삭제한다.
+			window.clearInterval(auto);
+		}
+	}
+</script>
+</head>
+<body>
+	<p id="cnt">&nbsp;</p>
+	<button id="stop">정지버튼</button>
+</body>
+</html>

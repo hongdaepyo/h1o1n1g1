@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>css_010_pseudo</title>
+<style type="text/css">
+/* p요소 짝수인덱스에 글자색상을 blue을 지정한다.*/
+p:NTH-CHILD(even) {
+	color:blue
+}
+p:NTH-OF-TYPE(even) {
+	color:red
+}
+
+</style>
+</head>
+<body>
+<div>
+ <p>computer</p>
+ <span>333</span>
+ <p>monitor</p>
+ <p>television</p>
+ <p>desk</p>
+ <p>top</p>
+</div>
+</body>
+</html>
