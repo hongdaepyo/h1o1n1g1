@@ -4,55 +4,115 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mem">
 
- <select id="all" resultType="part02.dto.MemDTO">
- 	select * from mem order by num desc
- 
- </select>
- 
- <insert id="ins" parameterType="part02.dto.MemDTO">
- 	insert into mem values(mem_num_seq.nextval,#{name,jdbcType=VARCHAR}, #{age}, #{loc,jdbcType=VARCHAR})
- </insert>
- 
- <update id="upt" parameterType="java.util.HashMap">
-	update mem set loc=#{loc} where num=#{num}
- </update>
- 
- <delete id="del" parameterType="int">
- 	delete from mem where num=#{num}
- </delete>
- 
- <select id="keyNum" resultType="int" flushCache="true">
- 	select mem_num_seq.nextval from dual
- </select>
- 
- <!-- 다중 insert -->
- <insert id="multiIns" parameterType="java.util.List">
- 	insert all
- 	 <foreach collection="list" item="element" index="no">
- 	 	into mem
- 	 	values(#{element.num}, #{element.name}, #{element.age}, #{element.loc})
- 	 </foreach>
- 	 select * from dual
- </insert>
- 
- <!-- 다중 delete -->
- <delete id="multiDel">
-   delete from mem
-   <where>
-   num in
-   <foreach collection="list" item="element" open="(" separator="," close=")">
-   	#{element}
-   </foreach>
-   </where>
- </delete>
- 
-  <delete id="multiDel2">
-   delete from mem
-   <where>
-   num in
-   <foreach collection="array" item="element" open="(" separator="," close=")">
-   	#{element}
-   </foreach>
-   </where>
- </delete>
+	<select id="all" resultType="part02.dto.MemDTO">
+		select * from mem order by num desc
+
+	</select>
+
+	<insert id="ins" parameterType="part02.dto.MemDTO">
+		insert into mem values(mem_num_seq.nextval,#{name,jdbcType=VARCHAR}, #{age},
+		#{loc,jdbcType=VARCHAR})
+	</insert>
+
+	<update id="upt" parameterType="java.util.HashMap">
+		update mem set loc=#{loc} where num=#{num}
+	</update>
+
+	<delete id="del" parameterType="int">
+		delete from mem where num=#{num}
+	</delete>
+
+	<select id="keyNum" resultType="int" flushCache="true">
+		select mem_num_seq.nextval from dual
+	</select>
+
+	<!-- 다중 insert -->
+	<insert id="multiIns" parameterType="java.util.List">
+		insert all
+		<foreach collection="list" item="element" index="no">
+			into mem
+			values(#{element.num}, #{element.name}, #{element.age}, #{element.loc})
+		</foreach>
+		select * from dual
+	</insert>
+
+	<!-- 다중 delete -->
+	<delete id="multiDel">
+		delete from mem
+		<where>
+			num in
+			<foreach collection="list" item="element" open="(" separator=","
+				close=")">
+				#{element}
+			</foreach>
+		</where>
+	</delete>
+
+	<delete id="multiDel2">
+		delete from mem
+		<where>
+			num in
+			<foreach collection="array" item="element" open="("
+				separator="," close=")">
+				#{element}
+			</foreach>
+		</where>
+	</delete>
+
+	<!-- dynamic if -->
+	<select id="search" parameterType="part02.dto.MemDTO"
+		resultType="part02.dto.MemDTO">
+		select * from mem
+		<!-- <where> <if test="name!=null"> name like '%' ||#{name} || '%' </if> 
+			<if test="age!=0"> or age >#{age} </if> </where> -->
+
+		<!-- or/and 위치에 따라서 suffix 와 prefix중에 선택 -->
+		<trim prefix="where" suffixOverrides="or/and">
+			<if test="name!=null">
+				name like '%' || #{name} || '%' or
+			</if>
+
+			<if test="age!=0">
+				age >#{age}
+			</if>
+		</trim>
+		order by num desc
+	</select>
+
+	<update id="multiUpt" parameterType="part02.dto.MemDTO">
+		update mem
+		<!-- <set> <if test="name!=null"> name=#{name}, </if> <if test="age!=0"> 
+			age=#{age}, </if> <if test="loc!=null"> loc=#{loc} </if> </set> -->
+
+		<!-- prefix="set"은 컨텐츠가 리턴되기 전에 추가한다. suffixOverrides="," 컨텐츠가 리턴되기 전에 
+			제거한다. -->
+
+		<!-- 아래 문장을 수행하기 전에 set을 넣어주고 조건에 따라서 필요없는 문자일 수도 있는 ","를 제거해준다. -->
+		<trim prefix="set" suffixOverrides=",">
+			<if test="name!=null">
+				name=#{name},
+			</if>
+			<if test="age!=0">
+				age=#{age},
+			</if>
+			<if test="loc!=null">
+				loc=#{loc}
+			</if>
+		</trim>
+		where num=#{num}
+	</update>
+
+	<!-- choose 동적 SQL사용 -->
+	<insert id="insData" parameterType="part02.dto.MemDTO">
+		insert into mem values(mem_num_seq.nextval,#{name},#{age},
+		<choose>
+			<when test="loc==null">
+				'test'
+			</when>
+			<otherwise>
+				#{loc}
+			</otherwise>
+		</choose>
+		)
+	</insert>
 </mapper>

@@ -7,8 +7,9 @@
 	<sql id="sel">
 		select * from employees
 	</sql>
+	
 
-	<select id="all" resultType="part01.dto.EmployeeDTO">
+	<select id="all" resultType="dto"> <!-- alias 값 사용한 dto -->
 		<include refid="sel"/>
 	</select>
 	

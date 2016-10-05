@@ -62,4 +62,16 @@ public class MemDao {
 	public int multiDeleteMethod(Integer[] array){
 		return session.delete("mem.multiDel2",array);
 	}
+	
+	public List<MemDTO> searchMethod(MemDTO mt){
+		return session.selectList("mem.search", mt);
+	}
+	
+	public void multiUptMethod(MemDTO dto){
+		session.update("mem.multiUpt", dto);
+	}
+	
+	public void locInsMethod(MemDTO dto){
+		session.insert("mem.insData", dto);
+	}
 }//end class

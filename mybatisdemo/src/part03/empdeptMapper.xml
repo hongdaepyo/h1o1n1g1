@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="empdept">
+<!-- 테이블의 컬럼명과 DTO의 멤버변수가 다를때는 resultMap을 이용해서 서로를 연결해 줘야 한다. -->
+<resultMap type="part03.dto.EmpDTO" id="empAll" autoMapping="false">
+ <!--  <result column="employee_id" property="employee_id"/>
+  <result column="first_name" property="first_name"/>
+  <result column="job_id" property="job_id"/>
+  <result column="department_id" property="department_id"/> -->
+  <!-- 생성자를 이용해 컬럼값을  -->
+  <constructor>
+    <arg column="employee_id" javaType="java.lang.String"/>
+    <arg column="first_name" javaType="java.lang.String"/>
+    <arg column="job_id" javaType="java.lang.String"/>
+    <arg column="department_id" javaType="java.lang.String"/>
+  </constructor>
+</resultMap>
+<select id="all" resultMap="empAll">
+ select * from employees
+</select>
+<!-- association : 1:1 관계의 JOIN 명령을 처리하기 위해 사용된다. -->
+
+<resultMap type="part03.dto.EmpDTO" id="emp_dept_result">
+	<result column="employee_id" property="employee_id"/>
+    <result column="first_name" property="first_name"/>
+    <result column="job_id" property="job_id"/>
+    <result column="department_id" property="department_id"/>
+    <association property="dept" javaType="part03.dto.DeptDTO">
+      <result column="department_name" property="department_name"/>
+    </association>
+</resultMap>
+
+
+	<select id="emp_dept" resultMap="emp_dept_result">
+		select e.employee_id,
+		e.first_name, e.job_id,
+		e.department_id, d.department_name
+		from
+		employees e, departments d
+		where e.department_id=d.department_id
+	</select>
+	
+	<!-- collection : join에서 1 대 N의 관계 -->
+	<resultMap type="part03.dto.DeptDTO" id="dept_emp_result">
+		<result column="department_id" property="department_id"/>
+		<result column="department_name" property="department_name"/>
+		<collection property="emp" javaType="java.util.List" ofType="part03.dto.EmpDTO">
+		  <result column="employee_id" property="employee_id"/>
+		  <result column="first_name" property="first_name"/>
+		</collection>
+		
+	</resultMap>
+		<select id="dept_emp" resultMap="dept_emp_result">
+		select d.department_id,
+		d.department_name, e.employee_id, e.first_name
+		from departments d,
+		employees e
+		where d.department_id=e.department_id
+		order by d.department_id
+	</select>
+	
+	<!-- discriminator : 검색된 결과를 이용해서 다른 resultMap을 사용하도록 하는 요소
+		  switch문과 비슷한 기능을 처리한다.
+		  extends 속성은 다른 resultMap을 상속받아 사용한다.
+	 -->
+	 <resultMap type="part03.dto.EmpDTO" id="myResult" autoMapping="false">
+	   <result column="employee_id" property="employee_id"/>
+	   <result column="first_name" property="first_name"/>
+	   
+	   <discriminator javaType="java.lang.String" column="employee_id">
+	    <case value="200" resultMap="jobResult"/>
+	    <case value="100" resultMap="deptResult"/>
+	   </discriminator>
+	   
+	 </resultMap>
+	 
+	 <resultMap type="part03.dto.EmpDTO" id="jobResult" extends="myResult" autoMapping="false">
+	 <result column="job_id" property="job_id"/>
+	 </resultMap>
+	 
+	 <resultMap type="part03.dto.EmpDTO" id="deptResult" extends="myResult" autoMapping="false">
+	  <result column="department_id" property="department_id"/>
+	 </resultMap>
+	
+	<select id="dnator" resultMap="myResult">
+		select * from employees where
+		employee_id in(100,200,202)
+	</select>
+
+</mapper>

@@ -12,7 +12,7 @@ public class EmpTest {
 		
 		System.out.println("총 레코드수:"+dao.countMethod());
 		
-		//List<EmployeeDTO> list=dao.allMethod();
+		List<EmployeeDTO> list=dao.allMethod();
 		
 		//List<EmployeeDTO> list=dao.searchMethod("lex");
 		
@@ -20,7 +20,7 @@ public class EmpTest {
 		//"lex", 9000
 		map.put("first_name", "lex");
 		map.put("salary", 9000);
-		List<EmployeeDTO> list=dao.searchMethod(map);
+		//List<EmployeeDTO> list=dao.searchMethod(map);
 		for(EmployeeDTO dto : list)
 			System.out.printf("%s %d %s \n",dto.getFirst_name(), dto.getSalary(), dto.getHire_date());
 
