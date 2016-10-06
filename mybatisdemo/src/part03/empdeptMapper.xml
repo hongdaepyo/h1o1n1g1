@@ -9,7 +9,7 @@
   <result column="first_name" property="first_name"/>
   <result column="job_id" property="job_id"/>
   <result column="department_id" property="department_id"/> -->
-  <!-- 생성자를 이용해 컬럼값을  -->
+  <!-- 생성자를 이용해 컬럼값을 정해준다. -->
   <constructor>
     <arg column="employee_id" javaType="java.lang.String"/>
     <arg column="first_name" javaType="java.lang.String"/>

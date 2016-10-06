@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test2">
+	<!-- 테이블의 컬럼명과 DTO의 멤버변수가 다를때는 resultMap을 이용해서 서로를 연결해 줘야 한다. -->
+
+	<!-- association : 1:1 관계의 JOIN 명령을 처리하기 위해 사용된다. -->
+<!-- loc와 dept가 1:n, dept와 emp가 1:n 관계이기 때문에 리스트로 받아옴 그래서 collection사용  -->
+	<resultMap type="part06.LocDTO" id="test_result">
+		<result column="city" property="city" />
+		<collection property="dept" javaType="java.util.List"
+			ofType="part06.DeptDTO">
+			<result column="department_name" property="department_name" />
+			<collection property="emp" javaType="java.util.List"
+				ofType="part06.EmpDTO">
+				<result column="first_name" property="first_name" />
+				<result column="salary" property="salary" />
+			</collection>
+		</collection>
+	</resultMap>
+
+	<select id="test_loc" resultMap="test_result">
+
+		select l.city,
+		d.department_name, e.first_name, e.salary
+		from locations l, departments
+		d, employees e
+		where l.location_id=d.location_id
+		and
+		d.department_id=e.department_id
+		order by l.city
+	</select>
+
+</mapper>
