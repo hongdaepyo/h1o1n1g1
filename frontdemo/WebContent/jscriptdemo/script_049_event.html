@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>script_049_event</title>
+<style type="text/css">
+	div{
+	 border:1px solid black;
+	}
+	#red{
+	width:300px;
+	height:300px;
+	background-color:red;
+	}
+	
+	#green{
+	width:200px;
+	height:200px;
+	background-color:green;
+	}
+	
+	#blue{
+	width:100px;
+	height:100px;
+	background-color:blue;
+	}
+</style>
+<script type="text/javascript">
+	window.onload=function(){
+		function func1(event){
+			alert("red");
+			//이벤트가 전파되는 것을 막아주는 메소드이다.
+			event.stopPropagation();
+		}
+		function func2(event){
+			alert('green');
+			event.stopPropagation();
+		}
+		function func3(event){
+			alert('blue');
+			event.stopPropagation();
+		}
+		
+		var red=document.getElementById("red");
+		var green=document.getElementById("green");
+		var blue=document.getElementById("blue");
+		
+		//캡처링:부모요소 -> target(자신객체) : true
+		//버블링:target(자신객체) -> 부모요소 : false
+		red.addEventListener("click",func1,false);
+		green.addEventListener("click",func2,false);
+		blue.addEventListener("click",func3,false);
+		
+	}
+
+</script>
+</head>
+<body>
+  <div id="red">
+  	<div id="green">
+  	  <div id="blue">
+  	   &nbsp;
+  	  </div>
+  	</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+
+제어문(control statement)
+ : 문장의 흐름을 제어해주는 기능이다.
+ [제어문 종류 ]
+     조건문 : if~else, switch~case
+     반복문 : for, while, do~while
+     기타 : break, continue, (label)
+  
+ [if문 형식]    
+  1. 기본형식 
+    if (조건식){
+       수행할 문장;
+     }else{
+       수행할 문장;
+      }
+  
+  2. 조건식을 만족할때만 수행할 문장이 있는 경우
+  if(조건식){
+     수행할 문장;
+    }
+    
+  3. if~else안에 다른 if~else문장(중첩if~else문)
+   if(조건식){
+	    if(조건식){
+	     수행할 문장;
+	    }else{
+	     수행할 문장;
+	     }
+    }else{
+       수행할 문장;
+   }
+   
+  
+  4. 다중 if~else
+  if(조건식1){
+    수행할 문장;
+  }else if(조건식2){
+    수행할 문장;
+  }else if(조건식3){
+    수행할 문장;
+  }else{
+    수행할 문장;
+  }
+ 
+ [switch~case형식]
+ switch(식){
+   case 값1 : 수행할 문장; break;
+   case 값2 : 수행할 문장; break;
+   case 값3 : 수행할 문장; break;
+   default : 수행할 문장; 
+  }
+  
+  switch~case문에서 식의 결과값
+   byte, short, char, int, String(jdk7이상)
+   
+  switch~case문에서 break을 만나면 현재 수행중인
+  조건문을 완전히 빠져나간다.
+  
+  
+ 
+
+   

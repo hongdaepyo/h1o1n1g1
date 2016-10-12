@@ -1,0 +1,47 @@
+/*기본 레이아웃*/
+#wrap {
+	width: 1003px;
+	margin: 0 auto;
+	background-color: #fff;
+	position: relative;
+}
+
+#inner_footer {
+	width: 653px;
+	height: 145px;
+	margin: 0 auto;
+	position: relative;
+	padding: 15px 0 0 350px;
+}
+
+#footer_wrap {
+	background-color: #f8f8f8;
+	
+}
+
+/*기본 글꼴 및 링크 텍스트 꾸미기*/
+
+
+
+
+/* ///////////////////////////////////////////// */
+p {
+	float: none;
+	font: italic bold 12px/15px Georgia, serif;
+}
+
+#inner_footer h3.footer_logo {
+	position: absolute;
+	left: 35px;
+	top: 5px;
+	float: left;
+}
+
+#bottom_menu dd{
+	float:left;margin-right:15px;
+}
+#bottom_menu{
+	overflow:hidden;margin-bottom:25px;
+}
+
+

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>script_048_event</title>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+//한 요소에 같은 이벤트를 중복으로 등록하는 방법
+window.onload=function(){
+	function func1(){
+		alert("test1");
+	}
+	function func2(){
+		alert('test2');
+	}
+	var btn=document.getElementById("btn");
+	
+	//사파리, 크롬, IE9이상의 브라우저에서 제공
+	if(window.addEventListener){
+		btn.addEventListener("click",func1,false);
+		btn.addEventListener("click",func2,false);
+	}else{
+	//IE8이하 브라우저에서 제공
+		btn.attachEvent("onclick",func1);
+		btn.attachEvent("onclick",func2);
+	}
+};
+</script>
+</head>
+<body>
+ <button id="btn">button</button>
+</body>
+</html>

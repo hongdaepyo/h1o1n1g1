@@ -1,0 +1,9 @@
+String sn = new String("java")
+char data=sn.charAt(2); //v
+System.out.println(data)
+
+String ko=sn.substring(0,3); //jav
+String mm=sn.substring(1,2); //a
+
+String ss=new String("2124");
+int num=Integer.parseInt(ss.substring(1,3));

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>init</title>
+<link rel="stylesheet" type="text/css"
+	href="css/ui-lightness/jquery-ui-1.10.4.custom.min.css" media="all" />
+<style type="text/css">
+p{
+	text-align: center;
+}
+#toggle {
+	width: 800px;
+	height: 450px;
+	background: #ccc;
+	margin: 0 auto;
+}
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+<script>
+$( document ).ready(function() {
+	  $("#toggle img").click(function(){
+		  $( "#toggle" ).toggle( "explode",function(){
+			  var a = $("#toggle a").prop("href");
+			  window.location.href = a;
+		  });
+		  
+	  });
+	});
+</script>
+</head>
+<body>
+<p><span>사진을 클릭 하시면 메인페이지로 이동합니다.</span></p>
+<div id="toggle"><a href="index.html"></a><img src="http://oi60.tinypic.com/1rx2cn.jpg" width="800px" height="450px"></div>
+
+</body>
+</html>

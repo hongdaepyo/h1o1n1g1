@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>script_042_function</title>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+  
+</script>
+</head>
+<body>
+<script type="text/javascript">
+  var color=['white','yellow','aqua','purple'];
+  var i=0;
+  function colorBg(){
+	  i++;
+	  if(i>=color.length)
+		  i=0;
+	  var bodyTag=document.getElementsByTagName("body")[0];
+	  bodyTag.style.backgroundColor=color[i];
+  }
+  
+</script>
+
+<button onclick='colorBg()'>background color change</button>
+</body>
+</html>

@@ -1,0 +1,111 @@
+#main {
+	width: 1003px;
+	height: 724px;
+	margin: auto;
+	position: relative;
+	background-color: white;
+}
+
+#mainwrap1 {
+	width: 554px;
+	height: 504px;
+	/* 	background-color: red; */
+	border: 1px solid black;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: white;
+	margin: auto;
+}
+
+#mainwrap2 {
+	width: 447px;
+	height: 302px;
+	/* 	background-color: blue; */
+	border: 1px solid black;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	overflow: hidden;
+	background-color: white;
+}
+
+#mainwrap2 div ul li a {
+	margin-left:30px;
+	color: black;
+	text-decoration: none;
+}
+
+.zoom_btn {
+	position: absolute;
+	top: 0;
+	right: 30px;
+	
+}
+
+#mainwrap2 li {
+	width: 440px;
+	height: 50px;
+	line-height: 50px;
+}
+
+#mainwrap3 {
+	width: 447px;
+	height: 202px;
+	/* 	background-color: yellow; */
+	border: 1px solid black;
+	position: absolute;
+	right: 0px;
+	top: 302px;
+	background-color: white;
+	overflow: auto;
+}
+
+#mainwrap3 li {
+	width: 440px;
+	height: 50px;
+	line-height: 50px;
+}
+
+#mainwrap3 div ul li a {
+	margin-left:30px;
+	color: black;
+	text-decoration: none;
+}
+
+#mainwrap4 {
+	width: 1003px;
+	height: 220px;
+	background-color: green;
+	float: left;
+	position: absolute;
+	bottom:0;
+	/* border: 1px solid white; */
+}
+
+#mainwrap4 #sponsor_banner{
+	
+}
+
+h2{
+	width: 100px;
+	height: 30px;
+}
+
+
+
+
+/*addClass 용*/
+
+
+.small1 {
+	width: 435px;
+	height: 194px;
+	padding-left: 5px
+}
+
+.small2 {
+	width: 435px;
+	height: 290px;
+	padding-left: 5px;
+}

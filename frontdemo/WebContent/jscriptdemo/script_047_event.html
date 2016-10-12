@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>script_047_event</title>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+//한 객체에 같은 이벤트를 여러개 등록하지 않는다.(나중 것만 실행됨)
+ window.onload=function(){
+	 var btn=document.getElementById("btn");
+	 
+	 btn.onclick=function(){
+		 alert("test1");
+	 }
+	 //현재 이거만 등록되어 실행됨.
+	 btn.onclick=function(){
+		 alert("test3");
+	 }
+ }
+ 
+ function process(){
+	 alert("test2");
+ }
+</script>
+</head>
+<body>
+<button id="btn" onclick="process()">button</button>
+</body>
+</html>

@@ -80,7 +80,7 @@ $(document).ready(function(){
 		$('>a',this).removeClass("over");
 	});
 	
-	$('ul li').click(function(){
+	$('ul li:nth-of-type(1)').click(function(){
 		$('ul *').removeClass("test2");
 		$('ul *').removeClass("test").addClass("test");
 		$(this).removeClass("test1").addClass("test2");

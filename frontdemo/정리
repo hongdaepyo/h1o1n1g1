@@ -1,0 +1,19 @@
+웹프로그램
+1. frontend(client)-HTML, CSS, JavaScript, Ajax, Json, XML
+2. backend(server)-servlet, jsp, spring
+
+웹문서 3대 구성
+1. HTML - 문서구조
+2. CSS - 표현언어
+3. JavaScript - 동작
+
+HTML4 -> XHTML1.0 -> HTML5
+
+<html>
+<head>
+</head>
+<body>
+</body>
+</html>
+
+태그=요소=엘리먼트

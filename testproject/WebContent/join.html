@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+<style type="text/css">
+
+.main_div{
+	margin:auto;
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+
+#main_btns{
+	margin-top:10px;
+	text-align: center;
+}
+
+
+#main_btns a{
+	
+	border:1px solid #DEDEDE;
+	font-size: 20px;
+	font-weight: bolder;
+	background-color: #F3F3F3;
+}
+
+#frm, .main_table, .main_div{
+	width:800px;
+}
+
+
+
+#frm{
+	border:1px solid #DEDEDE;
+}
+
+.main_table{
+	border:5px solid #F3F3F3;
+}
+
+
+</style>
+<link rel="stylesheet" type="text/css" href="css/main.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/reset.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/common.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/footer.css" />
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="js/main.js"></script>
+<!-- 제이쿼리 라이이브러리 연동 -->
+<!-- 터치 슬라이드 스타일(CSS) 연동 -->
+<script src="js/swipe.js"></script>
+<!-- 터치 슬라이드 플러그인 연동 -->
+<script src="js/jquery.bxslider.min.js"></script>
+<!-- bxSlider 플러그인 연동 -->
+<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+<!-- UI 플러그인 연동 -->
+<script src="js/jquery.cookie.js"></script>
+<!-- 쿠키 플러그인 연동 -->
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	
+</script>
+</head>
+<body>
+<div id="wrap">
+		<div id="header">
+			<dl id="util_menu">
+				<dt class="hide">유틸메뉴</dt>
+				<dd id="menu_util">
+					<ul>
+						<li>
+							<form action="#" method="post" name="log_f" id="login_f">
+								<fieldset>
+									<legend>로그인</legend>
+									<input type="text" id="id" name="id" title="아이디입력"
+										placeholder="아이디입력" /> <input type="password" id="password"
+										name="password" title="비밀번호입력" placeholder="비밀번호입력" /> <input
+										type="checkbox" id="remember" name="remember" /> <label
+										for="remember">아이디 저장</label> <input type="image"
+										id="loginBtn" src="images/login_btn.gif" />
+
+								</fieldset>
+							</form>
+						</li>
+						<li><a href="#" id="login_btn">로그인</a> |</li>
+						<li><a href="join.html">회원가입</a></li>
+					</ul>
+				</dd>
+				<dt class="hide">메뉴</dt>
+				<dd id="menu_main">
+					<ul id="gnb">
+						<li><a href="#"><img src="images/icon_home.png" />홈</a></li>
+						<li><a href="#"><img src="images/icon_pet.jpg" />애완동물</a>
+							<ul id="sub2">
+								<li><a href="#"><img src="images/icon_dog.png" />강아지</a></li>
+								<li><a href="#"><img src="images/icon_cat.jpg" />고양이</a></li>
+								<li><a href="#"><img src="images/icon_bird.jpg" />새</a></li>
+								<li><a href="#">기타</a></li>
+							</ul></li>
+						<li><a href="#"><img src="images/icon_item.jpg" />용품</a>
+							<ul id="sub3">
+								<li><a href="#"><img src="images/icon_feed.jpg" />먹거리</a></li>
+								<li><a href="#"><img src="images/icon_dress.jpg" />패션잡화</a></li>
+								<li><a href="#"><img src="images/icon_market.png" />생활용품</a></li>
+								<li><a href="#">기타</a></li>
+							</ul></li>
+						<li><a href="#"><img src="images/icon_help.png" />고객센터</a>
+							<ul id="sub4">
+								<li><a href="#">질문</a></li>
+								<li><a href="#">배송</a></li>
+								<li><a href="#">기타</a></li>
+							</ul></li>
+					</ul>
+				</dd>
+			</dl>
+		</div>
+		
+	</div>
+
+<!-- 회원가입 -->
+	<div class="main_div">
+	<span>-개인정보입력-</span><font color="red" style="padding-left:50px">*</font><span>필수입력항목</span>
+	<form id="frm" name="frmMember" method="post">
+		<table class="main_table">
+			<tr>
+				<td><font color="red">*</font>아이디</td>
+				<td><input type="text" name="id" /><a href="#" style="padding-left:10px">중복확인</a></td>
+			</tr>
+			<tr>
+				<td><font color="red">*</font>비밀번호</td>
+				<td><input type="password" name="password" />&nbsp;&nbsp;&nbsp;<font color="red">*</font>비밀번호확인<input type="password" name="passwordcfm" /></td>
+			</tr>
+			<tr>
+				<td><font color="red">*</font>이름</td>
+				<td><input type="text" name="name" /></td> 
+			</tr>
+			<tr>
+				<td><font color="red">*</font>이메일</td>
+				<td><input type="email" name="email" /></td> 
+			</tr>
+			<tr>
+				<td><font color="red">*</font>주소</td>
+				<td>
+				<table>
+					<tr>
+						<td><input type="text" name="address1" size="3" /> - <input type="text" name="address2" size="3" /><a href="#" style="padding-left:10px">우편번호검색</a></td>
+					</tr>
+					<tr>
+						<td><input type="text" name="addr" />&nbsp;<input type="text" name="addr_detail" style="padding-left:10px" placeholder="상세주소 입력"/></td>
+					</tr>
+				</table>
+			</tr>
+			<tr>
+				<td><font color="red">*</font>핸드폰</td>
+				<td><input type="text" name="cellphone1" size="3" /> - <input type="text" name="cellphone2" size="4" /> - <input type="text" name="cellphone3" size="4" /></td>
+			</tr>
+			<tr>
+				<td>전화번호</td>
+				<td><input type="text" name="phone1" size="3" /> - <input type="text" name="phone2" size="4" /> - <input type="text" name="phone3" size="4" /></td>
+			</tr>
+			<tr>
+				<td>애완동물종류</td>
+				<td><input type="text" name="animal_kind" size="50"/></td>
+			</tr>
+			<tr>
+				<td>애완동물이름</td>
+				<td><input type="text" name="animal_name" size="50"/></td>
+			</tr>
+		</table>
+	</form>
+	<div id="main_btns">
+	<a href="index.html" onclick="alert('회원가입 완료')">회원가입</a>&nbsp;&nbsp;&nbsp;
+	<a href="#" onclick="history.back()">이전으로</a>
+	</div>
+	</div>
+	<footer>
+		<div id="footer_wrap">
+			<div id="inner_footer">
+				<h3 class="footer_logo">
+					<a href="#"><img alt="포터로고이미지" src="images/footer.jpg" /></a>
+				</h3>
+				<dl id="bottom_menu">
+					<dt class="hide">하단메뉴</dt>
+					<dd>
+						<a href="#" class="aa">이용안내</a>
+					</dd>
+					<dd>
+						<a href="#" class="aa">개인정보취급방침</a>
+					</dd>
+					<dd>
+						<a href="#" class="aa">분양등록</a>
+					</dd>
+					<dd>
+						<a href="#" class="aa">블로그</a>
+					</dd>
+					
+					<dd>
+						<a href="#" id="face" >Facebook</a>
+					</dd>
+					
+					<dd>
+						<a href="#" id="twit">Twitter</a>
+						</dd>
+					
+				</dl>
+		
+
+				<address>
+					<p>상호: Pet | 주소: 서울특별시 중구 남대문로1가18 빌딩 2층-C Class | 우편번호:
+						131-581</p>
+					<p>대표전화: (02) 954-3524 | 이메일: footer@.naver.com</p>
+					<p>Copyright &copy; PET. All Rights Reserved</p>
+				</address>
+
+
+			</div>
+		</div>
+
+	
+ </footer>
+	
+
+</body>
+</html>

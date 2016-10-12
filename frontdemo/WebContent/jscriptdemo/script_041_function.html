@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>script_041_function</title>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+<script type="text/javascript">
+/*
+ * function 함수명(){
+	실행 문장;
+}
+
+//익명함수를 선언하고 변수에 참조시킨다.
+var 참조변수=function() {실행문장};
+호출: 참조변수()
+ */
+ 
+ var i=0;
+ function myFun(){
+	 i++;
+	 document.write("hello"+i);
+ }
+ 
+ var test=function(x){return "hello"+x;};
+ var process=function(x){document.write("hello"+x);};
+ 
+ myFun();
+ document.write("<hr/>");
+ document.write(myFun);
+ document.write("<hr/>");
+ document.write(test);
+ document.write("<hr/>");
+ document.write(test(10));
+ document.write("<hr/>");
+ process(20);
+</script>
+
+</body>
+</html>
