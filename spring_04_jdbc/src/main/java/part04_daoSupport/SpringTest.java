@@ -1,4 +1,4 @@
-package part03;
+package part04_daoSupport;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class SpringTest {
 
 	public static void main(String[] args) {
-		ApplicationContext context=new ClassPathXmlApplicationContext("part03/jdbc.xml");
+		ApplicationContext context=new ClassPathXmlApplicationContext("part04_daoSupport/jdbc.xml");
 		MemDao dao=(MemDao)context.getBean("dao");
 		
 		//dao.insertMethod(new MemDTO("박나리",40,"서울"));

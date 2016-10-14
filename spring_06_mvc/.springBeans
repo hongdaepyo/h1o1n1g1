@@ -5,15 +5,13 @@
 	<configSuffixes>
 		<configSuffix><![CDATA[xml]]></configSuffix>
 	</configSuffixes>
-	<enableImports><![CDATA[false]]></enableImports>
+	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
-		<config>src/main/java/part01/jdbc.xml</config>
-		<config>src/main/java/part03/configuration.xml</config>
-		<config>src/main/java/config/guest.xml</config>
-		<config>src/main/java/config/mapper.xml</config>
-		<config>src/main/java/config/mapper2.xml</config>
+		<config>src/main/webapp/WEB-INF/dispatcher-one.xml</config>
 	</configs>
 	<autoconfigs>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/root-context.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

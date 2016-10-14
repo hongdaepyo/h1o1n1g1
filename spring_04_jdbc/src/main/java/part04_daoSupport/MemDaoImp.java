@@ -1,8 +1,9 @@
-package part03;
+package part04_daoSupport;
 
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 /*
  * SqlSessionTemplate 클래스
@@ -13,48 +14,44 @@ import org.mybatis.spring.SqlSessionTemplate;
  * 
  */
 
-public class MemDaoImp implements MemDao{
-	private SqlSessionTemplate sqlSessionTemplate;
+public class MemDaoImp extends SqlSessionDaoSupport implements MemDao{
 	
 	public MemDaoImp() {
 		
 	}
-	
-	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
-		this.sqlSessionTemplate = sqlSessionTemplate;
-	}
+
 
 	@Override
 	public List<MemDTO> list() {
 		
-		return sqlSessionTemplate.selectList("mem.all");
+		return getSqlSession().selectList("mem2.all");
 	}
 
 	@Override
 	public void insertMethod(MemDTO dto) {
-		sqlSessionTemplate.insert("mem.ins",dto);
+		getSqlSession().insert("mem2.ins",dto);
 		
 	}
 
 	@Override
 	public void updateMethod(MemDTO dto) {
-		sqlSessionTemplate.update("mem.upt",dto);
+		getSqlSession().update("mem2.upt",dto);
 		
 	}
 
 	@Override
 	public void deleteMethod(int num) {
-		sqlSessionTemplate.delete("mem.del",num);
+		getSqlSession().delete("mem2.del",num);
 		
 	}
 
 	@Override
 	public MemDTO one(int num) {
-		return sqlSessionTemplate.selectOne("mem.one",num);
+		return getSqlSession().selectOne("mem2.one",num);
 	}
 
 	@Override
 	public int countMethod() {
-		return sqlSessionTemplate.selectOne("mem.cnt");
+		return getSqlSession().selectOne("mem2.cnt");
 	}
 }//end class
