@@ -23,7 +23,7 @@ public class OrderDaoImp implements OrderDao{
 
 	@Override
 	public List<OrderDTO> selectMethod() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return sqlSession.selectList("order.all");
 	}
 }
