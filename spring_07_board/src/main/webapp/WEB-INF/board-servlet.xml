@@ -74,11 +74,22 @@
 	</bean>
 	<!-- 파일 업로드 끝 -->
 	
+	<!-- 다운로드 뷰 빈 선언-->
+	<!-- controller에서 setviewname에 입력된 "download"를 beannameviewresolver에 의해서 찾아줌 -->
+	<bean id="download" class="view.BoardDownLoadView">
+		<property name="dao" ref="bdao"/>
+	</bean>
+	
 	<!-- [10] view 빈 선언 -->
+	
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+	  <property name="order" value="1"/>   <!-- 우선순위값 주기 -->
+	</bean>
 	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	  <property name="prefix" value="/WEB-INF/"/>
 	  <property name="suffix" value=".jsp"/>
+	  <property name="order" value="2"/>  <!-- 우선순위값을 가장 낮게 줌  -->
 	</bean>
 
 
