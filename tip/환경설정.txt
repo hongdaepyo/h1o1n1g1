@@ -1,0 +1,39 @@
+﻿1. JDK
+2. STS(eclipse)
+
+1.JDK
+2.eclipse
+3. sys
+
+1 자바설치
+
+2 (아파치 설정)conf->server 파일에서 한글처리(get 방식) 인코딩 UTF-8 설정
+  		-Service name= 카타리나쪽에서
+  		connect port=8090, URIEncoding=UTF-8 로 변경
+3 오라클 설치
+- http://tomcat.apache.org  => download tomcat8 => archives => src
+  설치시 암호 묻는거 아무거나(DB관리자 암호)
+- sql 명령줄 실행 => hr 계정 언락(그림참고)
+(※C:\oraclexe\app\oracle\product\10.2.0\server\jdbc\lib\ojdbc14.jar 파일을 
+   C:\Program Files\Java\jre1.8.0_91\lib\ext폴더에 복사)
+
+4 스프링설치
+http://spring.io 에서 받기 => 페이지 가장 아래 tools => see all version
+압축풀때 sts-bundle 폴더를 최상위 폴더로 압축해제
+
+================================================================
+
+설정
+1. 데이터베이스 생성
+
+2. preference => enc 검색 utf-8 변경
+
+팁팁팁
+1.==============
+jquery 충돌방지
+<script type="text/javascript">
+	jQuery.noConflict();
+</script>
+
+2===============
+컨트롤 + 알트 + G => 해당 단어 검색

@@ -1,0 +1,18 @@
+﻿spring -ORM 연동
+ORM(Object Relationship Mapping)
+1)mybatis
+2)hibenate
+3)jpa
+
+-  정적페이지는 webapp\resource 폴더에
+   동적페이지 jsp는 webapp\WEB-INF
+
+- get server.xml URIEncoding="UTF-8"
+post 1) request.setCharcterEncoding("utf-8");
+     2) Filter 인터페이스를 상속받아 클래스로 구현
+	등록을 시킴
+     3) 스프링에서는 CharacterEncodingFilter 등록
+
+페이지 이동
+1) forward
+2) redirect
