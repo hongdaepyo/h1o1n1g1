@@ -44,3 +44,5 @@ from tbl_board b, tbl_reply r
 where r.bno=b.bno and b.bno=1;
 
 select * from TBL_BOARD
+
+alter table tbl_reply add rupload varchar2(1000)

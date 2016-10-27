@@ -35,11 +35,21 @@ public class BoardController {
 		mav.addObject("boardDTO",service.boardViewProcess(bno));
 		mav.setViewName("boardView");
 		return mav;
-	}//end boardListPage()
+	}//end boardViewPage()
 	
 	@RequestMapping("/replyInsertList.do")
 	public @ResponseBody List<ReplyDTO> replyListPage(ReplyDTO rdto){
 		return service.replyListProcess(rdto);
 	}//end replyListpage()
+	
+	@RequestMapping("/replyDelete.do")
+	public @ResponseBody List<ReplyDTO> replyDeleteListPage(ReplyDTO rdto){
+		return service.replyDeleteProcess(rdto);
+	}//end replyDeleteListPage()
+	
+	@RequestMapping("/replyUpdate.do")
+	public @ResponseBody List<ReplyDTO> replyUpdateListPage(ReplyDTO rdto){
+		return service.replyUpdateProcess(rdto);
+	}//end replyUpdateListPage()
 	
 }//end class
