@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean name="dao" class="prob02.MemDaoImp">
+
+	</bean>
+	<bean name="svc" class="prob02.ServiceImp">
+<!-- 	property name은 dao의 멤버변수 명, property를 써서 참조 시키려면 무조건 setter 메소드를 정의해줘야함 -->
+		<property name="dao" ref="dao"/>
+	</bean>
+		
+
+</beans>
