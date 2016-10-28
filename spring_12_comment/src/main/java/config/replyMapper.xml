@@ -6,7 +6,7 @@
 <mapper namespace="reply">
 	<insert id="r_insert" parameterType="dto.ReplyDTO">
 		insert into tbl_reply
-		values(reply_rno_seq.nextval,#{bno},#{replytext},#{replyer},sysdate)
+		values(reply_rno_seq.nextval,#{bno},#{replytext},#{replyer},sysdate,#{rupload,jdbcType=VARCHAR})
 	</insert>
 	
 	<select id="r_list" parameterType="int" resultType="dto.ReplyDTO">
@@ -23,6 +23,11 @@
 	  update tbl_reply set replytext=#{replytext}
 	  where rno=#{rno}
 	</update>
+	
+	<select id="r_downloadFile" parameterType="int" resultType="string">
+	select rupload from
+	tbl_reply where rno=#{rno}
+	</select>
 	
 </mapper>   
 

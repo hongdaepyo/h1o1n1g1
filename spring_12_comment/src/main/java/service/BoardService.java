@@ -13,5 +13,6 @@ public interface BoardService {
 	public List<ReplyDTO> replyListProcess(ReplyDTO rdto);
 	public List<ReplyDTO> replyDeleteProcess(ReplyDTO rdto);
 	public List<ReplyDTO> replyUpdateProcess(ReplyDTO rdto);
+	public ReplyDTO downloadProcess(int rno);
 
 }//end interface

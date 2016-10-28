@@ -69,7 +69,33 @@
 	<bean class="controller.BoardController">
 		<property name="service" ref="svc" />
 	</bean>
-
+	
+	<!-- 파일 업로드 시작 -->
+	<!-- 첨부 파일의 임시저장소 경로 설정 -->
+	<bean id="uploadDirResource" class="org.springframework.core.io.FileSystemResource">
+<!-- 	  <constructor-arg value="c:/temp"/>  직접경로-->
+	<constructor-arg value="./src/main/webapp/files/"/>
+	</bean>
+	
+	<!-- 아래 multipartResolver 이름은 무조건 저렇게 해야함 내부에서 참조함 -->
+	<!-- pom.xml에 upload??.jar 추가해줘야함 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	  <property name="uploadTempDir" ref="uploadDirResource"/>
+	</bean>
+	<!-- 파일 업로드 끝 -->
+	
+	<!-- 다운로드 뷰 빈 선언-->
+	<!-- controller에서 setviewname에 입력된 "download"를 beannameviewresolver에 의해서 찾아줌 -->
+	<bean id="download" class="view.BoardDownLoadView">
+		<property name="dao" ref="dao"/>
+	</bean>
+	
+	<!-- [10] view 빈 선언 -->
+	
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+	  <property name="order" value="1"/>   <!-- 우선순위값 주기 -->
+	</bean>
+	
 	<!-- viewResolver -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

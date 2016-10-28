@@ -46,4 +46,10 @@ public class BoardServiceImp implements BoardService {
 		dao.replyUpdateMethod(rdto);
 		return dao.replyListMethod(rdto.getBno());
 	}
+
+	@Override
+	public ReplyDTO downloadProcess(int rno) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
