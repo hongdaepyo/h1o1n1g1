@@ -81,13 +81,13 @@ public class BoardController {
 	}// end replyListpage()
 
 	@RequestMapping("/replyDelete.do")
-	public @ResponseBody List<ReplyDTO> replyDeleteListPage(ReplyDTO rdto) {
-		return service.replyDeleteProcess(rdto);
+	public @ResponseBody List<ReplyDTO> replyDeleteListPage(ReplyDTO rdto, HttpServletRequest req) {
+		return service.replyDeleteProcess(rdto, req);
 	}// end replyDeleteListPage()
 
 	@RequestMapping("/replyUpdate.do")
-	public @ResponseBody List<ReplyDTO> replyUpdateListPage(ReplyDTO rdto) {
-		return service.replyUpdateProcess(rdto);
+	public @ResponseBody List<ReplyDTO> replyUpdateListPage(ReplyDTO rdto, HttpServletRequest req) {
+		return service.replyUpdateProcess(rdto, req);
 	}// end replyUpdateListPage()
 	
 	@RequestMapping("/contentdownload.do")

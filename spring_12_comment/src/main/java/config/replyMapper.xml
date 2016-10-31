@@ -20,7 +20,7 @@
 	</delete>
 	
 	<update id="r_update" parameterType="dto.ReplyDTO">
-	  update tbl_reply set replytext=#{replytext}
+	  update tbl_reply set replytext=#{replytext}, rupload=#{rupload,jdbcType=VARCHAR}
 	  where rno=#{rno}
 	</update>
 	

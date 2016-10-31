@@ -55,8 +55,6 @@ $(document).ready(function(){
 		}else if($(this).text()=='update'){
 			uid=$(this).prop("id");
 			update(uid);
-		}else if($(this).text()=='download'){
-			download(id);
 		}
 		
 		//var cnt=$().text();
@@ -140,7 +138,7 @@ function process(){
 	form_data.append('bno','${boardDTO.bno}');
 	form_data.append('replyer',$('#newReplyWriter').val());
 	form_data.append('replytext',$('#newReplyText').val());
-	//console.log('filename',$('#filename')[0].files[0]);
+// 	console.log('filename',$('#filename')[0].files[0]);
 	/* if($('#filename')[0].files[0]!=undefined)
 		form_data.append('filename',$('#filename')[0].files[0]); */
 	if(fileList!='');
@@ -182,10 +180,21 @@ function reply_list_result(res){
 
 function reply_update_send(){
 	var str=$('#updateReplyText').val();
+	var form_data2=new FormData();
+	form_data2.append('bno','${boardDTO.bno}');
+	form_data2.append('replyer',$('#newReplyWriter').val());
+	form_data2.append('replytext',$('#newReplyText').val());
+	//if(fileList!='');
+	form_data2.append('filename',$('#rfile')[0].files[0]);
+// 	var rfile=$('#rfile').val();
 	$.ajax({
-		type:'GET',
+		type:'POST',
 		dataType:'json',
-		url:"replyUpdate.do?rno="+uid+"&replytext="+str+"&bno=${boardDTO.bno}",
+		contentType:false, //true면 application으로 전송됨
+		enctype: 'multipart/form-data',
+		processData:false,
+		data:form_data2,
+		url:"replyUpdate.do",
 	    success:reply_list_result
 	})
 	$('#modifyModal').removeClass('modifyShow').addClass('modifyHide');
@@ -309,6 +318,11 @@ function update(uid){
 				<label for="updateReplyText">Reply Text</label> <input
 					class="form-control" type="text" placeholder="REPLY TEXT"
 					id="updateReplyText">
+			</p>
+			<p>
+			  <label for="rfile">Upload</label>
+			  <input type="file" id="rfile" name="rfile"/>
+<%-- 			  <span>${fn:substringAfter(replyDTO.rno,"_")}</span> --%>
 			</p>
 			<p>			    
 				<button id="btnModify">Modify</button>
