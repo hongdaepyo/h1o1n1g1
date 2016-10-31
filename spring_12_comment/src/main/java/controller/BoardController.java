@@ -45,14 +45,14 @@ public class BoardController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("boardDTO", service.boardViewProcess(bno));
 		// mav.setViewName("boardView");
-		mav.setViewName("boardView2");
+		//mav.setViewName("boardView2");
+		mav.setViewName("boardView3");
 		return mav;
 	}// end boardViewPage()
 
 	@RequestMapping("/replyInsertList.do")
 	public @ResponseBody List<ReplyDTO> replyListPage(ReplyDTO rdto, HttpServletRequest request) {
-
-		if (rdto.getRupload() != null) {
+		if (rdto.getFilename() != null) {
 			MultipartFile file = rdto.getFilename();
 
 			if (!file.isEmpty()) {
