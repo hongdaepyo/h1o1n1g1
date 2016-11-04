@@ -10,6 +10,7 @@
 	</select>
 
 	<insert id="ins" parameterType="part02.dto.MemDTO">
+	<!-- jdbcType=VARCHAR 해당 컬럼의 내용중 널값을 허용하기 위해 사용 -->
 		insert into mem values(mem_num_seq.nextval,#{name,jdbcType=VARCHAR}, #{age},
 		#{loc,jdbcType=VARCHAR})
 	</insert>
@@ -29,10 +30,12 @@
 	<!-- 다중 insert -->
 	<insert id="multiIns" parameterType="java.util.List">
 		insert all
+		<!-- index는 컬럼의 순서 -->
 		<foreach collection="list" item="element" index="no">
 			into mem
 			values(#{element.num}, #{element.name}, #{element.age}, #{element.loc})
 		</foreach>
+		<!-- 매개변수로 받아서 넣어줄때에는 select * from dual 필수 -->
 		select * from dual
 	</insert>
 

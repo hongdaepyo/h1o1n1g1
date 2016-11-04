@@ -38,6 +38,7 @@
 	<!-- [5] 선언적 트랜잭션:<tx:advice>태그를 이용한 트랜잭션 처리 -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
+<!-- 			트랜잭션을 걸 메소드 선택 -->
 			<tx:method name="insertProcess" rollback-for="java.lang.Exception" />
 		</tx:attributes>
 	</tx:advice>

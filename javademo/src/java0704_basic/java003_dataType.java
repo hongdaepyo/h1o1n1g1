@@ -46,7 +46,6 @@ public class java003_dataType {
 	    boolean is=true;
 	    //변수 선언으로 메모리 확보하고 나중에 변수불러와서 수정
 	    is=false;                                                                                      
-	    
 		
 	}
 

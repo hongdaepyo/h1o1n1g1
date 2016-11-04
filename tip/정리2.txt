@@ -16,3 +16,10 @@ post 1) request.setCharcterEncoding("utf-8");
 페이지 이동
 1) forward
 2) redirect
+
+숙제 161101
+1 cookie/ session 정의, 공통점, 다른점
+2 filter/ interceptor
+3 mvc패턴 모델1, 모델2
+4 REST API
+5 트랜잭션

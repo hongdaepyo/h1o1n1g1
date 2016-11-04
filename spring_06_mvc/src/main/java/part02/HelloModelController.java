@@ -13,6 +13,7 @@ public class HelloModelController {
 		Model model=new ExtendedModelMap();
 		model.addAttribute("id","korea");
 		return model;
+		
 	}
 
 }

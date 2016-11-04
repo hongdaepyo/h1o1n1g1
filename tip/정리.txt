@@ -20,6 +20,21 @@ oracle.properties
 환경설정 상수
 properties
 
+파일업로드할때 환경설정에----------------------------------------------------------------
+<!-- 아래 multipartResolver 이름은 무조건 저렇게 해야함 내부에서 참조함 -->
+	<!-- pom.xml에 upload??.jar 추가해줘야함 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	  <property name="uploadTempDir" ref="uploadDirResource"/>
+	</bean>
+	<!-- 파일 업로드 끝 -->
+	
+	<!-- viewResolver -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+------------------------------------------------------------------------------
 
 
 스프링 설치
@@ -48,3 +63,48 @@ https://apis.daum.net/search/book?apikey=945948afbe6a4f41cd89e5fd9efe678e&q=삼�
 
 2. xml을 파싱하는 방법 조사
 http://blog.naver.com/hyr903/220269901393
+
+
+2016-11-01
+- REST
+GET(/rest/person/list)  자료의 조회용
+GET(/rest/person/list/3)  자료의 조회용
+DELETE(/rest/person/3)  자료의 삭제
+POST(/rest/person/)+데이터  자료의 등록
+PUT(/rest/person/update)+데이터  자료의 수정
+
+--------------------------------------------------
+
+2016-11-02
+https://nodejs.org/en/
+
+웹기반 프로그램
+1. front-end(클라이언트)
+html, css, javascript, xml, ajax, jquery
+
+2. back-end(서버)
+java, servlet, jsp, spring
+
+javascript => front - end
+		   => back - end - nodejs
+		   
+chrome->자바스크립트엔진->v8
+
+환경변수 -> path -> 노드js경로 추가(;C:\Program Files\nodejs)
+
+nodejs는 REPL(Read-Evaluate-Print-loop)을 제공한다.
+입력한 자바스크립트 코드를 직접 돌려보며 테스트를 수행할 수 있다.
+
+이클립스에 nodejs 플러그인 설치
+
+jar파일 다 다운 받아질때까지 대기
+
+====================================================
+
+2016-11-03
+url.stringify()
+url.parse()
+
+NODE.JS
+웹서버 => http
+    => express

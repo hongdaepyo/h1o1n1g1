@@ -12,7 +12,7 @@ public class BoardDTO {
 	// board테이블의 파일첨부를 처리해주는 멤버변수
 	private String upload;
 
-	// form 페이지에서 파일첨부를 받아 처리해주는 멤버변수
+	// form 페이지에서 파일첨부를 받아 처리해주는 멤버변수.. input요소에서 정해준 이름과 같아야함
 	private MultipartFile filename;
 
 	public int getNum() {

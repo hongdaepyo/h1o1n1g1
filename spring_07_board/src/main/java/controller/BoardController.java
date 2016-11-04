@@ -102,7 +102,7 @@ public class BoardController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println(saveDirectory);
+			//System.out.println(saveDirectory);
 			dto.setUpload(random + "_" + fileName);
 		}
 
