@@ -23,3 +23,56 @@ post 1) request.setCharcterEncoding("utf-8");
 3 mvc패턴 모델1, 모델2
 4 REST API
 5 트랜잭션
+
+
+---------------------------------------------------
+192.168.103.230
+
+api
+http://docs.oracle.com/javase/8/docs/api/
+
+부트 스트랩
+http://bootstrapk.com/css/
+
+html5
+https://www.w3.org/TR/2014/REC-html5-20141028/
+
+w3school
+http://www.w3schools.com/
+
+DAP (DAsP) -데이터베이스 
+http://www.dbguide.net/da.db?cmd=snb3_1
+
+홈페이지 무료 템플릿
+http://ko.wix.com/website/templates
+
+jquery api
+http://jqueryui.com
+http://bxslider.com
+google -> github windows
+
+servlets.com
+http://servlets.com/
+
+help -> Install new Software
+http://justinkwony.github.io/ermaster-nhit/update-site/
+
+http://apache.org/
+
+http://spring.io/
+erd
+
+앱인벤터
+
+http://tryhelloworld.co.kr/
+
+노드JS
+https://nodejs.org/en
+
+SELECT 컬럼명, 컬럼명
+ FROM 태이블명
+ WHERE '값'
+ GROUP BY 컬럼명
+ HAVING 컬럼명 ='값'
+ ORDER BY 컬럼명;
+ 
