@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+body {
+/*  font-family: 'Nanum Barun Gothic', sans-serif; */  
+}
+
+ul {
+	list-style-type: none;
+}
+
+li a{
+	text-decoration: none;
+}
