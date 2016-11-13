@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+body{
+	font-family: 'Nanum Gothic', sans-serif;
+	background-color: #f0f0f0;
+}
+
+.title{
+	font-size: 16px;
+	font-weight: 700;
+	color: #11adea;
+	width:400px;
+	height:28px;
+}
+
+.confirm_btn{
+	background-color: #11adea;
+	color: white;
+	border-radius: 4px;
+	border: 0px;
+	width:50px;
+	height:30px;
+}
+
+.inner_min{
+	width: 660px;
+}
+
+.menu_min{
+	width: 125px;
+}
