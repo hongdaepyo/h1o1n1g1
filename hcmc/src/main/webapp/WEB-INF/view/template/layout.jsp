@@ -61,6 +61,26 @@ $(document).ready(function(){
 			btnclick(e);
 		});//confirm_btn click event
 });
+//비밀번호 체크/////////////////////////////
+function check(){
+	var a=$('.current_password input').val();
+	var b=$('.new_password input').val();
+	var c=$('.new_password_confirm input').val();
+	if(a==''||b==''||c==''){
+		alert('비밀번호를 입력하세요.');
+		return false;
+	}else if(a!='${dto.mem_pass}'){
+		alert('현재 비밀번호를 확인해주세요.');
+		return false;
+	}else if(b!=c){
+		alert('새 비밀번호를 확인해주세요.');
+		return false;
+	}else{
+		//$('#frm').attr('action','pwUpdate.do').submit();
+		pw_update(b, mem_num);
+	}
+}////////////////////////////////////
+
 function btnclick(e){
 	var s=$(e.target).parent().attr('class');
 	switch(s){
@@ -72,7 +92,7 @@ function btnclick(e){
 					alert('닉네임을 입력해주세요');
 				};break;
 				
-	case 'password':alert('password');break;
+	case 'password':check();break;
 				
 	case 'delete': alert('delete');break;
 		}		

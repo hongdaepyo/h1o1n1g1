@@ -73,5 +73,21 @@ function nick_update(str){
 			alert('형식에 맞지 않습니다.');
 		}
 	})
-	
 }//end nick_update()
+
+function pw_update(p, n){
+	$.ajax({
+		type:'POST',
+		dataType:'json',
+		data:'mem_num='+n+'&mem_pass='+p,
+		url:"pwUpdate.do",
+		success:function(){
+			alert('비밀번호 변경 완료');
+		},
+		error:function(request,status,error){
+		//에러 메시지 띄워주는 부분
+		alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+
+	}
+	})
+}

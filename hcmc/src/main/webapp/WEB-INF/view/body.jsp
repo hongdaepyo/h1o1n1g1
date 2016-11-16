@@ -13,25 +13,26 @@
 			<button class="confirm_btn">확인</button>
 		</div>
 	</div>
-	<form action="password" method="post">
+	<form id="frm" method="post">
 	<div class="password_container">
-		<div id="password">
+		<div class="password">
 			<div class="title">
 				<span>비밀번호 변경하기</span>
 			</div>
 			<div class="current_password">
 				<div class="header">현재 비밀번호</div>
-				<input type="password" name="cur_pass">
+				<input type="password" name="array">
 			</div>
 			<div class="new_password">
 				<div class="header">새 비밀번호</div>
-				<input type="password" name="new_pass">
+				<input type="password" name="array">
 			</div>
 			<div class="new_password_confirm">
 				<div class="header">새 비밀번호 확인</div>
-				<input type="password" name="con_pass">
+				<input type="password" name="array">
 			</div>
-			<button class="confirm_btn" onclick="submit">확인</button>
+			<input type="hidden" value="${dto.mem_num}" name="array[]">
+			<button class="confirm_btn">확인</button>
 		</div>
 	</div>
 	</form>

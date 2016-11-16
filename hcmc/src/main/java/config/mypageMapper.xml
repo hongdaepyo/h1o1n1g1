@@ -17,5 +17,9 @@
   	update f_member set mem_pass=#{mem_pass}
   	where mem_num=#{mem_num}
   </update>
+  
+  <delete id="mem_del" parameterType="dto.MemDTO">
+  	delete from f_member where mem_num=#{mem_num}
+  </delete>
 
 </mapper>

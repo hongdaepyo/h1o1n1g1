@@ -51,7 +51,7 @@ public class HcmcController {
 		return jsonmsg;
 	}//회원 번호와 입력된 닉네임을 MemDTO형태로 받아서 닉네임을 업데이트 해줌
 	
-	@RequestMapping("/passUpdate.do")
+	@RequestMapping("/pwUpdate.do")
 	public MemDTO passwordUpdate(MemDTO mdto){
 		return service.passwordUpdateProcess(mdto);
 	}//회원 비밀번호를 업데이트

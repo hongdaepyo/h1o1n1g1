@@ -34,7 +34,6 @@ public class MyPageServiceImp implements MyPageService{
 
 	@Override
 	public MemDTO passwordUpdateProcess(MemDTO mdto) {
-		System.out.println("password serviceimp");
 		return dao.passwordUpdateMethod(mdto);
 	}
 

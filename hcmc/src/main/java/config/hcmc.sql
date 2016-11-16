@@ -182,7 +182,7 @@ select * from F_MEMBER where mem_num=1
 select * from F_MEMBER order by mem_num
 
 insert into F_MEMBER
-values (SEQ_f_member_mem_num.nextval,'test1@naver.com','a1234',null,1);
+values (SEQ_f_member_mem_num.nextval,'test3@naver.com','a1234',null,1);
 
 insert into F_MEMBER
 values (SEQ_f_member_mem_num.nextval,'test4@naver.com','a12345','테스트용',1);
