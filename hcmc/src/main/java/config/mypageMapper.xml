@@ -4,13 +4,18 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="mypage">
-  <select id="mem_list" parameterType="int" resultType="dto.MemberDTO">
+  <select id="mem_list" parameterType="int" resultType="dto.MemDTO">
     select * from f_member where mem_num=#{mem_num}
   </select>
   
-  <update id="nick_update" parameterType="dto.MemberDTO">
+  <update id="nick_update" parameterType="dto.MemDTO">
    update f_member set mem_nickname=#{mem_nickname}
    where mem_num=#{mem_num}
+  </update>
+  
+  <update id="pass_update" parameterType="dto.MemDTO">
+  	update f_member set mem_pass=#{mem_pass}
+  	where mem_num=#{mem_num}
   </update>
 
 </mapper>

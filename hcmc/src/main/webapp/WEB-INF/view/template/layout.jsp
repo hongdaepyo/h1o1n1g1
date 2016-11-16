@@ -7,7 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><tiles:getAsString name="title" /></title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="js/mypage.js"></script><base>
+<script src="js/mypage.js"></script>
+<base>
 <link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="css/mypage.css">
 </head>
@@ -25,8 +26,18 @@ header {
 
 menu {
 	height: 670px;
-	background-color: teal;
+	background-color: #f0f0f0;
 	width: 15%;
+	float: left;
+	font-size: 16px;
+	border-right: 2px solid #ff5e00;
+}
+
+menu span {
+	text-align: center;
+	margin: 0px auto;
+	width: 100%;
+	display: block;
 	float: left;
 }
 
@@ -43,15 +54,29 @@ footer {
 </style>
 <script type="text/javascript">
 var nick = '${dto.mem_nickname}';
+var mem_num='${dto.mem_num}';
 $(document).ready(function(){
-	if(nick!=""){
-		$('#nickname').attr("placeholder",'${dto.mem_nickname}');
-	}else{
-		$('#nickname').attr("placeholder","닉네임을 설정하세요");
-	}
+	nick_view(nick);
+	$('.confirm_btn').click(function(e){
+			btnclick(e);
+		});//confirm_btn click event
 });
-
-//console.log('dto',${dto.mem_nickname});
+function btnclick(e){
+	var s=$(e.target).parent().attr('class');
+	switch(s){
+	case 'nick':
+				var str=$('#nickname').val().trim();
+				if(str!="")
+					{nick_update(str);
+				}else{
+					alert('닉네임을 입력해주세요');
+				};break;
+				
+	case 'password':alert('password');break;
+				
+	case 'delete': alert('delete');break;
+		}		
+}
 </script>
 <body>
 	<header>
