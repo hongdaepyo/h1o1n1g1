@@ -5,4 +5,5 @@
 <a href="test2.do?mem_num=2" >테스트용 임시 링크,</a>
 <button id="test_btn" name="kokoko">테스트버튼</button>
 <button id="test_btn2" >ajaxtest</button>
-<a name="test" id="aaaa">dd</a>
+<button id="test_btn3">정보창 테스트</button>
+<button id="test_btn4" onclick=festival_view(2)>페스티벌 뷰용 테스트</button>

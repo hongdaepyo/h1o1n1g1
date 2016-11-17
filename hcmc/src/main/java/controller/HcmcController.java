@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import dto.FestivalDTO;
 import dto.MemDTO;
 import service.MyPageService;
 
@@ -56,6 +57,10 @@ public class HcmcController {
 		return service.passwordUpdateProcess(mdto);
 	}//회원 비밀번호를 업데이트
 	
+	@RequestMapping("/finfo.do")
+	public @ResponseBody FestivalDTO festival_info(int festival_num){
+		return service.festivalInfoProcess(festival_num);
+	}
 	
 	@RequestMapping("/test2.do")
 	public @ResponseBody MemDTO testList(MemDTO mdto){

@@ -6,11 +6,20 @@ $(function(){
 	$(window).resize(function(){
 		var width=$('section').width();
 		var width2=$(document).width();
+		var height2=$(document).height();
+		if($('.bodywrap').width()==0){
 		if(width<=660){
 			menu_min();
 		}else{
 			menu_not_min();
 		}
+		}
+		resize_f(width2,height2);
+		(function ($) {
+	        $.fn.reBind = function(events, handler) {
+	            return this.off(events, handler).on(events, handler);
+	        };
+	    }(jQuery));
 	})//창크기가 변할 때 bodywrap의 최소 크기 정함
 	
 	//메뉴 위치 변경
@@ -61,10 +70,11 @@ function nick_update(str){
 		data:'mem_num='+mem_num+'&mem_nickname='+str,
 		url:"nickUpdate.do",
 		success:function(data){
-			//alert(data.msg);
-			console.log(data);
+			/*console.log(data);
 			var url='info.do?mem_num='+mem_num;
-			//$(location).attr('href',url);
+			$(location).attr('href',url);*/
+			window.location.reload();
+			
 			
 		},
 		error:function(request,status,error){
@@ -75,6 +85,7 @@ function nick_update(str){
 	})
 }//end nick_update()
 
+//비밀번호 업데이트
 function pw_update(p, n){
 	$.ajax({
 		type:'POST',
@@ -82,12 +93,28 @@ function pw_update(p, n){
 		data:'mem_num='+n+'&mem_pass='+p,
 		url:"pwUpdate.do",
 		success:function(){
+			console.log()
 			alert('비밀번호 변경 완료');
 		},
 		error:function(request,status,error){
 		//에러 메시지 띄워주는 부분
-		alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
 
-	}
 	})
-}
+}//end pw_update()
+
+//달력에서 선택한 축제정보를 가져오기
+function festival_view(n){
+	$.ajax({
+		type:'post',
+		dataType:'json',
+		data:'festival_num='+n,
+		url:"finfo.do",
+		success:function(res){
+			console.log(res);
+		},
+		error:function(request,status,error){
+		//에러 메시지 띄워주는 부분
+		alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
+	})
+}//end festival_view()

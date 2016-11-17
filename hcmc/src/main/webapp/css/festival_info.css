@@ -1,1 +1,73 @@
 @CHARSET "UTF-8";
+
+.bodywrap{
+	display:block;
+	z-index:1000;
+	background-image: url("https://image-proxy.namuwikiusercontent.com/r/http%3A%2F%2Fi64.tinypic.com%2F2hnxrw4.jpg");
+	overflow:hidden;
+	position:absolute;
+	left:0px;
+	top:0px;
+	}
+
+.infowrap{
+	background-color:rgba(255,255,255,0.5);
+	padding-top:100px;
+	
+}
+
+.info_inner{
+	margin:0px auto;
+	width: 687px;
+	height: 1793px;
+	background-color: white;
+	padding-left:40px;
+	padding-right:40px;
+	border-radius:20px;
+	opacity: 0.5;
+}
+/* 내부항목 */
+.fh_top{
+	width:100%;
+	height:30px;
+}
+
+.festival_header{
+	border-bottom: 1px solid black;
+	color: #fa6545;
+	overflow-y:auto; 
+}
+
+.festival_header .title{
+	font-size: 24px;
+	color: #fa6545;
+	width:400px;
+	height:30px;
+	float:left;
+}
+
+.festival_header .content{
+	font-size: 12px;
+	width:400px;
+	height:30px;
+	float:left;
+}
+
+
+.festival_detail{
+	border_bottom: 1px solid black;
+}
+
+.festival_map{
+	
+}
+
+button[name="close"]{
+	background-color:#fa6545;
+	color:white;
+	border:0;
+	border-radius:6px;
+	float:right;
+	width:30px;
+	height:30px;
+}

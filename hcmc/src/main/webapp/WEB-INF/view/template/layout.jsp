@@ -7,10 +7,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><tiles:getAsString name="title" /></title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="js/mypage.js"></script>
+<script src="js/mypage.js?ver=1"></script>
 <base>
 <link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/mypage.css">
+<link rel="stylesheet" href="css/mypage.css?ver=1">
+<link rel="stylesheet" href="css/festival_info.css">
+<script src="js/festival_info.js?ver=1"></script>
 </head>
 <style>
 * {
@@ -51,12 +53,17 @@ footer {
 	background-color: #ffffff;
 	clear: both;
 }
+
+info{
+	display:hidden;
+}
 </style>
 <script type="text/javascript">
 var nick = '${dto.mem_nickname}';
 var mem_num='${dto.mem_num}';
 $(document).ready(function(){
 	nick_view(nick);
+	
 	$('.confirm_btn').click(function(e){
 			btnclick(e);
 		});//confirm_btn click event
@@ -66,6 +73,9 @@ function check(){
 	var a=$('.current_password input').val();
 	var b=$('.new_password input').val();
 	var c=$('.new_password_confirm input').val();
+	//8~20글자, 영문, 숫자, 특수문자 조합
+	var patt=/^.*(?=^.{8,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+	
 	if(a==''||b==''||c==''){
 		alert('비밀번호를 입력하세요.');
 		return false;
@@ -75,8 +85,9 @@ function check(){
 	}else if(b!=c){
 		alert('새 비밀번호를 확인해주세요.');
 		return false;
+	/* }else if(patt.test(b)){
+		alert('비밀번호 형식이 맞지 않습니다.') */
 	}else{
-		//$('#frm').attr('action','pwUpdate.do').submit();
 		pw_update(b, mem_num);
 	}
 }////////////////////////////////////
@@ -122,5 +133,29 @@ function btnclick(e){
 		</p>
 	</footer>
 
+
+<div class="bodywrap">
+	<div class="infowrap">
+		<div class="info_inner">
+			<div class="festival_header">
+			<div class="fh_top">
+				<button name="close">X</button>
+			</div>
+				<span class="title">서울 빛초롱 축제</span>
+				<span class="content">////축제날짜</span>
+				<div class="star">
+				<img src="http://imgdb.kr/aFnm.dn" width=30px height=30px>
+				<img src="http://imgdb.kr/aFnm.dn" width=30px height=30px>
+				<img src="http://imgdb.kr/aFnm.dn" width=30px height=30px>
+				<img src="http://imgdb.kr/aFnm.dn" width=30px height=30px>
+				<img src="http://imgdb.kr/aFnm.dn" width=30px height=30px>
+				</div>
+			</div>
+			<div class="festival_detail"></div>
+			<div class="festival_map"></div>
+
+		</div>
+	</div>
+</div>
 </body>
 </html>

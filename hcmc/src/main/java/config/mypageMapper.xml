@@ -21,5 +21,16 @@
   <delete id="mem_del" parameterType="dto.MemDTO">
   	delete from f_member where mem_num=#{mem_num}
   </delete>
+  
+  <resultMap type="dto.FestivalDTO" id="fes_info_star">
+  	  <result column="star" property="star"/>
+  </resultMap>
+  
+  <select id="fes_info" parameterType="int" resultMap="fes_info_star">
+   select f.*, a.*
+   from f_festival f,
+	    (select avg(favor_star) as "star" from f_favor where festival_num=#{festival_num}) a
+   where festival_num=#{festival_num}
+  </select>
 
 </mapper>

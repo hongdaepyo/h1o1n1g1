@@ -14,6 +14,8 @@ private String festival_theme;
 private String festival_time;
 private int festival_count;
 private String festival_content;
+private int star;
+
 
 public FestivalDTO() {
 }
@@ -104,6 +106,14 @@ public String getFestival_content() {
 
 public void setFestival_content(String festival_content) {
 	this.festival_content = festival_content;
+}
+
+public int getStar() {
+	return star;
+}
+
+public void setStar(int star) {
+	this.star = star;
 }
 
 

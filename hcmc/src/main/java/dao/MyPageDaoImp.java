@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import dto.FestivalDTO;
 import dto.MemDTO;
 
 public class MyPageDaoImp implements MyPageDao{
@@ -40,6 +41,11 @@ public class MyPageDaoImp implements MyPageDao{
 	public MemDTO passwordUpdateMethod(MemDTO mdto) {
 		sqlSession.update("mypage.pass_update",mdto);
 		return sqlSession.selectOne("mypage.mem_list",mdto.getMem_num());
+	}
+
+	@Override
+	public FestivalDTO festivalInfoMethod(int festival_num) {
+		return sqlSession.selectOne("mypage.fes_info",festival_num);
 	}
 
 }

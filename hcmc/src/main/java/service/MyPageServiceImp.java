@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import dao.MyPageDao;
+import dto.FestivalDTO;
 import dto.MemDTO;
 
 public class MyPageServiceImp implements MyPageService{
@@ -35,6 +36,12 @@ public class MyPageServiceImp implements MyPageService{
 	@Override
 	public MemDTO passwordUpdateProcess(MemDTO mdto) {
 		return dao.passwordUpdateMethod(mdto);
+	}
+
+	@Override
+	public FestivalDTO festivalInfoProcess(int festival_num) {
+		
+		return dao.festivalInfoMethod(festival_num);
 	}
 
 	
