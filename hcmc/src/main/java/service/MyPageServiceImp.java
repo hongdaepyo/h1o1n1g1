@@ -43,6 +43,7 @@ public class MyPageServiceImp implements MyPageService{
 		
 		return dao.festivalInfoMethod(festival_num);
 	}
+	
 
 	
 }

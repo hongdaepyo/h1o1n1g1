@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cal">
+	<select id='list' resultType='HashMap' >
+		select festival_num, festival_name, festival_start, festival_end, city_num
+		from F_festival order by festival_num
+	</select>
+	
+	<select id="test" resultType='dto.FestivalDTO'>
+	
+	</select>
+	
+	
+</mapper>

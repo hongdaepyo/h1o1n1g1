@@ -1,0 +1,633 @@
+*{
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+
+#header{
+	height:100px;
+	position:relative;
+	
+}
+
+ul{
+	list-style: none;
+	
+}
+
+
+.logo li img:nth-of-type(1){
+	width: 100px;
+	height: 80px;
+	float: left;
+	
+}
+
+.logo .lo img{
+	position: absolute;
+	width: 200px;
+	height: 100px;
+
+	
+}
+
+.logo #login{		
+	float: right;
+	position:absolute;
+	right: 150px;	
+}
+
+.logo #login img{
+	position:absolute;
+	top:20px;
+	width: 50px;
+	height: 50px;	
+}
+
+.logo #join{
+	float: right;
+	position: absolute;
+	right: 80px;
+}
+
+.logo #join img{
+	position:absolute;
+	top:20px;
+	width: 50px;
+	height: 50px;	
+}
+
+#gnb{
+	height:40px;
+	background-color: #666666;
+}
+
+#sing_form{
+	position: relative;
+	width: 15%;
+	height: 310px;
+	top:-1420px;
+	margin-left:80%;
+	border:2px solid #666666;
+	background-color:#bfbfbf;
+	border-radius:5px;
+	z_index:30px;
+	display: none;
+}
+
+#del{
+	position: relative;
+	width: 10%;
+	height: 10%;
+	margin-left:90%;
+}
+
+#join_form{
+	position: relative;
+	width: 15%;
+	height: 300px;
+	top:-1420px;
+	margin-left:80%;
+	border:2px solid #666666;
+	background-color:#bfbfbf;
+	border-radius:5px;
+	z_index:30px;
+	display: none;
+}
+
+#singup_form{
+	position:relative;
+	width:80%;
+	height:90%;
+	margin-left:10%;
+	margin-top: -10%;
+}
+
+#joinup_form{
+	position:relative;
+	width:80%;
+	height:90%;
+	margin-left:10%;
+	margin-top:-10%;
+}
+
+#email{
+	position: relative;
+	width: 90%;
+	height: 10%;
+	margin-left:5%;
+	margin-top:14%;
+	border-radius: 5px;
+	
+}
+
+#email> input{
+	cursor:auto;
+	width: 100%;
+	height: 100%;	
+	border-radius: 5px;
+}
+
+#pass{
+	position: relative;
+	width: 90%;
+	height: 10%;
+	margin-left:5%;
+	margin-top:5px;
+	border-radius: 5px;
+	
+}
+
+#pass> input{
+	cursor:auto;
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+}
+
+#pass_en{
+	position: relative;
+	width: 90%;
+	height: 10%;
+	margin-left:5%;
+	margin-top:5px;
+	border-radius: 5px;
+}
+
+#pass_en> input{
+	cursor:auto;
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+}
+
+
+#checked{
+	position: relative;
+	top:10px;
+	width:80%;
+	margin-left:5%;
+	text-align: center;
+	color:white;
+	
+}
+#login_btn{
+	position: relative;
+	width: 90%;
+	height:10%;
+	margin-left:5%;
+	margin-top:15%;
+	background-color: #0066cc;	
+	color:#bfbfbf;
+	border-radius: 5px;
+	text-align: center;
+	text-align: center;
+	
+}	
+
+#pass_search{
+	position: relative;
+	width: 90%;
+	height: 10%;
+	margin-top:5%;
+	margin-left:5%;
+	text-align: center;
+	border-bottom: 1px solid white;
+}
+
+#pass_search > a{
+	text-decoration: none;
+	color:white;
+}
+
+#facebook{
+	position: relative;
+	width: 40%;
+	height: 30%;
+	top:10px;
+	
+}
+
+#facebook a{
+	text-decoration: none;
+	color:white;
+	font-size: 13px;
+	text-align: center;
+}
+
+#facebook a img{
+	margin-top:10%;
+	margin-left:30%;
+	width: 30px;
+}
+
+#facebook a img p{
+	text-align: center;
+	font-size: 14px;
+	color:white;
+}
+
+#naver{
+	position: relative;
+	width: 40%;
+	height: 30%;
+	top:-71px;
+	left: 50%;
+	
+}
+
+#naver a{
+	text-decoration: none;
+	color:white;
+	font-size: 13px;
+	text-align: center;
+}
+
+#naver a img{
+	margin-top:10%;
+	margin-left:30%;
+	width: 30px;
+}
+
+#navera img p{
+	text-align: center;
+	font-size: 14px;
+	color:white;
+}
+
+#join_btn{
+	position: relative;
+	width: 90%;
+	height:10%;
+	margin-left:5%;
+	margin-top:15%;
+	background-color: #0066cc;	
+	color:#bfbfbf;
+	border-radius: 5px;
+	text-align: center;
+	
+}	
+
+#join_btn>a{
+	color:#bfbfbf;
+	text-decoration: none;
+}
+
+
+
+
+
+.arr::before{
+	border-bottom:20px solid #d8d8d8;
+	top:-20px;
+	right: 97px;
+}
+
+*:before, *:after{
+	box-sizing:border-box;
+}
+
+#main .pic li {
+	height:500px;
+	list-style: none;
+	position: relative;
+	top:10px;
+	display: block;
+	z-index: 0;
+}
+
+#main .pic li:nth-of-type(2) {
+	 display: none;
+}
+
+#main .touch_left_btn{
+	
+	position: absolute;
+	left:200px;
+	top:350px;
+	z-index: 10;
+}
+
+#main .touch_right_btn{
+	
+	position:absolute;
+	right:200px;
+	top:350px;
+	z-index: 10;
+}
+
+#main .touch_left_btn img{
+	width:70px;
+	height:100px;
+}
+
+#main .touch_right_btn img{
+	width:70px;
+	height:100px;
+	
+}
+
+#top{
+	position: relative;
+	top:-450px;
+	height: 50px;	
+	/* margin : 0 auto; */
+	margin-left: 50%;
+	/* margin-left:830px; */
+	z-index: 20;	
+}
+
+#top li{
+	float: left;		
+	list-style: none;
+}
+
+#top .slide li img{
+	width: 30px;
+	height: 30px;
+}
+
+
+
+ #bot{
+	position: relative;
+	top:-190px;
+	height: 150px;
+	z-index: 25;
+	background: url(http://www.tourbaksa.com/images/main/bg_mask.png) repeat 0 0;
+    background-image: url(http://www.tourbaksa.com/images/main/bg_mask.png);
+    background-position-x: 0px;
+    background-position-y: 0px;
+    background-size: initial;
+    background-repeat-x: repeat;
+    background-repeat-y: repeat;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+}
+
+.bx-controls-auto-item{
+	display: none;
+}
+
+
+
+#bot_pad{
+	position : relative;
+	height: 150px;
+	margin-left: 10%;
+	margin-right: 10%;
+	
+}
+
+#bot_pad2{
+	position : relative;
+	height:80%;
+	top:10%;
+	/* bottom: 10%; */
+}
+
+ #bot_pad2 .ff{
+ position : relative;
+ height: 100%;
+ margin-left: 10%;
+
+ }
+ 
+ .ff_ff, .ff_ss, .ff_tr{
+ position:relative;
+ height:100%;
+ }
+ 
+  .ff_ff li , .ff_ss li , .ff_tr li{
+ float: left;
+ height: 100px;
+ color:transparent;
+ }
+  
+ .ff_ff{
+ display: block;
+ }
+ 
+ .ff_ss, .ff_tr{
+ display: none;
+ }
+ 
+
+
+#search{
+	position:relative;
+	top:-190px;
+	padding-top:10px;
+	background-color: #666666;
+	height: 150px;
+}
+
+#search_m{
+	position:absolute;
+	width:1500px;
+	/* position:relative; */
+	margin-left:10%;
+	/* margin-right:250px; */
+	height: 150px;
+}
+
+
+
+#search_m ul{
+	float: left;	
+}
+
+#search_m .city li{	
+	 position:relative; 
+	margin-left:200px;	
+}
+
+#datepicker,select{
+	background-color: #666666;
+	border: 1px solid #bfbfbf;
+	color:#bfbfbf;
+	text-align: center;
+	width: 150px;
+	height: 20px;
+}
+
+#search_m .alone{
+	color: #bfbfbf;
+	height: 25px;
+}
+
+#search_m ul li{	
+	position:relative; 
+	width: 100px;
+	margin-right:200px;
+	height:37.5px;
+	color: #bfbfbf;
+	
+}
+.search_icon{
+	width: 100px;
+	height: 30px;
+}
+
+.search_icon .tt img{
+	width: 100px;
+	height: 30px;
+}
+
+#menu {
+	margin: 0 auto;
+}
+
+
+#warp #travel {
+    position: relative;
+    height: 500px;
+    z-index: 25;
+}
+
+#travel #travel_f{
+    position: absolute;
+    top:-20%;
+    width:100%;
+    height:30%;
+}
+
+
+#travel #tabs {
+    position: relative;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    height: 100%;
+}
+
+
+#travel #tabs #tab ul li {
+    position: relative;
+    width: 5%;
+    height: 10%;
+    margin-left:100%;
+    text-align: center;
+    line-height: 60px;
+    text-decoration: none;
+    background-color: rgb(102, 102, 102);
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    border-image: initial;
+}
+
+#travel #tabs #tab ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+#tabs-1 {
+    position: relative;
+    display: block;
+    top:-25%;
+    width: 90%;
+    height: 80%;
+    margin-left: 5%;
+    overflow: auto;
+}
+
+#tabs-2 {
+    position: relative;
+    display: none;
+    top:-25%;
+    width: 90%;
+    height: 80%;
+    margin-left: 5%;
+    overflow: auto;
+}
+
+#tabs-3 {
+    position: relative;
+    display: none;
+    top:-25%;
+    width: 90%;
+    height: 80%;
+    margin-left: 5%;
+    overflow: auto;
+}
+
+h2{	
+	padding: 50px 0 35px 0;
+    font-size: 25px;
+    font-weight: 600;
+    color: #666666;
+    text-align: center;
+}
+
+span{
+	display: block;
+    font-size: 14px;
+    font-weight: 400;
+    color: #666666;
+} 
+
+#traval #traval_s {
+	position: relative;
+	height:400px;
+	top:30px;
+	width: 20%;
+}
+
+#traval_s > ul > li{
+	text-align: center;
+}
+
+
+
+#traval #traval_t {
+	position: relative;
+	top:-370px;
+	height:350px;
+	width: 70%;
+	margin-left: 400px;
+}
+
+#traval_t ul li{
+	float: left;	
+	padding-right: 10px;
+}
+
+
+ 
+#end{
+	position: relative;
+	height: 200px;
+	top:150px;
+	
+} 
+
+ #end_f{
+	background-image: url(http://www.tourbaksa.com/images/main/bg_mask.png);
+	height: 50px;
+}
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

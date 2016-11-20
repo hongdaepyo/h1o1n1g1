@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+
+h1{
+	text-align: center;
+}
+
+.calendar_table {
+	width: 100%;
+	overflow: visible;
+	text-align: center;
+	display: table;
+}
+
+.calendar_table tr {
+	text-align: center;
+}
+
+.calendar_table th {
+	background: #f1f0f0;
+	height: 15px;
+}
+
+.calendar_table td {
+	border: 1px solid #f1f0f0;
+	text-align: center;
+	height: 55px;
+}

@@ -14,7 +14,9 @@ $(function(){
 			menu_not_min();
 		}
 		}
-		resize_f(width2,height2);
+		//$('.bodywrap').show();
+		//$('.bodywrap').css('width','100%','height','100%');
+		//resize_info(width2, height2);
 		(function ($) {
 	        $.fn.reBind = function(events, handler) {
 	            return this.off(events, handler).on(events, handler);
@@ -58,12 +60,6 @@ function nick_view(nick){
 
 //회원 닉네임 변경
 function nick_update(str){
-	//var mem_num='${dto.mem_num}';
-	//var Data={"mem_num" : mem_num, "mem_nickname" : str};
-	/*var form_data=new FormData();
-	form_data.append('mem_num',mem_num);
-	form_data.append('nickname',str);*/
-	//console.log(Data);
 	$.ajax({
 		type:'POST',
 		dataType:'json',
@@ -102,19 +98,3 @@ function pw_update(p, n){
 
 	})
 }//end pw_update()
-
-//달력에서 선택한 축제정보를 가져오기
-function festival_view(n){
-	$.ajax({
-		type:'post',
-		dataType:'json',
-		data:'festival_num='+n,
-		url:"finfo.do",
-		success:function(res){
-			console.log(res);
-		},
-		error:function(request,status,error){
-		//에러 메시지 띄워주는 부분
-		alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
-	})
-}//end festival_view()

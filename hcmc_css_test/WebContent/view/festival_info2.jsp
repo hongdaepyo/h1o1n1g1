@@ -12,7 +12,6 @@
 				<button name="close">X</button>
 			</div>
 				<span class="title">서울 빛초롱 축제</span>
-				<img alt="홈페이지로 이동합니다." src="http://imgdb.kr/aGif.dn" width=20px height=20px>
 				<span class="content">////축제날짜</span>
 				<div class="star">
 				<img src="http://imgdb.kr/aFnm.dn" width=30px height=30px>

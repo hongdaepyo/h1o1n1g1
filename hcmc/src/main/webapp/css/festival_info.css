@@ -2,7 +2,6 @@
 
 .bodywrap{
 	display:block;
-	z-index:1000;
 	background-image: url("https://image-proxy.namuwikiusercontent.com/r/http%3A%2F%2Fi64.tinypic.com%2F2hnxrw4.jpg");
 	overflow:hidden;
 	position:absolute;
@@ -11,12 +10,21 @@
 	}
 
 .infowrap{
-	background-color:rgba(255,255,255,0.5);
+ 	background-color:rgba(255,255,255,0.5);
 	padding-top:100px;
 	
 }
 
+.info_mask{
+	position:absolute;
+	left:0px;
+	top:0px;
+	background-color:rgba(255,255,255,0.5);
+	z-index:100;
+}
+
 .info_inner{
+	position:relative;
 	margin:0px auto;
 	width: 687px;
 	height: 1793px;
@@ -24,7 +32,8 @@
 	padding-left:40px;
 	padding-right:40px;
 	border-radius:20px;
-	opacity: 0.5;
+	opacity: 1;
+	z-index:200;
 }
 /* 내부항목 */
 .fh_top{
@@ -62,6 +71,10 @@
 	
 }
 
+.star{
+	width:180px;
+}
+
 button[name="close"]{
 	background-color:#fa6545;
 	color:white;
@@ -70,4 +83,17 @@ button[name="close"]{
 	float:right;
 	width:30px;
 	height:30px;
+}
+
+/*   툴팁        */
+#tooltip{
+	position: absolute;
+	z-index:9999;
+	color:white;
+	font-size:15px;
+}
+
+#tooltip .tipBody{
+	background-color: black;
+	padding: 8px;
 }

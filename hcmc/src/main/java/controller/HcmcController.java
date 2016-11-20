@@ -2,6 +2,7 @@ package controller;
 
 import java.util.HashMap;
 import java.util.List;
+
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,18 +11,24 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dto.FestivalDTO;
 import dto.MemDTO;
+import service.CalendarService;
 import service.MyPageService;
 
 @Controller
 public class HcmcController {
-	private MyPageService service;
+	private MyPageService mservice;
+	private CalendarService cservice;
 	
 	public HcmcController() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void setService(MyPageService service) {
-		this.service = service;
+	public void setMservice(MyPageService mservice) {
+		this.mservice = mservice;
+	}
+	
+	public void setCservice(CalendarService cservice) {
+		this.cservice = cservice;
 	}
 	
 	@RequestMapping("/test.do")
@@ -31,9 +38,8 @@ public class HcmcController {
 	
 	@RequestMapping("/info.do")
 	public ModelAndView memListPage(int mem_num){
-		System.out.println(mem_num+"번 회원 정보 들어왔다");
 		ModelAndView mav = new ModelAndView();
-		MemDTO dto= service.memberListProcess(mem_num);
+		MemDTO dto= mservice.memberListProcess(mem_num);
 		mav.addObject("dto", dto);
 		mav.setViewName("index");
 		return mav;
@@ -41,7 +47,7 @@ public class HcmcController {
 	
 	@RequestMapping("/nickUpdate.do")
 	public @ResponseBody String nickUpdate(MemDTO mdto){
-		service.nickUpdateProcess(mdto);
+		mservice.nickUpdateProcess(mdto);
 		System.out.println(mdto.getMem_nickname());
 		///*/*/*/*/*/*/*/*/*/*/*/*/*pom.xml에 simplejson 추가/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -54,19 +60,31 @@ public class HcmcController {
 	
 	@RequestMapping("/pwUpdate.do")
 	public MemDTO passwordUpdate(MemDTO mdto){
-		return service.passwordUpdateProcess(mdto);
+		return mservice.passwordUpdateProcess(mdto);
 	}//회원 비밀번호를 업데이트
 	
 	@RequestMapping("/finfo.do")
 	public @ResponseBody FestivalDTO festival_info(int festival_num){
-		return service.festivalInfoProcess(festival_num);
+		return mservice.festivalInfoProcess(festival_num);
 	}
 	
-	@RequestMapping("/test2.do")
-	public @ResponseBody MemDTO testList(MemDTO mdto){
-		System.out.println("++test2++++"+mdto);
-		//return service.testListProcess(mdto);
-		return null;
+
+//////////달력부분//////////////////////////////////////////////////////////////////////////////////////
+	@RequestMapping("/calendar.do")
+	public ModelAndView cal_start(){
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list",cservice.FestivalList());
+		mav.setViewName("calview");
+		return mav;
 	}
+	
+	@RequestMapping("/calendar2.do")
+	public @ResponseBody List<FestivalDTO> cal_test(){
+		return cservice.FestivalList();
+		/*mav.addObject("list",list);*/
+		//return cservice.FestivalList();
+	}
+	
+	
 
 }//end class

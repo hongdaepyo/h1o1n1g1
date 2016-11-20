@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +13,7 @@
 <base>
 <link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="css/mypage.css?ver=1">
-<link rel="stylesheet" href="css/festival_info.css">
+<link rel="stylesheet" href="css/festival_info.css?ver=1">
 <script src="js/festival_info.js?ver=1"></script>
 </head>
 <style>
@@ -54,9 +56,6 @@ footer {
 	clear: both;
 }
 
-info{
-	display:hidden;
-}
 </style>
 <script type="text/javascript">
 var nick = '${dto.mem_nickname}';
@@ -67,6 +66,10 @@ $(document).ready(function(){
 	$('.confirm_btn').click(function(e){
 			btnclick(e);
 		});//confirm_btn click event
+		
+	$('#tt').click(function(){
+
+	})
 });
 //비밀번호 체크/////////////////////////////
 function check(){
@@ -133,16 +136,20 @@ function btnclick(e){
 		</p>
 	</footer>
 
-
 <div class="bodywrap">
 	<div class="infowrap">
+		<div class="info_mask"></div>
 		<div class="info_inner">
 			<div class="festival_header">
+			<button id="tt">test</button>
 			<div class="fh_top">
 				<button name="close">X</button>
+				<a href=""><img alt="홈페이지로 이동합니다." src="http://imgdb.kr/aGif.dn" width=20px height=20px></a>
 			</div>
-				<span class="title">서울 빛초롱 축제</span>
-				<span class="content">////축제날짜</span>
+				<c:out value=""/>
+				<span class="title"></span>
+				<span class="period"></span>
+				
 				<div class="star">
 				<img src="http://imgdb.kr/aFnm.dn" width=30px height=30px>
 				<img src="http://imgdb.kr/aFnm.dn" width=30px height=30px>
@@ -152,6 +159,7 @@ function btnclick(e){
 				</div>
 			</div>
 			<div class="festival_detail"></div>
+				<span class="content">////축제날짜</span>
 			<div class="festival_map"></div>
 
 		</div>

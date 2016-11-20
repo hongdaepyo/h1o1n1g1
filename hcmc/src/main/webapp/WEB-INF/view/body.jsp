@@ -21,17 +21,17 @@
 			</div>
 			<div class="current_password">
 				<div class="header">현재 비밀번호</div>
-				<input type="password" name="array">
+				<input type="password">
 			</div>
 			<div class="new_password">
 				<div class="header">새 비밀번호</div>
-				<input type="password" name="array">
+				<input type="password">
 			</div>
 			<div class="new_password_confirm">
 				<div class="header">새 비밀번호 확인</div>
-				<input type="password" name="array">
+				<input type="password">
 			</div>
-			<input type="hidden" value="${dto.mem_num}" name="array[]">
+			<input type="hidden" value="${dto.mem_num}">
 			<button class="confirm_btn">확인</button>
 		</div>
 	</div>

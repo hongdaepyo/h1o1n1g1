@@ -12,8 +12,10 @@
 	
 	<!-- controller -->
 	<bean class="controller.HcmcController" >
-		<property name="service" ref="svc"/>
+		<property name="mservice" ref="msvc"/>
+		<property name="cservice" ref="csvc"/>
 	</bean>
+		
 	
 	<!-- [1] DataSource빈 선언 -->
 	<bean id="dataSource"
@@ -30,6 +32,7 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:config/mypageMapper.xml</value>
+				<value>classpath:config/calMapper.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -57,17 +60,25 @@
 	<!-- [6] 트랜잭션으로 처리할 메소드에 transactionManager설정 -->
 	<aop:config>
 		<aop:advisor advice-ref="txAdvice" pointcut="execution(* Service.MyPage*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(* Service.Calendar*.*(..))"/>
 	</aop:config>
 
-	<!-- [7] MemDaoImp 빈 선언 -->
-	<bean id="dao" class="dao.MyPageDaoImp">
+	<!-- [7] DaoImp 빈 선언 -->
+	<bean id="mdao" class="dao.MyPageDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	<bean id="cdao" class="dao.CalendarDaoImp">
+		<property name="sqlSession" ref="sqlSession"/>
 	</bean>
 
 	<!-- [7] ServiceImp 빈 선언 -->
-	<bean id="svc" class="service.MyPageServiceImp">
-		<property name="dao" ref="dao" />
+	<bean id="msvc" class="service.MyPageServiceImp">
+		<property name="dao" ref="mdao" />
 	</bean>
+	<bean id="csvc" class="service.CalendarServiceImp">
+		<property name="dao" ref="cdao"/>
+	</bean>
+	
 	
 	<!-- tiles -->
 	<bean id="tilesConfigurer"
