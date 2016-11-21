@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dto.FestivalDTO;
 import dto.MemDTO;
+import service.AdminService;
 import service.CalendarService;
 import service.MyPageService;
 
@@ -18,6 +19,7 @@ import service.MyPageService;
 public class HcmcController {
 	private MyPageService mservice;
 	private CalendarService cservice;
+	private AdminService aservice;
 	
 	public HcmcController() {
 		// TODO Auto-generated constructor stub
@@ -30,6 +32,11 @@ public class HcmcController {
 	public void setCservice(CalendarService cservice) {
 		this.cservice = cservice;
 	}
+	
+	public void setAservice(AdminService aservice) {
+		this.aservice = aservice;
+	}
+	
 	
 	@RequestMapping("/test.do")
 	public String test(){
@@ -81,10 +88,30 @@ public class HcmcController {
 	@RequestMapping("/calendar2.do")
 	public @ResponseBody List<FestivalDTO> cal_test(){
 		return cservice.FestivalList();
-		/*mav.addObject("list",list);*/
-		//return cservice.FestivalList();
 	}
 	
+/////////관리자페이지///////////////////////////////////////////////////////////////////////////////////////
+	@RequestMapping("/admin.do")
+	public ModelAndView admin_page(){
+		ModelAndView mav= new ModelAndView();
+		mav.addObject("list",aservice.fListProcess());
+		mav.setViewName("admin");
+		return mav;
+	}
+	
+	@RequestMapping("/body1.do")
+	public String testt(){
+		return "admin/body1";
+	}
+	
+	
+	@RequestMapping("/admin_mlist.do")
+	public ModelAndView admin_mem(){
+		ModelAndView mav= new ModelAndView();
+		mav.addObject("list",aservice.mListProcess());
+		mav.setViewName("admin/body2");
+		return mav;
+	}
 	
 
 }//end class

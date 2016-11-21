@@ -156,9 +156,7 @@ function festival_view_input(){
 			<div class="festival_detail"></div>
 				<span class="content">////축제날짜</span>
 			<div class="festival_map">
-			<jsp:include page="festival_map.jsp" flush="true">
-			
-			</jsp:include>
+			<jsp:include page="festival_map.jsp" flush="true"></jsp:include>
 			</div>
 
 		</div>

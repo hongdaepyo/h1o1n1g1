@@ -221,3 +221,11 @@ select c.city_name, f.festival_name
 from f_city c, f_festival f
 where c.city_num = f.city_num;
 
+SELECT *
+  FROM F_FESTIVAL
+ WHERE festival_start >= TO_DATE('201611','YYYYMM') AND  festival_start <  TO_DATE('201611','YYYYMM');
+ 
+ select TO_DATE('201609','YYYYMM')+1
+ from dual
+ 
+ 

@@ -40,7 +40,6 @@ public class MyPageServiceImp implements MyPageService{
 
 	@Override
 	public FestivalDTO festivalInfoProcess(int festival_num) {
-		
 		return dao.festivalInfoMethod(festival_num);
 	}
 	

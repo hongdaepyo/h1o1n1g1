@@ -20,7 +20,17 @@
 	<definition name="menu2" extends="index">
 		<put-attribute name="title" value="Spring menu2 Example" />
 		<put-attribute name="body" value="/WEB-INF/view/body-menu2.jsp" />
-
+	</definition>
+	
+	<definition name="admin" template="/WEB-INF/view/admin/template/admintemp.jsp">
+		<put-attribute name="title" value="관리자 페이지"/>
+		<put-attribute name="body" value="/WEB-INF/view/admin/admin.jsp"/>
+		<put-attribute name="menu" value="/WEB-INF/view/admin/template/adminmenu.jsp"/>
+		<put-attribute name="header" value="/WEB-INF/view/admin/admin-header.jsp"/>
+	</definition>
+	
+	<definition name="admin/body*" extends="admin">
+		<put-attribute name="body" value="/WEB-INF/view/admin/body{1}.jsp"/>
 	</definition>
 	
 	<definition name="no-tiles" template="/WEB-INF/view/festival_map.jsp">

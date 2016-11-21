@@ -59,9 +59,9 @@ $(function(){
 	
 	$('#prev_btn').click(function() {
 		if(m<=0){
-			y--;m=11;cal();col();
+			y--;m=11;cal();
 		}else{
-		m--;cal();col();
+		m--;cal();
 		}
 	});
 	
@@ -69,7 +69,7 @@ $(function(){
 		if(m>=11){
 			y++;m=0;cal();col();
 		}else{
-		m++;cal();col();
+		m++;cal();
 		}
 	}); 
 	
@@ -77,15 +77,8 @@ $(function(){
 		y=date.getFullYear();
 		m=date.getMonth();
 		cal();
-		col();
 	});
 	
-	var col = function(){
-	$('div .6').css('color','red');
-	}
-	
-	
-	col();
 });
 
 function cal(){

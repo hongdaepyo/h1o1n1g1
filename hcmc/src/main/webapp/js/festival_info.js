@@ -73,7 +73,7 @@ function fest_list(){
 
 function star_view(s){
 	//추후 해당 축제 별점 수를 가져와서 나눠주는 걸로 바꿀 것
-	star2=s/2;
+	star2=s/2;//별 평점
 	var star=Math.floor(s/2);
 	var star_half=(s*0.5-star).toFixed(2);
 	if(star!=0){

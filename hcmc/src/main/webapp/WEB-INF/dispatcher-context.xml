@@ -14,6 +14,7 @@
 	<bean class="controller.HcmcController" >
 		<property name="mservice" ref="msvc"/>
 		<property name="cservice" ref="csvc"/>
+		<property name="aservice" ref="asvc"/>
 	</bean>
 		
 	
@@ -33,6 +34,7 @@
 			<list>
 				<value>classpath:config/mypageMapper.xml</value>
 				<value>classpath:config/calMapper.xml</value>
+				<value>classpath:config/adminMapper.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -61,6 +63,7 @@
 	<aop:config>
 		<aop:advisor advice-ref="txAdvice" pointcut="execution(* Service.MyPage*.*(..))"/>
 		<aop:advisor advice-ref="txAdvice" pointcut="execution(* Service.Calendar*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(* Service.Admin*.*(..))"/>
 	</aop:config>
 
 	<!-- [7] DaoImp 빈 선언 -->
@@ -70,6 +73,9 @@
 	<bean id="cdao" class="dao.CalendarDaoImp">
 		<property name="sqlSession" ref="sqlSession"/>
 	</bean>
+	<bean id="adao" class="dao.AdminDaoImp">
+		<property name="sqlSession" ref="sqlSession"/>
+	</bean>
 
 	<!-- [7] ServiceImp 빈 선언 -->
 	<bean id="msvc" class="service.MyPageServiceImp">
@@ -77,6 +83,9 @@
 	</bean>
 	<bean id="csvc" class="service.CalendarServiceImp">
 		<property name="dao" ref="cdao"/>
+	</bean>
+	<bean id="asvc" class="service.AdminServiceImp">
+		<property name="dao" ref="adao"/>
 	</bean>
 	
 	
