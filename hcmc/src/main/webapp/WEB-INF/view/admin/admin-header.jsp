@@ -1,12 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+	pageEncoding="UTF-8"%>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-헤더다
-</body>
-</html>
+	헤더다
+	<a href="">로그인 테스트</a>
+	<form action="memberRegister.do" method="post">
+		<input placeholder="회원가입 테스트 id" name="mem_id" type="text">
+		<input placeholder="회원가입 테스트 pass"  name="mem_pass" type="password">
+		<input type="submit" value="submit">
+	</form>
+	<form action="login.do" method="post">
+		<input placeholder="로그인 테스트 id" name="mem_id" type="text">
+		<input placeholder="로그인 테스트 pass" name="mem_pass" type="password">
+		<input type="submit" value="submit">
+	</form>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="login">
+	<insert id="mem_register" parameterType="hashMap">
+		insert into f_member
+		values (SEQ_f_member_mem_num.nextval, #{id,jdbcType=VARCHAR}, #{pass,jdbcType=VARCHAR}, null,0)
+	</insert>
+
+	
+</mapper>

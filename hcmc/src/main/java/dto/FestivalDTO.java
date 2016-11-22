@@ -116,6 +116,11 @@ public void setStar(int star) {
 	this.star = star;
 }
 
-
+public String toString(){
+	String str=festival_content+festival_hpage+festival_name+festival_start;
+	str+=festival_end+festival_pic+city_num+festival_time;
+	System.out.println(str);
+	return null;
+}
 
 }//end class

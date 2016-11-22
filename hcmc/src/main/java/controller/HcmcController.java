@@ -13,6 +13,7 @@ import dto.FestivalDTO;
 import dto.MemDTO;
 import service.AdminService;
 import service.CalendarService;
+import service.LoginService;
 import service.MyPageService;
 
 @Controller
@@ -20,6 +21,7 @@ public class HcmcController {
 	private MyPageService mservice;
 	private CalendarService cservice;
 	private AdminService aservice;
+	private LoginService lservice;
 	
 	public HcmcController() {
 		// TODO Auto-generated constructor stub
@@ -37,7 +39,11 @@ public class HcmcController {
 		this.aservice = aservice;
 	}
 	
+	public void setLservice(LoginService lservice) {
+		this.lservice = lservice;
+	}
 	
+///////////마이페이지////////////////////////////////////////////////////////
 	@RequestMapping("/test.do")
 	public String test(){
 		return "index";
@@ -111,6 +117,36 @@ public class HcmcController {
 		mav.addObject("list",aservice.mListProcess());
 		mav.setViewName("admin/body2");
 		return mav;
+	}
+	
+	@RequestMapping("/adminFestivalUpdate.do" )
+	public void adminFestivalUpdate(FestivalDTO fdto){
+		System.out.println(fdto.toString());
+		aservice.fUpdateProcess(fdto);
+		
+	}
+	
+	@RequestMapping("/adminMemberUpdate.do")
+	public String adminMemberUpdate(MemDTO mdto){
+		aservice.mUpdateProcess(mdto);
+		return "redirect:/admin_mlist.do";
+	}
+	
+////////로그인페이지//////////////////////////////////////////////////////////////////////////////////////
+	public String memberPro(){
+		return null;
+	}
+	
+	@RequestMapping("/memberRegister.do")
+	public String memberRegister(String mem_id, String mem_pass){
+		System.out.println(mem_id+"////"+mem_pass);
+		lservice.memberRegisterProcess(mem_id, mem_pass);
+		return "redirect:/admin.do";
+	}
+	
+	@RequestMapping("/loginCheck.do")
+	public String loginCheck(String mem_id, String mem_pass){
+		return null;
 	}
 	
 

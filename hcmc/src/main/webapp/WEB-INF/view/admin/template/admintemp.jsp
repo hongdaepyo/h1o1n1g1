@@ -11,7 +11,9 @@
 <link rel="stylesheet" href="css/reset.css?ver=1">
 <script type="text/javascript">
 $(document).ready(function(){
-	
+	$('input').filter(function(){
+		return $(this).attr('readonly')=='readonly';
+	}).css('background-color','orange');
 });
 </script>
 
@@ -55,7 +57,14 @@ footer {
 	background-color: #ffffff;
 	clear: both;
 }
+form{
+	width:600px;
 
+}
+
+form input{
+	width:auto;
+}
 </style>
 <script type="text/javascript">
 

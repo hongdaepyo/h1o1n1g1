@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import dto.FestivalDTO;
+import dto.MemDTO;
 import dto.MemberDTO;
 
 public class AdminDaoImp implements AdminDao {
@@ -27,6 +28,17 @@ public class AdminDaoImp implements AdminDao {
 	@Override
 	public List<MemberDTO> mListMethod() {
 		return sqlSession.selectList("admin.member");
+	}
+
+	@Override
+	public void fUpdateMethod(FestivalDTO fdto) {
+		sqlSession.update("admin.f_update",fdto);
+	}
+
+	@Override
+	public void mUpdateMethod(MemDTO mdto) {
+		sqlSession.update("admin.m_update",mdto);
+		
 	}
 
 }

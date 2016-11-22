@@ -11,4 +11,25 @@
 	<select id="member" resultType="dto.MemberDTO">
 		select mem_num, mem_id, mem_nickname, mem_admin from f_member order by mem_num
 	</select>
+	
+	<!-- <update id="f_update" parameterType="dto.FestivalDTO">
+		update f_festival set festival_num=#{festival_num}, 
+		festival_name=#{festival_name}, 
+		festival_pic=#{festival_pic}, festival_hpage=#{festival_hpage}, festival_theme=#{festival_theme}, 
+		festival_time=#{festival_time}, festival_count=#{festival_count}, festival_content=#{festival_content}, 
+		city_num=#{city_num} where festival_num=#{festival_num}
+		
+	</update>
+	 -->
+	 
+	 <update id="m_update" parameterType="dto.MemDTO">
+	    update f_member set mem_id=#{mem_id,jdbcType=VARCHAR}, mem_nickname=#{mem_nickname} where mem_num=#{mem_num}
+	 </update>
+	 
+	<update id="f_update" parameterType="dto.FestivalDTO">
+		update f_festival set festival_name=#{festival_name}, festival_start=#{festival_start}, festival_end=#{festival_end}, 
+		festival_pic=#{festival_pic}, festival_hpage=#{festival_hpage}, festival_theme=#{festival_theme}, 
+		festival_time=#{festival_time}, festival_count=#{festival_count}, festival_content=#{festival_content}, 
+		city_num=#{city_num} where festival_num=#{festival_num}
+	</update>
 </mapper>

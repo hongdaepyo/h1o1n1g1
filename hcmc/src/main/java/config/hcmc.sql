@@ -200,6 +200,7 @@ insert into f_favor values(2,2,8);
 select * from f_city;
 select * from f_festival;
 select * from F_FAVOR;
+select * from F_MEMBER
 
 rownum 을 쓰려면 order by 가 설정되어 있어야함
 delete from F_FAVOR
@@ -228,4 +229,5 @@ SELECT *
  select TO_DATE('201609','YYYYMM')+1
  from dual
  
+ update f_member set mem_id='test333@naver.com', mem_nickname='닉3333' where mem_num=1
  

@@ -15,6 +15,7 @@
 		<property name="mservice" ref="msvc"/>
 		<property name="cservice" ref="csvc"/>
 		<property name="aservice" ref="asvc"/>
+		<property name="lservice" ref="lsvc"/>
 	</bean>
 		
 	
@@ -32,9 +33,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations">
 			<list>
-				<value>classpath:config/mypageMapper.xml</value>
-				<value>classpath:config/calMapper.xml</value>
-				<value>classpath:config/adminMapper.xml</value>
+				<value>classpath:config/*Mapper.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -64,6 +63,7 @@
 		<aop:advisor advice-ref="txAdvice" pointcut="execution(* Service.MyPage*.*(..))"/>
 		<aop:advisor advice-ref="txAdvice" pointcut="execution(* Service.Calendar*.*(..))"/>
 		<aop:advisor advice-ref="txAdvice" pointcut="execution(* Service.Admin*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(* Service.Login*.*(..))"/>
 	</aop:config>
 
 	<!-- [7] DaoImp 빈 선언 -->
@@ -74,6 +74,9 @@
 		<property name="sqlSession" ref="sqlSession"/>
 	</bean>
 	<bean id="adao" class="dao.AdminDaoImp">
+		<property name="sqlSession" ref="sqlSession"/>
+	</bean>
+	<bean id="ldao" class="dao.LoginDaoImp">
 		<property name="sqlSession" ref="sqlSession"/>
 	</bean>
 
@@ -87,7 +90,9 @@
 	<bean id="asvc" class="service.AdminServiceImp">
 		<property name="dao" ref="adao"/>
 	</bean>
-	
+	<bean id="lsvc" class="service.LoginServiceImp">
+		<property name="dao" ref="ldao"/>
+	</bean>
 	
 	<!-- tiles -->
 	<bean id="tilesConfigurer"
