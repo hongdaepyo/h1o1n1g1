@@ -1,0 +1,663 @@
+*{
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+
+#header{
+	height:100px;
+	position:relative;
+	
+}
+
+
+ul{
+	list-style: none;
+	
+}
+
+/* header */
+.logo li img:nth-of-type(1){
+	width: 100px;
+	height: 80px;
+	float: left;
+	
+}
+
+
+
+.logo .lo img{
+	position: absolute;
+	width: 200px;
+	height: 100px;	
+}
+
+
+.logo #login{		
+	float: right;
+	position:absolute;
+	right: 150px;	
+	cursor: pointer;
+}
+
+
+
+.logo #login span{		
+	display:block;
+	position:absolute;
+	top:30px;
+	width: 50px;
+}
+
+
+
+.logo #login img{
+	position:absolute;
+	top:20px;
+	width: 50px;
+	height: 50px;	
+}
+
+.logo #join{
+	float: right;
+	position: absolute;
+	right: 80px;
+}
+
+.logo #join img{
+	position:absolute;
+	top:20px;
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+}
+
+.logo #logout{
+	float: right;
+	position: absolute;
+	right: 80px;
+}
+
+.logo #logout img{
+	position:absolute;
+	top:20px;
+	width: 50px;
+	height: 50px;	
+}
+
+/* 텍스트창 */
+#com{
+	position: relative;
+	width: 100%;
+	height: 100px;
+	margin-top: 50px;
+}
+#com ul{
+	position: relative;
+	width: 1000px;
+	height: 80px;
+	margin-left: 20%;
+}
+
+#com ul li{
+	float:left;	
+	margin-top:10px;
+	margin-right: 5%;
+}
+#com ul li:nth-of-type(1){	
+	margin-left: 20%;
+}
+
+#com ul li #loca{
+	width: 150px;
+	height: 50px;
+	background-color: #666666;
+	border: 1px solid #bfbfbf;
+	color:#bfbfbf;
+}
+
+#com ul li #the{
+	width: 150px;
+	height: 50px;
+	background-color: #666666;
+	border: 1px solid #bfbfbf;
+	color:#bfbfbf;
+}
+
+#com ul li .yy{
+   width: 150px;
+   height: 50px;
+   background-color: #666666;
+   border: 1px solid #bfbfbf;
+   color:#bfbfbf;
+   text-align: center;
+}
+
+#com #order{
+	position: relative;
+	width: 150px;
+	height: 150px;
+}
+
+#com #order a{
+	
+	background-color: white;
+	border: 1px solid #666666;
+	color:#666666;
+	text-decoration: none;
+	text-align: center;
+}
+
+#com #order a:hover{
+	background-color: #666666;
+	color:white;
+	text-decoration: none;
+}
+
+/* 해더아래 */
+
+#gnb{
+	height:40px;
+	background-color: #666666;
+}
+/* 월 축제 */
+#month_wrap{
+	position: relative;
+	width:100%;
+	height:500px;
+	margin-top:100px;
+	background-color: #f4f4f4;
+}
+
+#month_wrap .ss{
+	position: relative;
+	display:block;
+	text-align:center;
+	top:70px;
+	width:20px;
+	color: #666666;
+	font-size: 50px;
+	font-weight:600;
+	margin-left: 8%;
+}
+
+#month_wrap .fe{
+	position: relative;
+    display: block;
+    text-align: center;
+    color: #bfbfbf;
+    font-size: 20px;
+    width: 44px;
+    top: -406px;
+    font-weight: 500;
+    margin-left: 13%;
+}
+
+#month_wrap .flag img{
+	position: relative;
+    width:150px;
+    height: 100px;
+    top: -320px;
+    margin-left: 10%;
+}
+
+#month_wrap #month_festival{
+	position: relative;
+    width: 60%;
+    height: 400px;
+    margin-left: 20%;
+    margin-top: -401px;
+    border: 1px solid #bfbfbf;
+}
+
+#month_festival ul{
+	float:left;
+	position: relative;
+	width:90%;
+	height: 80%;
+	margin-top:3%;
+	margin-left:5%;
+}
+
+p.touch_left_btn {
+    margin-left: -50px;
+    margin-top: 100px;
+}
+
+.touch_left_btn a img{
+	width:100px;
+	margin-left: -10px;
+}
+
+p.touch_right_btn {
+    margin-top: -97px;
+}
+
+.touch_right_btn a img{
+	width:100px;
+	margin-right: -100px;
+}
+
+
+#month_festival ul li{
+	float:left;
+	position: relative;
+	width:25%;
+	height: 300px;
+	margin-top: -180px;
+	margin-left:5%;
+	border: 1px solid #bfbfbf;
+	color:#666666;
+	text-align:center;
+}
+
+#month_festival ul li img{
+	width:100%;
+	height: 200px;
+}
+
+#month_festival ul li .name{
+	font-size: 20px;
+	font-weight: 500;
+	text-align: center;
+}
+span .year, .addr{
+	font-size: 12px;
+	text-align: center;
+}
+
+.tt a img{
+	width: 70px;
+}
+
+
+/* 총게시물 글자위치 */
+#totalPage p {
+	
+	margin-top: 50px;
+    text-align: center;
+    margin-left: -800px;
+    color: #666666;
+}
+
+
+
+/* 검색창 */
+#bodywrap{
+	min-height:50vh;
+}
+
+#bodywrap .current{
+	margin-left: 50%;
+	color:#666666;
+}
+
+#bodywrap .search{
+	position: relative;
+	width:100%;
+	height: 200px;	
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+.search .search_w{
+	position: relative;
+	width:60%;
+	height: 200px;
+	margin-left:20%;
+	border : 1px solid #bfbfbf;
+}
+
+.search_w:hover{
+	background-color: #0066ff;
+}
+
+.search .search_w .pic{
+	position: relative;
+	width:25%;
+	height: 200px;
+	cursor:pointer;
+}
+.search .search_w .pic img{
+	width: 90%;
+    height: 85%;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+
+
+.search_w .write{
+	position: relative;
+	width:65%;
+	height: 180px;
+	margin-top:-200px;
+	margin-left:25%;
+	text-align: left;
+	text-decoration: none;	
+}
+
+.write h3{
+	margin-top: 20px;	
+	/* #bfbfbf */
+	border-bottom-color: 1px solid #bfbfbf;
+	cursor:pointer;
+	color:#666666;
+}
+
+.write p{
+	margin-top: 5px;
+	color:#666666;
+	/* #bfbfbf */
+}
+.write span{
+	display:block;
+	margin-top: 5px;
+	color:#666666;
+}
+
+.search_w .view{
+	position: relative;
+	width:10%;
+	height: 200px;
+	margin-left:90%;
+	margin-top:-200px;
+	text-align: center;	
+}
+
+.search_w .view img{
+	width:20px;
+	height: 20px;
+}
+
+
+/* 로그인/회원가입 */
+
+#wrap #sign_form, #join_form{
+   width: 250px;
+   height: 310px;
+   margin-left:80%;
+   border:2px solid #666666;
+   background-color:#bfbfbf;
+   border-radius:5px;
+   z-index:30;
+   display: none;
+}
+
+#join_form{
+   height: 300px;
+}
+
+
+#del{
+	position: relative;
+	width: 10%;
+	height: 10%;
+	margin-left:90%;
+}
+
+
+#signup_form{
+	position:relative;
+	width:80%;
+	height:90%;
+	margin-left:10%;
+	margin-top: -10%;
+}
+
+#joinup_form{
+	position:relative;
+	width:80%;
+	height:90%;
+	margin-left:10%;
+	margin-top:-10%;
+}
+
+#email{
+	position: relative;
+	width: 90%;
+	height: 10%;
+	margin-left:5%;
+	margin-top:14%;
+	border-radius: 5px;
+	
+}
+
+#email> input{
+	cursor:auto;
+	width: 100%;
+	height: 100%;	
+	border-radius: 5px;
+}
+
+#pass{
+	position: relative;
+	width: 90%;
+	height: 10%;
+	margin-left:5%;
+	margin-top:5px;
+	border-radius: 5px;
+	
+}
+
+#pass> input{
+	cursor:auto;
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+}
+
+#pass_en{
+	position: relative;
+	width: 90%;
+	height: 10%;
+	margin-left:5%;
+	margin-top:5px;
+	border-radius: 5px;
+}
+
+#pass_en> input{
+	cursor:auto;
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+}
+
+button{
+	background-color: transparent;
+}
+
+
+#checked{
+	position: relative;
+	top:10px;
+	width:80%;
+	margin-left:5%;
+	text-align: center;
+	color:white;
+	
+}
+#login_btn{
+	position: relative;
+	width: 90%;
+	height:10%;
+	margin-left:5%;
+	margin-top:15%;
+	background-color: #0066cc;	
+	color:#bfbfbf;
+	border-radius: 5px;
+	text-align: center;
+	text-align: center;
+	cursor: pointer;	
+}
+
+#pass_search{
+	position: relative;
+	width: 90%;
+	height: 10%;
+	margin-top:5%;
+	margin-left:5%;
+	text-align: center;
+	border-bottom: 1px solid white;
+}
+
+#pass_search > a{
+	text-decoration: none;
+	color:white;
+}
+
+#facebook{
+	position: relative;
+	width: 40%;
+	height: 30%;
+	top:10px;
+	
+}
+
+#facebook a{
+	text-decoration: none;
+	color:white;
+	font-size: 13px;
+	text-align: center;
+}
+
+#facebook a img{
+	margin-top:10%;
+	margin-left:30%;
+	width: 30px;
+}
+
+#facebook a img p{
+	text-align: center;
+	font-size: 14px;
+	color:white;
+}
+
+#naver{
+	position: relative;
+	width: 40%;
+	height: 30%;
+	top:-71px;
+	left: 50%;
+	
+}
+
+#naver a{
+	text-decoration: none;
+	color:white;
+	font-size: 13px;
+	text-align: center;
+}
+
+#naver a img{
+	margin-top:10%;
+	margin-left:30%;
+	width: 30px;
+}
+
+#naver a img p{
+	text-align: center;
+	font-size: 14px;
+	color:white;
+}
+
+#join_btn{
+	position: relative;
+	width: 90%;
+	height:10%;
+	margin-left:5%;
+	margin-top:15%;
+	background-color: #0066cc;	
+	color:#bfbfbf;
+	border-radius: 5px;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+}	
+
+/*  footer */
+
+#end{
+	position: relative;
+	height: 200px;
+	
+} 
+
+ #end_f{
+	background-image: url(http://www.tourbaksa.com/images/main/bg_mask.png);
+	height: 50px;
+}
+
+ #end_f .foot{
+
+    position:relative;
+    width:60%;
+    height:80%;
+    margin-left:30%;
+    margin-top:12px;
+	float: left;
+	text-align: center;
+}
+
+ #end_f .foot li{
+ text-align:center;
+ margin-right:20px;
+ font-weight:300;
+	float: left;		
+}
+
+ #end_f .foot li a{ 
+ color: #bfbfbf;	
+}
+
+#end_s{
+	position:relative;
+	width:100%;
+	height:100%;
+}
+
+#end_s .inner{
+	position:relative;
+	width:60%;
+	height:70%;
+	margin-top:10px;
+	margin-left:20%;
+}
+
+#end_s .sns{
+	position: relative;
+	width: 40%;
+	height: 30%;
+	margin-top:-20px;
+	margin-left:40%;
+}
+
+#end_s .sns ul li{
+	float: left;
+	margin-left: 10px;
+}
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

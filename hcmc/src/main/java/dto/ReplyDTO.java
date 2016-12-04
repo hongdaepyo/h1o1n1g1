@@ -1,6 +1,7 @@
 package dto;
 
 import java.util.Date;
+import java.util.List;
 
 public class ReplyDTO {
 	private int rep_num;
@@ -8,6 +9,7 @@ public class ReplyDTO {
 	private int mem_num;
 	private String rep_content;
 	private Date rep_date;
+	private List<MemberDTO> rmemList;
 
 	public ReplyDTO() {
 	}
@@ -52,5 +54,12 @@ public class ReplyDTO {
 		this.rep_date = rep_date;
 	}
 
-	
+	public List<MemberDTO> getRmemList() {
+		return rmemList;
+	}
+
+	public void setRmemList(List<MemberDTO> rmemList) {
+		this.rmemList = rmemList;
+	}
+
 }// end class

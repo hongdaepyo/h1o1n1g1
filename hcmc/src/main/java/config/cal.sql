@@ -15,4 +15,5 @@ select *
 from F_FESTIVAL
 
 
-
+SELECT * FROM F_FESTIVAL
+ 		WHERE festival_start >= TO_DATE(201611,'YYYYMM') AND festival_start< TO_DATE(201612,'YYYYMM')

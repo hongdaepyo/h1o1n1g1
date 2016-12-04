@@ -1,0 +1,926 @@
+*{
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+
+#header{
+	height:100px;
+	position:relative;
+	
+}
+
+
+ul{
+	list-style: none;
+	
+}
+
+
+.logo li img:nth-of-type(1){
+	width: 100px;
+	height: 80px;
+	float: left;
+	
+}
+
+
+
+.logo .lo img{
+	position: absolute;
+	width: 200px;
+	height: 100px;	
+}
+
+
+.logo #login{		
+	float: right;
+	position:absolute;
+	right: 150px;	
+	cursor: pointer;
+}
+
+
+
+.logo #login span{		
+	display:block;
+	position:absolute;
+	top:30px;
+	width: 50px;
+}
+
+
+
+.logo #login img{
+	position:absolute;
+	top:20px;
+	width: 50px;
+	height: 50px;	
+}
+
+.logo #join{
+	float: right;
+	position: absolute;
+	right: 80px;
+}
+
+.logo #join img{
+	position:absolute;
+	top:20px;
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+}
+
+.logo #logout{
+	float: right;
+	position: absolute;
+	right: 80px;
+}
+
+.logo #logout img{
+	position:absolute;
+	top:20px;
+	width: 50px;
+	height: 50px;	
+}
+
+
+
+#gnb{
+	height:40px;
+	background-color: #666666;
+}
+
+#sign_form, #join_form{
+	width: 250px;
+	height: 310px;
+	margin-left:80%;
+	border:2px solid #666666;
+	background-color:#bfbfbf;
+	border-radius:5px;
+	z-index:30;
+	display: none;
+}
+
+#join_form{
+	height: 300px;
+}
+
+
+#del{
+	position: relative;
+	width: 10%;
+	height: 10%;
+	margin-left:90%;
+}
+
+
+
+#signup_form{
+	position:relative;
+	width:80%;
+	height:90%;
+	margin-left:10%;
+	margin-top: -10%;
+}
+
+#joinup_form{
+	position:relative;
+	width:80%;
+	height:90%;
+	margin-left:10%;
+	margin-top:-10%;
+}
+
+#email{
+	position: relative;
+	width: 90%;
+	height: 10%;
+	margin-left:5%;
+	margin-top:14%;
+	border-radius: 5px;
+	
+}
+
+#email> input{
+	cursor:auto;
+	width: 100%;
+	height: 100%;	
+	border-radius: 5px;
+}
+
+#pass{
+	position: relative;
+	width: 90%;
+	height: 10%;
+	margin-left:5%;
+	margin-top:5px;
+	border-radius: 5px;
+	
+}
+
+#pass> input{
+	cursor:auto;
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+}
+
+#pass_en{
+	position: relative;
+	width: 90%;
+	height: 10%;
+	margin-left:5%;
+	margin-top:5px;
+	border-radius: 5px;
+}
+
+#pass_en> input{
+	cursor:auto;
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+}
+
+button{
+	background-color: transparent;
+}
+
+
+#checked{
+	position: relative;
+	top:10px;
+	width:80%;
+	margin-left:5%;
+	text-align: center;
+	color:white;
+	
+}
+#login_btn{
+	position: relative;
+	width: 90%;
+	height:10%;
+	margin-left:5%;
+	margin-top:15%;
+	background-color: #0066cc;	
+	color:#bfbfbf;
+	border-radius: 5px;
+	text-align: center;
+	text-align: center;
+	cursor: pointer;	
+}
+
+#pass_search{
+	position: relative;
+	width: 90%;
+	height: 10%;
+	margin-top:5%;
+	margin-left:5%;
+	text-align: center;
+	border-bottom: 1px solid white;
+}
+
+#pass_search > a{
+	text-decoration: none;
+	color:white;
+}
+
+#facebook{
+	position: relative;
+	width: 40%;
+	height: 30%;
+	top:10px;
+	
+}
+
+#facebook a{
+	text-decoration: none;
+	color:white;
+	font-size: 13px;
+	text-align: center;
+}
+
+#facebook a img{
+	margin-top:10%;
+	margin-left:30%;
+	width: 30px;
+}
+
+#facebook a img p{
+	text-align: center;
+	font-size: 14px;
+	color:white;
+}
+
+#naver{
+	position: relative;
+	width: 40%;
+	height: 30%;
+	top:-71px;
+	left: 50%;
+	
+}
+
+#naver a{
+	text-decoration: none;
+	color:white;
+	font-size: 13px;
+	text-align: center;
+}
+
+#naver a img{
+	margin-top:10%;
+	margin-left:30%;
+	width: 30px;
+}
+
+#navera img p{
+	text-align: center;
+	font-size: 14px;
+	color:white;
+}
+
+#join_btn{
+	position: relative;
+	width: 90%;
+	height:10%;
+	margin-left:5%;
+	margin-top:15%;
+	background-color: #0066cc;	
+	color:#bfbfbf;
+	border-radius: 5px;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+}	
+
+
+.arr::before{
+	border-bottom:20px solid #d8d8d8;
+	top:-20px;
+	right: 97px;
+}
+
+*:before, *:after{
+	box-sizing:border-box;
+}
+
+#main .pic {
+	height:500px;
+	list-style: none;
+	position: relative;
+	display: block;
+	z-index: 0;
+}
+
+#main .pic li {
+	height:500px;
+	list-style: none;
+	position: relative;/* 
+	display: block; */
+	z-index: 0;
+}
+
+/* #main .pic li:nth-of-type(2) {
+	 display: none;
+} */
+
+#main .touch_left_btn{
+	
+	position: absolute;
+	left:200px;
+	top:350px;
+	z-index: 10;
+	cursor:pointer;
+}
+
+#main .touch_right_btn{
+	
+	position:absolute;
+	right:200px;
+	top:350px;
+	z-index: 10;
+	cursor:pointer;
+}
+
+#main .touch_left_btn img{
+	width:70px;
+	height:100px;
+}
+
+#main .touch_right_btn img{
+	width:70px;
+	height:100px;
+	
+}
+
+#top{
+	position: relative;
+	top:-450px;
+	height: 50px;	
+	/* margin : 0 auto; */
+	margin-left: 50%;
+	/* margin-left:830px; */
+	z-index: 20;	
+}
+
+#top li{
+	float: left;		
+	list-style: none;
+}
+
+#top .slide li img{
+	width: 30px;
+	height: 30px;
+}
+
+
+
+ #bot{
+	position: relative;
+	top:-190px;
+	height: 150px;
+	z-index: 25;
+	background: url(http://www.tourbaksa.com/images/main/bg_mask.png) repeat 0 0;
+    background-image: url(http://www.tourbaksa.com/images/main/bg_mask.png);
+    background-position-x: 0px;
+    background-position-y: 0px;
+    background-size: initial;
+    background-repeat-x: repeat;
+    background-repeat-y: repeat;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+}
+
+.bx-controls-auto-item{
+	display: none;
+}
+
+
+
+#bot_pad{
+	position : relative;
+	height: 150px;
+	margin-left: 10%;
+	margin-right: 10%;
+	
+}
+
+#bot_pad2{
+	position : relative;
+	height:80%;
+	top:10%;
+	/* bottom: 10%; */
+}
+
+ #bot_pad2 .ff{
+ position : relative;
+ height: 100%;
+ margin-left: 10%;
+
+ }
+ 
+ .ff_ff, .ff_ss, .ff_tr{
+ position:relative;
+ height:100%;
+ }
+ 
+  .ff_ff li , .ff_ss li , .ff_tr li{
+ float: left;
+ height: 100px;
+ color:transparent;
+ }
+ 
+ .ff_ff li img{
+ cursor:pointer;
+ }
+  
+ .ff_ff{
+ display: block;
+ width: 1200px;
+ }
+ 
+ .ff_ss, .ff_tr{
+ display: none;
+ }
+ 
+
+
+#search{
+	position:relative;
+	top:-190px;
+	padding-top:10px;
+	background-color: #666666;
+	height: 150px;
+}
+
+#search_m{
+	position:absolute;
+	width:1500px;
+	/* position:relative; */
+	margin-left:10%;
+	/* margin-right:250px; */
+	height: 150px;
+}
+
+
+
+#search_m ul{
+	float: left;	
+}
+
+#search_m .city li{	
+	 position:relative; 
+	margin-left:200px;	
+}
+
+#datepicker,select{
+	background-color: #666666;
+	border: 1px solid #bfbfbf;
+	color:#bfbfbf;
+	text-align: center;
+	width: 150px;
+	height: 20px;
+}
+
+#search_m .alone{
+	color: #bfbfbf;
+	height: 25px;
+}
+
+#search_m ul li{	
+	position:relative; 
+	width: 100px;
+	margin-right:200px;
+	height:37.5px;
+	color: #bfbfbf;
+	
+}
+.search_icon{
+	width: 100px;
+	height: 50px;
+}
+
+.search_icon .tt a img{
+	width: 100px;
+	height: 100px;
+}
+
+#menu {
+	margin: 0 auto;
+}
+
+#wrap #event{
+	position: relative;
+	width:100%;
+	height:100px;
+	top:-190px;
+}
+
+#wrap #bx_slider{
+	position: relative;
+	width:70%;
+	height:100px;
+	margin-top:5px;
+	margin-left:15%;
+}
+
+
+#wrap #bx_slider #prev a img{
+	position: relative;
+	top:45px;
+	/* margin-top: 30px; */
+	/* margin-left: 350px; */
+}
+
+#wrap #bx_slider #prev a{
+	position: relative;
+	margin-top: 45px;
+	margin-left: 350px;
+}
+
+
+#wrap #bx_slider ul{
+	position: relative;
+	width:40%;
+	height:120px;
+	margin-top:-20px;
+	/* margin-left: 30%; */
+	}
+
+#wrap #bx_slider ul li{
+	float: left;
+}
+
+#wrap #bx_slider ul li a img{
+	
+	width:50px;
+	height: 50px;
+	margin-left: 30px;
+	margin-top: 25px;
+}
+
+#wrap #bx_slider ul li h2{
+	color:#666666;
+	font-size: 15px;
+	text-align: left;
+	margin-top:-50px;
+	margin-left: 100px;
+	
+}
+
+h2 > p{
+	color:#666666;
+	font-weight: 200;
+}
+
+
+#wrap #bx_slider #next a img{
+	position: relative;
+	top:-70px;
+	margin-left: 72%;
+}
+
+
+#wrap #travel {
+    position: relative;
+    top:-100px;
+    height: 500px;
+    z-index: 25;
+}
+
+#travel #travel_f{
+    position: absolute;
+    top:-15%;
+    width:100%;
+    height:30%;
+}
+
+
+#travel #tabs {
+    position: relative;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    height: 100%;
+}
+
+#travel #tabs #tab ul li {
+	float:left;
+    position: relative;
+    width: 5%;
+    height: 5%;
+    /* margin-top:15%; */
+    margin-left:1%;
+    text-align: center;
+    line-height: 60px;
+    text-decoration: none;
+    background-color: white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #e2e2e2;
+    /*#0066cc : �븯�뒛�깋(�뙆�옉�깋)  */
+    border-image: initial;
+}
+
+
+
+#travel #tabs #tab ul li a {
+    color: #666666;
+    text-decoration: none;
+}
+
+#tabs-1 {
+    position: relative;
+    display: block;
+    top:0%;
+    width: 90%;
+    height: 80%;
+    margin-left: 5%;
+    overflow: auto;
+}
+#travel #tabs #tab ul li:nth-of-type(1){
+	margin-left: 10%;
+}
+
+#tabs-2 {
+    position: relative;
+    display: none;
+    top:0%;
+    width: 90%;
+    height: 80%;
+    margin-left: 5%;
+    overflow: auto;
+}
+
+#tabs-3 {
+    position: relative;
+    display: none;
+    top:0;
+    width: 90%;
+    height: 80%;
+    margin-left: 5%;
+    overflow: auto;
+}
+
+#travel h2{	
+	padding: 50px 0 35px 0;
+    font-size: 25px;
+    font-weight: 600;
+    color: #666666;
+    text-align: right;
+    margin-right: 500px;
+}
+
+h2 > span{
+	display: block;
+    font-size: 14px;
+    font-weight: 400;
+    color: #666666;
+} 
+
+#traval #traval_s {
+	position: relative;
+	height:400px;
+	top:30px;
+	width: 20%;
+}
+
+#traval_s > ul > li{
+	text-align: center;
+}
+
+
+
+#traval #traval_t {
+	position: relative;
+	top:-370px;
+	height:350px;
+	width: 70%;
+	margin-left: 400px;
+}
+
+#traval_t ul li{
+	float: left;	
+	padding-right: 10px;
+}
+
+
+#wrap #recommend{
+	position: relative;
+	width:100%;
+	height:300px;
+	top:-80px;
+}
+
+#recommend #recommend_f{
+	position: relative;
+	width:70%;
+	height:300px;
+	margin-left: 15%;
+}
+
+h3{
+	color:#0066cc;
+	margin-left: 12%;
+}
+
+h3 >span{
+	color:#666666;
+    font-size: 15px;
+    font-weight: 200;
+}
+
+#recommend #recommend_f #recommends{
+	position: relative;
+	width:80%;
+	height:250px;
+	margin-left: 11.5%;
+	border : 1px solid #e2e2e2;
+	/* border-color:#e2e2e2; */
+}
+
+#recommend #recommend_f #recommends li{	
+	border : 1px solid #e2e2e2;
+	/* border-color:#e2e2e2; */
+}
+
+#wrap #review{
+	position: relative;
+	top:-50px;
+	width:100%;
+	height: 300px;
+}
+
+#review #review_f{
+	position: relative;
+	width:70%;
+	height:100%;
+	margin-left: 15%;
+}
+
+#review #review_f h2{
+	color:#0066cc;
+	font-size:20px;
+	margin-left: 12%;
+}
+
+#review #review_s{
+position: relative;
+	width:76%;
+	height:90%;
+	margin-left: 11.5%;
+	border: 1px solid #e2e2e2;
+}
+
+#review #review_s .board{
+	position: relative;
+	width:50%;
+	height:30%;
+	margin-left: 20px;
+	margin-top: 20px;;
+
+}
+
+#review #review_s .board_s{
+	position: relative;
+	width:50%;
+	height:30%;
+	margin-left: 300px;
+	margin-top: -300px;;
+
+}
+
+.board_s li{
+	float:left;
+}
+
+.board li{
+	float:left;
+}
+.user>span, .content>span{
+	display: block;
+	
+}
+
+li.content {
+    display: block;
+   margin-top: -25px;
+   margin-left: -50px; 
+}
+
+.content >span{
+    display: block;
+   margin-top: -57px;
+   margin-left:10px;
+   color: #e2e2e2;
+}
+
+.board li img{
+	width:50px;
+	height:50px;
+}
+
+.board_s li img{
+	width:50px;
+	height:50px;
+}
+
+.board .content img{
+	width:200px;
+	height:100px;
+}
+
+.board_s .content img{
+	width:200px;
+	height:100px;
+}
+
+ 
+#end{
+	position: relative;
+	height: 200px;
+	
+} 
+
+ #end_f{
+	background-image: url(http://www.tourbaksa.com/images/main/bg_mask.png);
+	height: 50px;
+}
+
+ #end_f .foot{
+
+    position:relative;
+    width:60%;
+    height:80%;
+    margin-left:30%;
+    margin-top:12px;
+	float: left;
+	text-align: center;
+}
+
+ #end_f .foot li{
+ text-align:center;
+ margin-right:20px;
+ font-weight:300;
+	float: left;		
+}
+
+ #end_f .foot li a{ 
+ color: #bfbfbf;	
+}
+
+#end_s{
+	position:relative;
+	width:100%;
+	height:100%;
+}
+
+#end_s .inner{
+	position:relative;
+	width:60%;
+	height:70%;
+	margin-top:10px;
+	margin-left:20%;
+}
+
+#end_s .sns{
+	position: relative;
+	width: 40%;
+	height: 30%;
+	margin-top:-20px;
+	margin-left:40%;
+}
+
+#end_s .sns ul li{
+	float: left;
+	margin-left: 10px;
+}
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -21,15 +21,15 @@
 			</div>
 			<div class="current_password">
 				<div class="header">현재 비밀번호</div>
-				<input type="password">
+				<input type="password" placeholder="현재 비밀 번호를 입력하세요.">
 			</div>
 			<div class="new_password">
 				<div class="header">새 비밀번호</div>
-				<input type="password">
+				<input type="password" placeholder="새 비밀 번호를 입력하세요.">
 			</div>
 			<div class="new_password_confirm">
 				<div class="header">새 비밀번호 확인</div>
-				<input type="password">
+				<input type="password" placeholder="새 비밀 번호를 재입력하세요.">
 			</div>
 			<input type="hidden" value="${dto.mem_num}">
 			<button class="confirm_btn">확인</button>
@@ -45,7 +45,7 @@
 			</div>
 			<div class="delete">
 				<div class="header">비밀번호</div>
-				<input class="text_input" type="password">
+				<input class="text_input" type="password" placeholder="현재 비밀 번호를 입력하세요.">
 				<button class="confirm_btn">확인</button>
 			</div>
 		</div>

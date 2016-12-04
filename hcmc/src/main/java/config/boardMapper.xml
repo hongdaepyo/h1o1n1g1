@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+
+	<resultMap type="dto.BoardDTO" id="list" autoMapping="false">
+		<result column="bbnum" property="board_num" />
+		<result column="bfnum" property="festival_num" />
+		<result column="bmnum" property="mem_num" />
+		<result column="bhead" property="board_head" />
+		<result column="bcontent" property="board_content" />
+		<result column="bdate" property="board_date" />
+		<collection property="memList" javaType="java.util.List" ofType="dto.MemberDTO" autoMapping="false">
+			<result column="mmnum" property="mem_num" />
+			<result column="mid" property="mem_id" />
+			<result column="mpass" property="mem_pass" />
+			<result column="mnick" property="mem_nickname" />
+			<result column="madmin" property="mem_admin" />
+		</collection>
+		<collection property="replyList" javaType="java.util.List"
+			ofType="dto.ReplyDTO" autoMapping="false">
+			<result column="rrnum" property="rep_num" />
+			<result column="rbnum" property="board_num" />
+			<result column="rmnum" property="mem_num" />
+			<result column="rdate" property="rep_date" />
+			<result column="rcontent" property="rep_content" />
+			<collection property="rmemList" javaType="java.util.List" ofType="dto.MemberDTO" autoMapping="false">
+				<result column="rmmnum" property="mem_num" />
+				<result column="rmid" property="mem_id" />
+				<result column="rmpass" property="mem_pass" />
+				<result column="rmnick" property="mem_nickname" />
+				<result column="rmadmin" property="mem_admin" />
+			</collection>
+		</collection>
+		<collection property="fesList" javaType="java.util.List" ofType="dto.FestivalDTO" autoMapping="false">
+			<result column="ffnum" property="festival_num" />
+			<result column="festival_name" property="festival_name" />
+			<result column="festival_start" property="festival_start" />
+			<result column="festival_end" property="festival_end" />
+			<result column="festival_hpage" property="festival_hpage" />
+			<result column="festival_theme" property="festival_theme" />
+			<result column="festival_time" property="festival_time" />
+			<result column="festival_count" property="festival_count" />
+			<result column="festival_content" property="festival_content" />
+			<result column="city_num" property="city_num" />
+		</collection>
+		<collection property="board_pic" javaType="java.util.List" ofType="String" autoMapping="false">
+			<result column="bppic" property="board_pic" />
+			<result column="bpbnum" property="board_num" />
+		</collection>
+	</resultMap>
+
+	<select id="board_list1" resultMap="list">
+		SELECT bmf.*, rrm.*
+		FROM
+		(SELECT
+		b.board_num AS bbnum,
+		b.board_head AS bhead,
+		b.board_content AS bcontent,
+		b.board_date AS bdate,
+		b.mem_num AS bmnum,
+		b.festival_num AS bfnum,
+		m.mem_num AS mmnum,
+		m.mem_id AS mid,
+		m.mem_pass AS mpass,
+		m.mem_nickname AS mnick,
+		m.mem_admin AS madmin,
+		f.festival_num AS ffnum,
+		f.*,
+		bp.board_pic AS bppic,
+		bp.board_num AS bpbnum
+		FROM
+		f_board b, f_member m, f_festival f, f_board_pic bp
+		WHERE
+		m.mem_num = b.mem_num
+		AND b.festival_num = f.festival_num(+)
+		AND b.board_num = bp.board_num(+)
+		ORDER BY b.board_num ASC) bmf,
+		(SELECT
+		r.rep_num AS rrnum,
+		r.rep_date AS rdate,
+		r.rep_content AS rcontent,
+		r.board_num AS rbnum,
+		r.mem_num AS rmnum,
+		rm.mem_num AS rmmnum,
+		rm.mem_id AS rmid,
+		rm.mem_pass AS rmpass,
+		rm.mem_nickname AS rmnick,
+		rm.mem_admin AS rmadmin
+		FROM
+		f_rep r, f_member rm
+		WHERE
+		r.mem_num = rm.mem_num
+		ORDER BY r.mem_num ASC) rrm
+		WHERE bmf.bbnum = rrm.rbnum(+)
+		ORDER BY bmf.bbnum DESC
+	</select>
+
+	<insert id="board_insert" parameterType="dto.BoardDTO">
+		INSERT ALL
+		INTO f_board
+		VALUES(SEQ_f_board_board_num.nextval, #{board_head}, #{board_content}, sysdate, #{mem_num},#{festival_num})
+		<if test="board_filename[0]!=null">
+		<foreach collection="board_pic" item="board_pic">
+			INTO f_board_pic VALUES(#{board_pic, jdbcType=VARCHAR},SEQ_f_board_board_num.nextval)
+		</foreach>
+		</if>
+		SELECT * FROM dual
+	</insert>
+	
+	<insert id="rep_insert" parameterType="dto.ReplyDTO">
+		INSERT INTO f_rep
+		VALUES(SEQ_f_rep_rep_num.nextval,sysdate,#{rep_content},#{board_num},#{mem_num})
+	</insert>
+
+	<update id="board_update" parameterType="dto.BoardDTO">	
+		UPDATE f_board SET
+		board_head=#{board_head},board_content=#{board_content},board_date=sysdate,festival_num=#{festival_num}
+		WHERE board_num=#{board_num}
+	</update>
+	
+	<delete id="board_pic_delete" parameterType="dto.BoardDTO">
+		DELETE FROM f_board_pic WHERE
+		board_num=#{board_num}
+	</delete>
+	
+	<insert id="board_pic_insert" parameterType="dto.BoardDTO">
+		INSERT ALL
+		<foreach collection="board_pic" item="board_pic">
+			INTO f_board_pic VALUES(#{board_pic, jdbcType=VARCHAR},#{board_num})
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+	
+	<update id="rep_update" parameterType="dto.ReplyDTO">
+		UPDATE f_rep SET
+		rep_content=#{rep_content},rep_date=sysdate
+		WHERE rep_num=#{rep_num}
+	</update>
+
+	<delete id="board_delete" parameterType="int">
+		DELETE FROM f_board WHERE
+		board_num=#{board_num}
+	</delete>
+	
+	<delete id="rep_delete" parameterType="int">
+		DELETE FROM f_rep WHERE
+		rep_num=#{rep_num}
+	</delete>
+
+	<select id="board_fesList" resultType="dto.FestivalDTO">
+	SELECT festival_num, festival_name
+	FROM f_festival
+	ORDER BY festival_num ASC
+	</select>
+
+	<select id="board_count" resultType="int">
+		SELECT COUNT(*) FROM f_board
+	</select>
+
+	<insert id="favor_insert" parameterType="dto.FavorDTO">
+		INSERT INTO f_favor
+		VALUES(SEQ_f_favor_f_favor_num.nextval,#{mem_num},#{festival_num},#{favor_star})
+	</insert>
+	
+	
+	<select id="board_list" resultType="dto.BoardDTO" parameterType="dto.PageDTO" resultMap="list">
+		<!-- 문자열 그대로 사용 -->
+		<![CDATA[
+		SELECT b.*  FROM(
+		SELECT ROWNUM AS rm, a.*   FROM(
+      	SELECT bmf.*, rrm.*
+		FROM
+		(SELECT
+		b.board_num AS bbnum,
+		b.board_head AS bhead,
+		b.board_content AS bcontent,
+		b.board_date AS bdate,
+		b.mem_num AS bmnum,
+		b.festival_num AS bfnum,
+		m.mem_num AS mmnum,
+		m.mem_id AS mid,
+		m.mem_pass AS mpass,
+		m.mem_nickname AS mnick,
+		m.mem_admin AS madmin,
+		f.festival_num AS ffnum,
+		f.*,
+		bp.board_pic AS bppic,
+		bp.board_num AS bpbnum
+		FROM
+		f_board b, f_member m, f_festival f, f_board_pic bp
+		WHERE
+		m.mem_num = b.mem_num
+		AND b.festival_num = f.festival_num(+)
+		AND b.board_num = bp.board_num(+)
+		ORDER BY b.board_num ASC) bmf,
+		(SELECT
+		r.rep_num AS rrnum,
+		r.rep_date AS rdate,
+		r.rep_content AS rcontent,
+		r.board_num AS rbnum,
+		r.mem_num AS rmnum,
+		rm.mem_num AS rmmnum,
+		rm.mem_id AS rmid,
+		rm.mem_pass AS rmpass,
+		rm.mem_nickname AS rmnick,
+		rm.mem_admin AS rmadmin
+		FROM
+		f_rep r, f_member rm
+		WHERE
+		r.mem_num = rm.mem_num
+		ORDER BY r.mem_num ASC) rrm
+		WHERE bmf.bbnum = rrm.rbnum(+)
+		ORDER BY bmf.bbnum DESC)a)b
+ 		WHERE b.rm>=#{startRow} AND b.rm<=#{endRow}
+		]]>
+	</select>
+	
+</mapper>

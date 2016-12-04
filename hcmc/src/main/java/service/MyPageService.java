@@ -2,14 +2,16 @@ package service;
 
 import java.util.List;
 
+import dto.BoardDTO;
 import dto.FestivalDTO;
-import dto.MemDTO;
+import dto.MemberDTO;
 
 public interface MyPageService {
-	public MemDTO memberListProcess(int mem_num);
-	public MemDTO testListProcess(MemDTO mdto);
-	public String nickUpdateProcess(MemDTO mdto);
-	public MemDTO passwordUpdateProcess(MemDTO mdto);
-	public FestivalDTO festivalInfoProcess(int festival_num);
+	public MemberDTO memberListProcess(int mem_num);
+	public List<BoardDTO> myBoardListProcess(int mem_num);
+	public List<?> myFavorListProcess(int mem_num);
+	public String nickUpdateProcess(MemberDTO mdto);
+	public MemberDTO passwordUpdateProcess(MemberDTO mdto);
+	
 
 }

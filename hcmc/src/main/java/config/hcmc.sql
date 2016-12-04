@@ -191,8 +191,26 @@ values (SEQ_f_member_mem_num.nextval,'test4@naver.com','a12345','테스트용',1
 insert into F_CITY values(SEQ_f_city_city_num.nextval,'제주도','제주특별자치도 서귀포시 표선면 녹산로 464-65',33.399067,126.706934);
 insert into F_CITY values(SEQ_f_city_city_num.nextval,'강원도','강원 정성군 남면 문곡3리(민둥산 일원)',37.265587,128.722715);
 
-insert into F_FESTIVAL values(SEQ_f_festival_festival_num.nextval,'제주 유채꽃 축제',sysdate,   sysdate,'','http://www.jejuflowerfestival.com',   '가족',   '제한없음',0,'유채꽃은',1);
-insert into F_FESTIVAL values(SEQ_f_festival_festival_num.nextval,'민둥산억새꽃 축제','2016/09/24','2016/11/13','','http://ariaritour.com','가족','제한없음',0,'민둥산 억새꽃 축제는 산',2);
+insert into F_FESTIVAL values(SEQ_f_festival_festival_num.nextval,'제주 유채꽃 축제',sysdate,   sysdate,'http://www.jejuflowerfestival.com',   '가족',   '제한없음',0,'유채꽃은',1);
+insert into F_FESTIVAL values(SEQ_f_festival_festival_num.nextval,'민둥산억새꽃 축제','2016/09/24','2016/11/13','http://ariaritour.com','가족','제한없음',0,'민둥산 억새꽃 축제는 산',2);
+
+insert into F_CITY values(SEQ_f_city_city_num.nextval,'제주도','제주특별자치도 서귀포시 표선면 녹산로 464-65',33.399067,126.706934);
+insert into F_CITY values(SEQ_f_city_city_num.nextval,'강원도','강원 정성군 남면 문곡3리(민둥산 일원)',37.265587,128.722715);
+insert into F_CITY values(SEQ_f_city_city_num.nextval,'서울','강원 정성군 남면 문곡3리(민둥산 일원)',37.265587,128.722715);
+insert into F_CITY values(SEQ_f_city_city_num.nextval,'경기도','강원 정성군 남면 문곡3리(민둥산 일원)',37.265587,128.722715);
+insert into F_CITY values(SEQ_f_city_city_num.nextval,'충청도','강원 정성군 남면 문곡3리(민둥산 일원)',37.265587,128.722715);
+insert into F_CITY values(SEQ_f_city_city_num.nextval,'전라도','강원 정성군 남면 문곡3리(민둥산 일원)',37.265587,128.722715);
+
+
+insert into F_FESTIVAL values(SEQ_f_festival_festival_num.nextval,'제주 유채꽃 축제',sysdate,   sysdate,'http://www.jejuflowerfestival.com',   '가족',   '제한없음',0,'유채꽃은',1);
+insert into F_FESTIVAL values(SEQ_f_festival_festival_num.nextval,'민둥산억새꽃 축제','2016/09/24','2016/11/13','http://ariaritour.com','가족','제한없음',0,'민둥산 억새꽃 축제는 산',2);
+insert into F_FESTIVAL values(SEQ_f_festival_festival_num.nextval,'test','2016/10/24','2016/12/13','http://ariaritour.com','가족','제한없음',0,'민둥산 억새꽃 축제는 산',3);
+insert into F_FESTIVAL values(SEQ_f_festival_festival_num.nextval,'test1','2016/11/24','2016/01/13','http://ariaritour.com','가족','제한없음',0,'민둥산 억새꽃 축제는 산',4);
+insert into F_FESTIVAL values(SEQ_f_festival_festival_num.nextval,'test2','2016/12/24','2016/03/13','http://ariaritour.com','가족','제한없음',0,'민둥산 억새꽃 축제는 산',5);
+insert into F_FESTIVAL values(SEQ_f_festival_festival_num.nextval,'test3','2016/05/24','2016/10/13','http://ariaritour.com','가족','제한없음',0,'민둥산 억새꽃 축제는 산',6);
+
+
+
 
 insert into f_favor values(1,2,10);
 insert into f_favor values(2,2,8);
@@ -230,4 +248,6 @@ SELECT *
  from dual
  
  update f_member set mem_id='test333@naver.com', mem_nickname='닉3333' where mem_num=1
+  
+
  

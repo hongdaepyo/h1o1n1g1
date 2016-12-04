@@ -7,12 +7,71 @@
 	border: 0;
 }
 
+p{
+	font-size: 16px;
+    font-weight: 900;
+    padding-left: 40px;
+}
+
+#ad{
+	height:30px;
+}
+
+.cal_title span{
+	text-align: center;
+	font-weight: 700;
+}
+
+.cal_title div{
+	width:auto;
+	margin:0px auto;
+	text-align: center;
+}
+
+.cal_title div span:nth-of-type(2){
+	color:#ff8000;
+	margin:0px auto;
+	cursor:pointer;
+}
+
+.cal_title .btn{
+	width:30px;
+	font-weight: 900;
+	color:#c0c0c0;
+	cursor:pointer;
+}
+
+.cal_title .btn_over{
+	width:30px;
+	font-weight: 900;
+	color:red;
+	cursor:pointer;
+}
+
+table{
+	overflow-y:auto;
+	height:100%;
+}
+
+table th, table td{
+	height:15vh;
+	vertical-align: top;
+}
+
 ul {
 	list-style-type: none;
 }
 
 body {
-	font-family: Verdana, sans-serif;
+	font-family: 'Nanum Gothic', sans-serif;
+	line-height: 1.42857143;
+}
+
+.prev_tooltip {
+	width:auto;
+	height:auto;
+	position:absolute;
+	left:-9999px;
 }
 
 .header{
@@ -23,3 +82,113 @@ body {
 	margin-bottom: 10px;
 }
 
+table tr td{
+	padding: 0px;
+}
+
+table tr td span{
+	display:block;
+	width:150px;
+	margin:0px auto;
+}
+
+table tr td div span{
+	cursor:pointer;
+	text-align: left;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	margin-left: 2vw;
+}
+table tr td div span img{
+	padding: 1px;
+}
+
+
+.date{
+	position: relative;
+	top:0px;
+	border-bottom:2px dotted grey;
+	background: #e3e3e3;
+	width:100%;
+}
+
+
+.calendar_table {
+	width: 100%;
+	overflow: visible;
+	text-align: center;
+}
+
+.calendar_table tr {
+	text-align: center;
+}
+
+.calendar_table th {
+	background: #808080;
+	color: white;
+	height: 15px;
+	border-radius: 15px;
+}
+
+.calendar_table td {
+	border: 1px solid #f1f0f0;
+	text-align: center;
+}
+
+.preview_on{
+	display: block;
+	width:auto;
+	height:auto;
+	z-index: 10;
+	
+}
+
+.preview_div{
+	display:block;
+	position: absolute;
+}
+
+/* 체크박스/////////////////////////////// */
+input[type=checkbox] {  
+    display: none;  
+}
+
+input[type=checkbox] + label{
+    display: inline-block;  
+    cursor: pointer;  
+    position: relative;  
+    padding-left: 25px;  
+    margin-right: 15px;  
+    font-size: 16px;
+    font-weight: 700;
+}
+
+input[type=checkbox]+ label:before {     
+
+    content: "";  
+    display: inline-block;  
+  
+    width: 20px;  
+    height: 20px;  
+  
+    margin-right: 10px;  
+    position: absolute;  
+    left: 0;  
+    bottom: 1px;  
+    background-color: #ccc;  
+    border-radius: 2px; 
+    box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);  
+}
+input[type=checkbox]:checked + label:before { 
+
+    content: "\2713";  /* 체크모양 */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);  
+    font-size: 18px; 
+    font-weight:800; 
+    color: #fff;  
+    background:#2f87c1;
+    text-align: center;  
+    line-height: 18px;  
+
+} 

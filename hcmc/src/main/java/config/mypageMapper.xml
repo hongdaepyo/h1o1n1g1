@@ -4,33 +4,30 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="mypage">
-  <select id="mem_list" parameterType="int" resultType="dto.MemDTO">
+  <select id="mem_list" parameterType="int" resultType="dto.MemberDTO">
     select * from f_member where mem_num=#{mem_num}
   </select>
   
-  <update id="nick_update" parameterType="dto.MemDTO">
+  <select id="my_board_list" parameterType="int" resultType="dto.BoardDTO">
+  	select * from f_board where mem_num=#{mem_num}
+  </select>
+  
+  <select id="my_favor_list" parameterType="int" resultType="hashMap">
+    select * from f_favor where mem_num=#{mem_num}  
+  </select>
+  
+  <update id="nick_update" parameterType="dto.MemberDTO">
    update f_member set mem_nickname=#{mem_nickname}
    where mem_num=#{mem_num}
   </update>
   
-  <update id="pass_update" parameterType="dto.MemDTO">
+  <update id="pass_update" parameterType="dto.MemberDTO">
   	update f_member set mem_pass=#{mem_pass}
   	where mem_num=#{mem_num}
   </update>
   
-  <delete id="mem_del" parameterType="dto.MemDTO">
+  <delete id="mem_del" parameterType="dto.MemberDTO">
   	delete from f_member where mem_num=#{mem_num}
   </delete>
-  
-  <resultMap type="dto.FestivalDTO" id="fes_info_star">
-  	  <result column="star" property="star"/>
-  </resultMap>
-  
-  <select id="fes_info" parameterType="int" resultMap="fes_info_star">
-   select f.*, a.*
-   from f_festival f,
-	    (select avg(favor_star) as "star" from f_favor where festival_num=#{festival_num}) a
-   where festival_num=#{festival_num}
-  </select>
 
 </mapper>

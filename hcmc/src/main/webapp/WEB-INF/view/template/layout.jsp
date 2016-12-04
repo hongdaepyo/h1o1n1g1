@@ -12,9 +12,20 @@
 <script src="js/mypage.js?ver=1"></script>
 <base>
 <link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/main.css?ver=1">
 <link rel="stylesheet" href="css/mypage.css?ver=1">
 <link rel="stylesheet" href="css/festival_info.css?ver=1">
-<script src="js/festival_info.js?ver=1"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var chk ='${empty sessionScope.chk}' == 'true' ? true : false;
+	var param = "${param.code}";
+	console.log(chk);
+	console.log(param);
+	if(!chk){
+		headerView('${sessionScope.id}');
+	}
+});
+</script>
 </head>
 <style>
 * {
@@ -136,34 +147,5 @@ function btnclick(e){
 		</p>
 	</footer>
 
-<div class="bodywrap">
-	<div class="infowrap">
-		<div class="info_mask"></div>
-		<div class="info_inner">
-			<div class="festival_header">
-			<button id="tt">test</button>
-			<div class="fh_top">
-				<button name="close">X</button>
-				<a href=""><img alt="홈페이지로 이동합니다." src="http://imgdb.kr/aGif.dn" width=20px height=20px></a>
-			</div>
-				<c:out value=""/>
-				<span class="title"></span>
-				<span class="period"></span>
-				
-				<div class="star">
-				<img src="http://imgdb.kr/aFnm.dn" width=30px height=30px>
-				<img src="http://imgdb.kr/aFnm.dn" width=30px height=30px>
-				<img src="http://imgdb.kr/aFnm.dn" width=30px height=30px>
-				<img src="http://imgdb.kr/aFnm.dn" width=30px height=30px>
-				<img src="http://imgdb.kr/aFnm.dn" width=30px height=30px>
-				</div>
-			</div>
-			<div class="festival_detail"></div>
-				<span class="content">////축제날짜</span>
-			<div class="festival_map"></div>
-
-		</div>
-	</div>
-</div>
 </body>
 </html>

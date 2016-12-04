@@ -1,17 +1,13 @@
 package dto;
 
-import java.util.List;
-
 public class MapDTO {
 	private int map_num;
-	private int map_phone;
-	private String map_name;
+	private int map_number;
+	private String map_nume;
 	private String map_category;
 	private int city_num;
-	private List<CityDTO> cityList;
-	
-	public MapDTO(){
-		
+
+	public MapDTO() {
 	}
 
 	public int getMap_num() {
@@ -22,20 +18,20 @@ public class MapDTO {
 		this.map_num = map_num;
 	}
 
-	public int getMap_phone() {
-		return map_phone;
+	public int getMap_number() {
+		return map_number;
 	}
 
-	public void setMap_phone(int map_phone) {
-		this.map_phone = map_phone;
+	public void setMap_number(int map_number) {
+		this.map_number = map_number;
 	}
 
-	public String getMap_name() {
-		return map_name;
+	public String getMap_nume() {
+		return map_nume;
 	}
 
-	public void setMap_name(String map_name) {
-		this.map_name = map_name;
+	public void setMap_nume(String map_nume) {
+		this.map_nume = map_nume;
 	}
 
 	public String getMap_category() {
@@ -54,14 +50,4 @@ public class MapDTO {
 		this.city_num = city_num;
 	}
 
-	public List<CityDTO> getCityList() {
-		return cityList;
-	}
-
-	public void setCityList(List<CityDTO> cityList) {
-		this.cityList = cityList;
-	}
-	
-	
-	
-}
+}// end class

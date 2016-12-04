@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +37,7 @@ menu {
 	width: 15%;
 	float: left;
 	font-size: 16px;
-	border-right: 2px solid #ff5e00;
+	margin-right: 15px;
 }
 
 menu span {
@@ -47,24 +48,26 @@ menu span {
 	float: left;
 }
 
+
+
 section {
-	width: 80%;
-	height: 670px;
-	float: right;
+	margin-top : 10px;
+	float: left;
 }
+
+section input{
+	width: 30px;
+	height: 20px;
+	margin-bottom: 5px;
+}
+
+
 
 footer {
 	background-color: #ffffff;
 	clear: both;
 }
-form{
-	width:600px;
 
-}
-
-form input{
-	width:auto;
-}
 </style>
 <script type="text/javascript">
 
@@ -83,9 +86,9 @@ form input{
 	</menu>
 
 	<section>
-		<p>
+		<div>
 			<tiles:insertAttribute name="body" />
-		</p>
+		</div>
 	</section>
 
 </body>

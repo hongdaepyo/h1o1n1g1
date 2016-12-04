@@ -2,26 +2,20 @@ $(function(){
 	//var mem_num='${dto.mem_num}';
 	//var nick = '${dto.mem_nickname}';
 	//nick_view(nick);
+	if($(window).width()>660){
+		$('menu').css('padding-top','40px')
+	}
 	
 	$(window).resize(function(){
 		var width=$('section').width();
 		var width2=$(document).width();
 		var height2=$(document).height();
-		if($('.bodywrap').width()==0){
 		if(width<=660){
 			menu_min();
 		}else{
 			menu_not_min();
 		}
-		}
-		//$('.bodywrap').show();
-		//$('.bodywrap').css('width','100%','height','100%');
-		//resize_info(width2, height2);
-		(function ($) {
-	        $.fn.reBind = function(events, handler) {
-	            return this.off(events, handler).on(events, handler);
-	        };
-	    }(jQuery));
+
 	})//창크기가 변할 때 bodywrap의 최소 크기 정함
 	
 	//메뉴 위치 변경
@@ -29,7 +23,9 @@ $(function(){
 		$('#bodywrap').removeClass('inner_not_min').addClass('inner_min');
 		$('menu').removeClass('menu_not_min').addClass('menu_min');
 		$('.menu_container').removeClass('menu_container_not_min').addClass('menu_container_min');
-		$('menu span').width('120px');
+		$('menu span').width('auto');
+		$('menu span').css({'width':'auto','padding-left':'8px','padding-right':'8px'});
+		$('.menu_container div').width('600px');
 	}
 	
 	var menu_not_min = function(){
@@ -37,6 +33,7 @@ $(function(){
 		$('menu').removeClass('menu_min').addClass('menu_not_min');
 		$('.menu_container').removeClass('menu_container_min').addClass('menu_container_not_min');
 		$('menu span').width('100%');
+		$('.menu_container div').width('auto');
 	}
 	/////////////////////////////////////////////////////////
 	

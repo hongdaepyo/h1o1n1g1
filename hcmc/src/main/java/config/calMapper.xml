@@ -4,14 +4,64 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cal">
-	<select id='list' resultType='HashMap' >
-		select festival_num, festival_name, festival_start, festival_end, city_num
-		from F_festival order by festival_num
+	<select id="list2" resultType="dto.FestivalDTO" parameterType="hashMap">
+		 <![CDATA[
+		SELECT *
+		FROM F_FESTIVAL
+ 		WHERE festival_start >= TO_DATE(#{y1},'YYYYMM') AND festival_start< TO_DATE(#{y2},'YYYYMM')
+ 		]]>
+	</select>
+
+	<resultMap type="dto.FestivalDTO" id="fes_info_star">
+		<result column="star" property="star" />
+	</resultMap>
+
+	<select id="fes_info" parameterType="int" resultMap="fes_info_star">
+		select f.*, a.*
+		from f_festival f,
+		(select avg(favor_star) as "star" from f_favor where
+		festival_num=#{festival_num}) a
+		where festival_num=#{festival_num}
+	</select>
+
+	<select id="fes_info_city" parameterType="int" resultType='dto.CityDTO'>
+		select c.*
+		from f_festival f, f_city c 
+		where f.city_num=c.city_num and f.city_num=#{festival_num}
 	</select>
 	
-	<select id="test" resultType='dto.FestivalDTO'>
+	<resultMap type="dto.FestivalDTO" id="fes_list">
+		<result column="festival_num" property="festival_num"/>
+		<result column="festival_name" property="festival_name"/>
+		<result column="festival_start" property="festival_start"/>
+		<result column="festival_end" property="festival_end"/>
+		<result column="festival_hpage" property="festival_hpage"/>
+		<result column="festival_theme" property="festival_theme"/>
+		<result column="festival_time" property="festival_time"/>
+		<result column="festival_count" property="festival_count"/>
+		<result column="festival_content" property="festival_content"/>
+		<result column="city_num" property="city_num"/>
+		<collection property="city" javaType="java.util.List" ofType="dto.CityDTO">
+			<result column="city_name" property="city_name"/>
+			<result column="city_address" property="city_address"/>
+			<result column="city_lati" property="city_lati"/>
+			<result column="city_long" property="city_long"/>
+		</collection>
+	</resultMap>
 	
+	<select id="list" resultMap="fes_list" parameterType="hashMap">
+	<![CDATA[
+		select f.*, c.city_name, c.city_address, c.city_lati, c.city_long
+		from f_festival f, f_city c
+		where festival_start >= TO_DATE(#{y1},'YYYYMM') AND festival_start< TO_DATE(#{y2},'YYYYMM')
+		and f.city_num=c.city_num
+		order by festival_num
+	]]>
 	</select>
 	
-	
+	<update id="readCount" parameterType="int">
+     update f_festival set festival_count=festival_count+1 where festival_num=#{num}
+    </update>
+
+
 </mapper>

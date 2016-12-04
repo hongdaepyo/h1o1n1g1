@@ -15,11 +15,11 @@
 				<img alt="홈페이지로 이동합니다." src="http://imgdb.kr/aGif.dn" width=20px height=20px>
 				<span class="content">////축제날짜</span>
 				<div class="star">
-				<img src="http://imgdb.kr/aFnm.dn" width=30px height=30px>
-				<img src="http://imgdb.kr/aFnm.dn" width=30px height=30px>
-				<img src="http://imgdb.kr/aFnm.dn" width=30px height=30px>
-				<img src="http://imgdb.kr/aFnm.dn" width=30px height=30px>
-				<img src="http://imgdb.kr/aFnm.dn" width=30px height=30px>
+				<img src="http://cfile216.uf.daum.net/R320x0/275D7C405835C25D0530AD" width=30px height=30px>
+				<img src="http://cfile216.uf.daum.net/R320x0/275D7C405835C25D0530AD" width=30px height=30px>
+				<img src="http://cfile216.uf.daum.net/R320x0/275D7C405835C25D0530AD" width=30px height=30px>
+				<img src="http://cfile216.uf.daum.net/R320x0/275D7C405835C25D0530AD" width=30px height=30px>
+				<img src="http://cfile216.uf.daum.net/R320x0/275D7C405835C25D0530AD" width=30px height=30px>
 				</div>
 			</div>
 			<div class="festival_detail"></div>

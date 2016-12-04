@@ -2,12 +2,16 @@
 
 .bodywrap{
 	display:block;
-	background-image: url("https://image-proxy.namuwikiusercontent.com/r/http%3A%2F%2Fi64.tinypic.com%2F2hnxrw4.jpg");
+/* 	background-image: url("https://image-proxy.namuwikiusercontent.com/r/http%3A%2F%2Fi64.tinypic.com%2F2hnxrw4.jpg"); */
 	overflow:hidden;
 	position:absolute;
 	left:0px;
 	top:0px;
+	font-family: 'Nanum Gothic', sans-serif;
+    line-height: 1.42857143;
+    box-sizing: border-box;
 	}
+
 
 .infowrap{
  	background-color:rgba(255,255,255,0.5);
@@ -28,7 +32,8 @@
 	margin:0px auto;
 	width: 687px;
 	height: 1793px;
-	background-color: white;
+/* 	background-color: #faf2ef; */
+	background-color:#e8eced;
 	padding-left:40px;
 	padding-right:40px;
 	border-radius:20px;
@@ -38,13 +43,13 @@
 /* 내부항목 */
 .fh_top{
 	width:100%;
-	height:30px;
+	height:50px;
 }
 
 .festival_header{
-	border-bottom: 1px solid black;
-	color: #fa6545;
-	overflow-y:auto; 
+	border-bottom: 1px solid #a4a4a4;
+	color: #fa6545; 
+	height:130px;
 }
 
 .festival_header .title{
@@ -64,15 +69,30 @@
 
 
 .festival_detail{
-	border_bottom: 1px solid black;
+	height:auto;
+	border-bottom: 1px solid #a4a4a4;
 }
 
 .festival_map{
 	
 }
 
+.inner_gap{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.period span:nth-of-type(2){
+	float:right;
+}
+
 .star{
-	width:180px;
+	width:150px;
+	height:30px;
+	background-image: url("../images/starIcon_out.png");
+	background-size: 30px, 30px;
+	position: relative;
+	top: 10px;
 }
 
 button[name="close"]{
@@ -84,6 +104,20 @@ button[name="close"]{
 	width:30px;
 	height:30px;
 }
+/*   지도       */
+.map_category_hide{
+	display:none;
+}
+
+.map_category_show{
+	display:block;
+}
+
+.view_count{
+	float:left;
+	width:120px;
+}
+
 
 /*   툴팁        */
 #tooltip{

@@ -49,10 +49,5 @@ public class MemDTO {
 	public void setMem_admin(char mem_admin) {
 		this.mem_admin = mem_admin;
 	}
-	
-	
-
-
-	
 
 }// end class

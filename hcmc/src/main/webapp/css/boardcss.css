@@ -1,0 +1,220 @@
+@CHARSET "UTF-8";
+
+.board-view{
+	width: 100%;
+}
+
+.board-view-main{
+	margin: 5px auto;
+	width: 850px;
+	height: auto;
+	display: block;
+	border-width: 1px;
+	border-color: #7f7f7f;
+	border-style: dashed;
+	border-radius: 10px;
+}
+
+.board-view-reply{
+	margin: 5px auto;
+	width: 850px;
+	height: auto;
+	display: block;
+	border-width: 1px;
+	border-color: #7f7f7f;
+	border-style: dashed;
+	border-radius: 10px;
+}
+
+.boardwrite-input{
+	margin: 5px auto;
+	margin-bottom : 50px;
+	width: 850px;
+	height: auto;
+	display: block;
+	border-width: 1px;
+	border-color: #7f7f7f;
+	border-style: dashed;
+	border-radius: 10px;
+	/* background-image: linear-gradient(210deg, #333333 0%, #999999 50%, #cccccc 80%); */
+}
+
+textarea {
+	border-width: 1px;
+	border-color: #7f7f7f;
+	border-style: dashed;
+	border-radius: 10px;
+	display: block;
+	margin: 0 auto;
+}
+
+/* select option css */
+select {
+	margin: 5px;
+	margin-left: 0;
+	width: 200px; /* 원하는 너비설정 */
+	padding: .8em .5em; /* 여백으로 높이 설정 */
+	font-family: inherit;  /* 폰트 상속 */
+	background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%; /* 네이티브 화살표 대체 */  
+	border: 1px solid #999; 
+	border-radius: 0px; /* iOS 둥근모서리 제거 */
+	-webkit-appearance: none; /* 네이티브 외형 감추기 */
+	-moz-appearance: none;
+	appearance: none;
+}
+/* select option css */
+
+/* img css */
+.board-view-main-list .pic_view {
+  background: #eee;
+  border: 1px solid #ddd;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.pic_view img {
+  float: left;
+  color: #fff;
+  background: #333;
+  margin: 1px;
+
+}
+
+.pic_view2 {
+  float: left;
+  margin: 0 10px 0 0;
+  padding: 5px;
+  background: #999;
+}
+/* img css */
+
+/* input & textarea 내용입력 css */
+.boardWrite_content{
+	color: #999;
+	cursor: text;
+}
+.boardWrite_content_new{}
+
+.boardUpdate_content{
+	color: #999;
+	cursor: text;
+}
+.boardUpdate_content_new{}
+
+.rep_insert_text{
+	color: #999;
+	cursor: text;
+}
+.rep_insert_text_new{}
+
+.rep_update_text{
+	color: #999;
+	cursor: text;
+}
+.rep_update_text_new{}
+/* input & textarea 내용입력 css */
+
+/* 버튼 css */
+.btn {
+    color: white;
+    background: #999999 url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAyCAYAAACd+7GKAAAAJklEQVQIW2P4//+/NxMDA8N/JgYGhn+oLDQu7Vk/GP4zMXDQx3IA0To1YWcEwtQAAAAASUVORK5CYII=") repeat-x;
+    display: inline-block;
+    padding: 5px 10px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    -moz-box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    margin: 3px;
+}
+
+.btn:hover {
+    background: #bfbfbf url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAyCAYAAACd+7GKAAAAJklEQVQIW2P4//+/NxMDA8N/JgYGhn+oLDQu7Vk/GP4zMXDQx3IA0To1YWcEwtQAAAAASUVORK5CYII=") repeat-x;
+}
+/* 버튼 css */
+
+/* 수정 창 css */
+.board-mask {
+	position: absolute;
+	z-index: 9000;
+	background-color: #000;
+	display: none;
+	left: 0;
+	top: 0;
+}
+
+.board-window {
+	display: none;
+	position: absolute;
+	background-color: gray;
+	left: 300px;
+	top: 300px;
+	width: 950px;
+	height: 450px;
+	z-index: 10000;
+}
+
+.board-rep-window {
+	display: none;
+	position: absolute;
+	background-color: gray;
+	left: 300px;
+	top: 300px;
+	width: 400px;
+	height: 100px;
+	z-index: 10000;
+}
+/* 수정 창 css */
+
+/* 별점 css */
+.starstar{
+	margin: 5px;
+	margin-left: 0;
+	width: 200px; /* 원하는 너비설정 */
+	padding: .8em .5em; /* 여백으로 높이 설정 */
+	font-family: inherit;  /* 폰트 상속 */
+	border: 1px solid #999; 
+	border-radius: 0px; /* iOS 둥근모서리 제거 */
+	-webkit-appearance: none; /* 네이티브 외형 감추기 */
+	-moz-appearance: none;
+	appearance: none;
+	display: none;
+	float: right;
+	
+}
+
+.star_input{
+	width:200px;
+	height:40px;
+	border:1px solid black;
+}
+
+div span{
+width:20px;
+height:40px;
+display:block;
+float:left;
+}
+
+.star_input{
+background-image: url("../images/starIcon_out.png");
+background-size: 40px, 40px;
+}
+
+.over-left{
+background-image: url("../images/starIcon-left-over.png");
+background-size: 20px, 40px;
+}
+.over-right{
+background-image: url("../images/starIcon-right-over.png");
+background-size: 20px, 40px;
+}
+
+.over2{
+background-color: red;
+border-right: 1px solid black;
+}
+/* 별점 css */

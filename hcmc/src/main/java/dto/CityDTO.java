@@ -6,9 +6,8 @@ public class CityDTO {
 	private String city_address;
 	private int city_lati;
 	private int city_long;
-	
-	public CityDTO(){
-		
+
+	public CityDTO() {
 	}
 
 	public int getCity_num() {
@@ -50,7 +49,5 @@ public class CityDTO {
 	public void setCity_long(int city_long) {
 		this.city_long = city_long;
 	}
-	
-	
-	
-}
+
+}// end class

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="search">
+   
+   <resultMap type="dto.FestivalDTO" id="list_fe">
+    <result column="festival_num" property="festival_num"/>
+   	<result column="festival_name" property="festival_name"/>
+   	<result column="festival_content" property="festival_content"/>
+    <result column="festival_theme" property="festival_theme"/>
+    <result column="festival_start" property="festival_start"/>
+    <result column="festival_end" property="festival_end"/>
+    <result column="festival_count" property="festival_count"/>
+    <result column="city_num" property="city_num"/> 
+     <collection property="city" javaType="java.util.List" ofType="dto.CityDTO">
+      <result column="city_address" property="city_address"/>
+      <result column="city_name" property="city_name"/>
+     </collection>
+   </resultMap>
+   
+   <select id="search_list" resultMap="list_fe" parameterType="dto.FestivalDTO">   
+    <![CDATA[
+    select f.festival_num, f.festival_name, f.festival_content, c.city_address, f.festival_start, f.festival_end, f.festival_count
+    from F_CITY c, F_FESTIVAL f
+    where c.city_num = f.city_num 
+     and c.city_name like #{name}|| '%' and f.festival_theme=#{theme} and f.festival_start>=TO_DATE(#{start},'YYYYMMDD') 
+      and f.festival_start<TO_DATE(#{start}+1,'YYYYMMDD')
+   ]]>   
+  </select>
+  
+  <select id="totalcount" resultType="int" parameterType="dto.FestivalDTO">
+  <![CDATA[
+   select count(*)
+   from f_festival f, f_city c
+   where f.city_num=c.city_num
+    and c.city_name like #{name}|| '%' and f.festival_theme=#{theme} and f.festival_start>=TO_DATE(#{start},'YYYYMMDD') 
+      and f.festival_start<TO_DATE(#{start}+1,'YYYYMMDD')
+    ]]>  
+	</select> 
+	
+	<select id="festival" resultType="int">
+	  select count(*) from f_festival
+	</select>
+	
+	<!-- <select id="list" resultType="dto.BoardDTO" parameterType="dto.PageDTO">
+		<을 문자열 그대로 사용하기 위한 요소
+		<![CDATA[
+		 select b.*  from(
+   		 select rownum as rm, a.*  from(
+       	 select * from board order by ref desc, re_step asc)a)b  
+ 		 where b.rm>=#{startRow} and b.rm<=#{endRow}
+		]]>
+	</select> -->
+	
+	<select id="month_festival" resultMap="list_fe" parameterType="dto.FestivalDTO">
+	<![CDATA[
+	  select f.festival_name, f.festival_start, f.festival_end, c.city_address
+	  from F_CITY c, F_FESTIVAL f
+      where c.city_num = f.city_num 
+       and festival_start >= TO_DATE(${start},'YYYYMM') AND festival_start< TO_DATE(${end},'YYYYMM')    
+          or festival_end >= TO_DATE(${start},'YYYYMM') AND festival_end< TO_DATE(${end},'YYYYMM')  
+        ]]>
+	</select>
+   
+</mapper>

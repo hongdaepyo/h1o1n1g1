@@ -6,8 +6,33 @@
 <mapper namespace="login">
 	<insert id="mem_register" parameterType="hashMap">
 		insert into f_member
-		values (SEQ_f_member_mem_num.nextval, #{id,jdbcType=VARCHAR}, #{pass,jdbcType=VARCHAR}, null,0)
+		values (SEQ_f_member_mem_num.nextval, #{id,jdbcType=VARCHAR}, #{pass,jdbcType=VARCHAR}, null,2)
 	</insert>
-
 	
+	<!-- 은지///////////////////////////////////////////////////////////////// -->
+	
+	<insert id="login_insert" parameterType="dto.MemberDTO">
+  insert into F_MEMBER values(SEQ_f_member_mem_num.nextval,#{mem_id},#{mem_pass},'','2')
+  </insert>
+  
+  <select id="login_select" parameterType="dto.MemberDTO" resultType="dto.MemberDTO">
+   select * from F_MEMBER where mem_id=#{mem_id}
+  </select>
+  
+  <select id="login_search" parameterType="dto.MemberDTO" resultType="dto.MemberDTO">
+    select * from F_MEMBER where mem_id=#{mem_id} and mem_pass=#{mem_pass}
+  </select>
+  
+  <select id="login_count" parameterType="dto.MemberDTO" resultType="int">
+    select count(*) from F_MEMBER where mem_id=#{mem_id} and mem_pass=#{mem_pass}
+  </select>
+  
+  <select id="login_mem_num_search" parameterType="int" resultType="dto.MemberDTO">
+  	select * from F_MEMBER where mem_num=#{mem_num}
+  </select>
+  
+  <update id="authUpdate" parameterType="int">
+   update f_member set mem_admin=1 where mem_num=#{mem_num}
+  </update>
+  
 </mapper>

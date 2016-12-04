@@ -13,10 +13,10 @@ public class BoardDTO {
 	private String board_content;
 	private Date board_date;
 	private List<ReplyDTO> replyList;
-	private List<MemDTO> memList;
+	private List<MemberDTO> memList;
 	private List<FestivalDTO> fesList;
-	private String board_upload;
-	private MultipartFile board_filename;
+	private List<String> board_pic;
+	private MultipartFile[] board_filename;
 
 	public BoardDTO() {
 	}
@@ -77,11 +77,11 @@ public class BoardDTO {
 		this.replyList = replyList;
 	}
 
-	public List<MemDTO> getMemList() {
+	public List<MemberDTO> getMemList() {
 		return memList;
 	}
 
-	public void setMemList(List<MemDTO> memList) {
+	public void setMemList(List<MemberDTO> memList) {
 		this.memList = memList;
 	}
 
@@ -92,23 +92,20 @@ public class BoardDTO {
 	public void setFesList(List<FestivalDTO> fesList) {
 		this.fesList = fesList;
 	}
-
-	public String getBoard_upload() {
-		return board_upload;
+	
+	public List<String> getBoard_pic() {
+		return board_pic;
 	}
 
-	public void setBoard_upload(String board_upload) {
-		this.board_upload = board_upload;
+	public void setBoard_pic(List<String> board_pic) {
+		this.board_pic = board_pic;
 	}
 
-	public MultipartFile getBoard_filename() {
+	public MultipartFile[] getBoard_filename() {
 		return board_filename;
 	}
 
-	public void setBoard_filename(MultipartFile board_filename) {
+	public void setBoard_filename(MultipartFile[] board_filename) {
 		this.board_filename = board_filename;
 	}
-
-	
-
 }// end class
