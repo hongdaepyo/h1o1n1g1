@@ -1,5 +1,7 @@
 package controller;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import dto.BoardDTO;
+import dto.FavorDTO;
 import dto.FestivalDTO;
 import dto.MemberDTO;
 import dto.PageDTO;
@@ -75,76 +78,109 @@ public class HcmcController {
 	
 ///////////마이페이지////////////////////////////////////////////////////////
 	@RequestMapping("/test.do")
-	public String test(){
-		return "index";
-	}//마이페이지 접속테스트용
-	
-	@RequestMapping("/info.do")
-	public ModelAndView memListPage(int mem_num){
-		ModelAndView mav = new ModelAndView();
-		MemberDTO dto= mservice.memberListProcess(mem_num);
-		mav.addObject("dto", dto);
-		mav.setViewName("index");
-		return mav;
-	}//회원 번호를 받아서 마이페이지를 보여줌
-	
-	@RequestMapping("/myBoardList.do")
-	public ModelAndView MyBoardListPage(int mem_num){
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("mblist",mservice.myBoardListProcess(mem_num));
-		mav.setViewName("menu1");
-		return mav;
-	}//회원 번호를 받아서 내가 쓴 글을 보여줌
-	
-	@RequestMapping("/myFavorList.do")
-	public ModelAndView myFavorListPage(int mem_num){
-		ModelAndView mav= new ModelAndView();
-		mav.addObject("mflist",mservice.myFavorListProcess(mem_num));
-		mav.setViewName("menu2");
-		return mav;
-	}//회원 번호를 받아서 나의 즐겨찾기 현황을 보여줌
-		
-	@RequestMapping("/nickUpdate.do")
-	public @ResponseBody String nickUpdate(MemberDTO mdto){
-		mservice.nickUpdateProcess(mdto);
-		System.out.println(mdto.getMem_nickname());
-		///*/*/*/*/*/*/*/*/*/*/*/*/*pom.xml에 simplejson 추가/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		//key 나 value값에 한글 넣으면 jsp에서 못 읽음 한글처리 안함
-		map.put("msg", "test");
-		JSONObject json=new JSONObject(map);
-		String jsonmsg=json.toJSONString();
-		return jsonmsg;
-	}//회원 번호와 입력된 닉네임을 MemberDTO형태로 받아서 닉네임을 업데이트 해줌
-	
-	@RequestMapping("/pwUpdate.do")
-	public MemberDTO passwordUpdate(MemberDTO mdto){
-		return mservice.passwordUpdateProcess(mdto);
-	}//회원 비밀번호를 업데이트
-	
-
+	   public String test(){
+	      return "index";
+	   }//마이페이지 접속테스트용
+	   
+	   @RequestMapping("/info.do")
+	   public ModelAndView memListPage(int mem_num){
+	      ModelAndView mav = new ModelAndView();
+	      MemberDTO dto= mservice.memberListProcess(mem_num);
+	      mav.addObject("dto", dto);
+	      mav.setViewName("index");
+	      return mav;
+	   }//회원 번호를 받아서 마이페이지를 보여줌
+	   
+	   @RequestMapping("/myBoard.do")
+	   public String menu1(){
+	      return "menu1";
+	   }
+	   
+	   @RequestMapping("/myBoardList.do")
+	   public ModelAndView MyBoardListPage(int mem_num){
+	      ModelAndView mav = new ModelAndView();
+	      mav.addObject("mblist",mservice.myBoardListProcess(mem_num));
+	      mav.setViewName("BoardView");
+	      return mav;
+	   }//회원 번호를 받아서 내가 쓴 글을 보여줌
+	   
+	   @RequestMapping("/myFavorList.do")
+	   public ModelAndView myFavorListPage(int mem_num){
+	      ModelAndView mav= new ModelAndView();
+	      mav.addObject("mflist",mservice.myFavorListProcess(mem_num));
+	      mav.setViewName("menu2");
+	      return mav;
+	   }//회원 번호를 받아서 나의 즐겨찾기 현황을 보여줌
+	      
+	   @RequestMapping("/nickUpdate.do")
+	   public @ResponseBody String nickUpdate(MemberDTO mdto){
+	      mservice.nickUpdateProcess(mdto);
+	      System.out.println(mdto.getMem_nickname());
+	      ///*/*/*/*/*/*/*/*/*/*/*/*/*pom.xml에 simplejson 추가/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
+	      HashMap<String, Object> map = new HashMap<String, Object>();
+	      //key 나 value값에 한글 넣으면 jsp에서 못 읽음 한글처리 안함
+	      map.put("msg", "test");
+	      JSONObject json=new JSONObject(map);
+	      String jsonmsg=json.toJSONString();
+	      return jsonmsg;
+	   }//회원 번호와 입력된 닉네임을 MemberDTO형태로 받아서 닉네임을 업데이트 해줌
+	   
+	   @RequestMapping("/pwUpdate.do")
+	   public MemberDTO passwordUpdate(MemberDTO mdto){
+	      return mservice.passwordUpdateProcess(mdto);
+	   }//회원 비밀번호를 업데이트
+	   
+	   @RequestMapping("/memDelete.do")
+	      public @ResponseBody String memberDelete(int mem_num){
+	         mservice.memberDeleteProcess(mem_num);
+	         System.out.println(mem_num);
+	         return "redirect:/main.do";
+	      }
+	   
+	   @RequestMapping("/memflist.do")
+	   public @ResponseBody List<FestivalDTO> myPageFlist(){
+	      return mservice.myPageFList();
+	   }
+	   
+	   @RequestMapping("/myPageFavorDelete.do")
+	   public String myPageFavorDelete(FavorDTO dto,int mem_num){
+	      mservice.myFavorDelProcess(dto.getF_favor_num());
+	      return "redirect:/myFavorList.do?mem_num="+mem_num;
+	   }
 //////////달력부분//////////////////////////////////////////////////////////////////////////////////////
-	@RequestMapping("/calendar.do")
-	public ModelAndView cal_start(){
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("calview");
-		return mav;
-	}//달력페이지 접속용
-	
-	@RequestMapping("/calendar2.do")
-	public @ResponseBody List<FestivalDTO> cal_test(int month, int year){
-		return cservice.FestivalList(month, year);
-	}//달력페이지의 각 날짜에 뿌려줄 축제정보를 가져옴
-	
-	@RequestMapping("/finfo.do")
-	public @ResponseBody HashMap<String, Object> festival_info(int festival_num){
-		cservice.readCountProcess(festival_num);
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("f", cservice.festivalInfoProcess(festival_num));
-		map.put("c", cservice.cityInfoProcess(festival_num));
-		return map;
-	}//축제정보 페이지에 표시해줄 축제정보와 도시정보를 가져옴
-	
+	   @RequestMapping("/calendar.do")
+	   public ModelAndView cal_start(){
+	      ModelAndView mav = new ModelAndView();
+	      mav.setViewName("calview");
+	      return mav;
+	   }//달력페이지 접속용
+	   
+	   @RequestMapping("/calendar2.do")
+	   public @ResponseBody List<FestivalDTO> cal_test(int month, int year){
+	      return cservice.FestivalList(month, year);
+	   }
+	   
+	   @RequestMapping("/finfo.do")
+	   public @ResponseBody HashMap<String, Object> festival_info(int festival_num){
+	      cservice.readCountProcess(festival_num);
+	      HashMap<String, Object> map = new HashMap<String, Object>();
+	      map.put("f", cservice.festivalInfoProcess(festival_num));
+	      map.put("c", cservice.cityInfoProcess(festival_num));
+	      map.put("p", cservice.fespicProcess(festival_num));
+	      return map;
+	   }//축제정보 페이지에 표시해줄 축제정보와 도시정보를 가져옴
+	   
+	   @RequestMapping("/favor_insert.do")
+	   public @ResponseBody boolean favor_insert(int festival_num, int mem_num){
+	      cservice.favorInsertProcess(festival_num, mem_num);
+	      return true;
+	   }
+	   
+	   @RequestMapping("/favorList.do")
+	   public @ResponseBody List<FavorDTO> favorList(int mem_num){
+	      return cservice.favorListProcess(mem_num);
+	   }
+
 /////////관리자페이지///////////////////////////////////////////////////////////////////////////////////////
 	@RequestMapping("/admin.do")
 	public ModelAndView admin_page(){
@@ -172,8 +208,8 @@ public class HcmcController {
 	}//관리자 페이지의 회원 관리페이지에 뿌려줄 게시판 정보를 가져옴
 	
 	@RequestMapping("/adminFestivalUpdate.do" )
-	public String adminFestivalUpdate(FestivalDTO fdto){
-		aservice.fUpdateProcess(fdto);
+	public String adminFestivalUpdate(FestivalDTO fdto, HttpServletRequest req){
+		aservice.fUpdateProcess(fdto, req);
 		return "redirect:/admin.do";
 	}//관리자 페이지에서 축제정보를 업데이트하는 부분
 	
@@ -198,10 +234,18 @@ public class HcmcController {
 	@RequestMapping("/adminFestivalAdd.do")
 	public ModelAndView adminFestivalAdd(FestivalDTO fdto){
 		ModelAndView mav= new ModelAndView();
+		aservice.bListProcess();
 		mav.addObject("list",aservice.fAddProcess(fdto));
 		mav.setViewName("admin");
 		return mav;
 	}//관리자 페이지에서 축제정보를 추가하는 부분
+	
+	@RequestMapping("/adminFestivalIns.do")
+	public String adminFestivalIns(FestivalDTO fdto, HttpServletRequest req){
+		System.out.println("컨트롤러"+fdto.getFestival_filename());
+		aservice.fInsProcess(fdto, req);
+		return "redirect:/admin.do";
+	}
 	
 ////////로그인페이지//////////////////////////////////////////////////////////////////////////////////////
 	
@@ -223,6 +267,11 @@ public class HcmcController {
 	
 	
 	
+	@RequestMapping("/research.do")
+	public @ResponseBody List<FestivalDTO> researchprocess(String city_name, String festival_theme, String festival_start){
+		return  sservice.researchProcess(city_name, festival_theme, festival_start);
+	}//research불러오기
+	
 	@RequestMapping("/main.do")
 	public ModelAndView mainprocess(){
 		System.out.println(mainservice.mainProcess());
@@ -232,9 +281,13 @@ public class HcmcController {
 		return mav;				
 	}//메인화면 접속하는 곳
 	
+	@RequestMapping("/city.do")
+	public @ResponseBody List<FestivalDTO> cityListprocess(String city_name){
+		return  mainservice.cityProcess(city_name);
+	}//city불러오기
+	
 	@RequestMapping("/search.do")
 	public ModelAndView search(String city_name, String festival_theme, String festival_start, PageDTO pv){	
-		
 		ModelAndView mav = new ModelAndView();	
 		int totalRecord =sservice.totalProcess(city_name,festival_theme,festival_start);
 		
@@ -251,7 +304,6 @@ public class HcmcController {
 			mav.addObject("pv",pdto);
 			mav.addObject("aList", sservice.searchProcess(city_name,festival_theme,festival_start));
 		}
-		
 		mav.addObject("month", sservice.monthProcess());
 		mav.setViewName("search");
 		return mav;
@@ -267,6 +319,7 @@ public class HcmcController {
 
 	@RequestMapping("/loginpro.do")
 	public String logCheckProcess(String returnUrl, MemberDTO dto, HttpServletRequest req) {
+		//loginservice.favorListProcess(dto.getMem_num(), req);
 		return loginservice.loginCheckProcess(dto, req);
 	}// end logCheckProcess() //로그인 할때 mem_id와 mem_pass를 MemberDTO로 받아옴
 	
@@ -321,12 +374,15 @@ public class HcmcController {
 		}//게시판에 페이지 구분해서 리스트 뿌림
 		
 		@RequestMapping(value="/boardWrite.do", method = RequestMethod.POST)
-		public String write(BoardDTO dto, HttpServletRequest request) {
+		public String write(BoardDTO dto, FavorDTO fdto, HttpServletRequest request) {
 			if(dto.getBoard_head().equals("일반") || dto.getBoard_head().equals("문의"))
-				dto.setFestival_num(1); //게시글의 종류가 일반이나 문의라면 축제번호를 1로 지정
-			bservice.boardInsertProcess(dto, request);
+				dto.setFestival_num(1);
+			else
+				bservice.favorInsertProcess(fdto, request);
+				bservice.boardInsertProcess(dto, request);
 			return "redirect:/boardList.do";
 		}// end writeMethod() //게시글 등록
+		
 		
 		@RequestMapping(value="/repWrite.do", method = RequestMethod.POST)
 		public String repWrite(ReplyDTO dto, HttpServletRequest request) {
@@ -337,8 +393,15 @@ public class HcmcController {
 		@RequestMapping(value="/boardUpdate.do", method = RequestMethod.POST)
 		public String boardUpdateMethod(BoardDTO dto, HttpServletRequest request) {
 			if(dto.getBoard_head().equals("일반") || dto.getBoard_head().equals("문의"))
-				dto.setFestival_num(1); //게시글의 종류가 일반이나 문의라면 축제번호를 1로 지정
+				dto.setFestival_num(1);
 			bservice.boardUpdateProcess(dto, request);
+			return "redirect:/boardList.do";
+		}//end boardUpdateMethod() //게시글 수정
+		
+		/*@RequestMapping(value="/boardUpdate.do", method = RequestMethod.POST)*/
+		public String boardUpdateMethod(BoardDTO dto, FavorDTO fdto, HttpServletRequest request) {
+				bservice.boardUpdateProcess(dto, request);
+				bservice.favorUpdateProcess(fdto, request);
 			return "redirect:/boardList.do";
 		}//end boardUpdateMethod() //게시글 수정
 
@@ -384,5 +447,13 @@ public class HcmcController {
 			return bservice.FesListProcess();
 		}	//축제 번호와 이름 가져옴
 	
-	
+		@RequestMapping("/boardboard.do")
+		public @ResponseBody BoardDTO BoardBoardMethod(int board_num, HttpServletRequest request){
+			return bservice.boardboardProcess(board_num,request);
+		}
+		
+		@RequestMapping("/reprep.do")
+		public @ResponseBody ReplyDTO RepRepMethod(int rep_num, HttpServletRequest request){
+			return bservice.reprepProcess(rep_num, request);
+		}
 }//end class

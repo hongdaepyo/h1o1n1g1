@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.tools.ant.taskdefs.condition.Http;
+
 import dto.BoardDTO;
 import dto.FavorDTO;
 import dto.FestivalDTO;
@@ -31,5 +33,11 @@ public interface BoardService {
 	public int countProcess();
 	
 	public void favorInsertProcess(FavorDTO fdto, HttpServletRequest request);
+	
+	public void favorUpdateProcess(FavorDTO fdto, HttpServletRequest request);
+	
+	public BoardDTO boardboardProcess(int board_num, HttpServletRequest request);
+	
+	public ReplyDTO reprepProcess(int rep_num, HttpServletRequest request);
 	
 }// end interface

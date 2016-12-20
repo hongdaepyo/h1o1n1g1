@@ -16,4 +16,5 @@ public interface AdminDao {
 	public void mUpdateMethod(MemberDTO mdto);
 	public void fDeleteMethod(FestivalDTO fdto);
 	public void fAddMethod(FestivalDTO fdto);
+	public void fInsMethod(FestivalDTO fdto);
 }

@@ -2,7 +2,6 @@
 
 body {
 	font-family: 'Nanum Gothic', sans-serif;
-	background-color: #f0f0f0;
 	line-height: 1.42857143;
 }
 
@@ -18,6 +17,7 @@ a{
 } */
 #bodywrap {
 	margin: auto;
+	box-sizing: content-box;
 }
 
 #bodywrap input {
@@ -68,6 +68,7 @@ a{
 
 /* container end */
 .confirm_btn {
+	margin-right:-350px;
 	position: relative;
 	background-color: #11adea;
 	color: white;
@@ -83,7 +84,7 @@ a{
 
 .header {
 	width: 100px;
-	height: 20px;
+	height: 28px;
 	font-size: 14px;
 	color: #777;
 	float: left;
@@ -103,15 +104,13 @@ a{
 .menu_min{
 	width:calc(15% + 800px);
 	height:30px;
-	border-bottom: 2px solid #ff5e00;
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
 
 .menu_not_min {
-	width: 15%;
+	width: 10%;
 	height: 670px;
-	border-right: 2px solid #ff5e00;
 	padding-top:40px;
 }
 

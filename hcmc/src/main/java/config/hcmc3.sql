@@ -208,7 +208,7 @@ ALTER TABLE f_board_pic
 	REFERENCES f_board (board_num)
 ;
 
-
+delete from F_FAVOR
 SELECT * FROM f_board
 SELECT * FROM f_festival
 SELECT * FROM f_member
@@ -216,6 +216,8 @@ SELECT * FROM f_rep
 SELECT * FROM f_board_pic
 select * from F_CITY
 select * from F_FESTIVAL_PIC
+
+select p.festival
 
 
 alter system set processes=500 scope=spfile;

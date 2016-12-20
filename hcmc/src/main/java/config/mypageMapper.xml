@@ -12,8 +12,11 @@
   	select * from f_board where mem_num=#{mem_num}
   </select>
   
-  <select id="my_favor_list" parameterType="int" resultType="hashMap">
-    select * from f_favor where mem_num=#{mem_num}  
+  <select id="my_favor_list" parameterType="int" resultType="dto.FavorDTO">
+    select f_favor_num, festival_num
+    from f_favor
+    where mem_num=#{mem_num}
+    order by f_favor_num
   </select>
   
   <update id="nick_update" parameterType="dto.MemberDTO">
@@ -26,8 +29,22 @@
   	where mem_num=#{mem_num}
   </update>
   
-  <delete id="mem_del" parameterType="dto.MemberDTO">
+  <delete id="mem_del" parameterType="int">
   	delete from f_member where mem_num=#{mem_num}
   </delete>
+  
+  <select id="mem_f_list" resultType="dto.FestivalDTO">
+  	select festival_num, festival_name
+  	from f_festival
+  	order by festival_num
+  
+  </select>
+  
+  <delete id="my_favor_del" parameterType="int">
+  	delete from f_favor where f_favor_num=#{favor_num}
+  
+  </delete>
+
+	
 
 </mapper>

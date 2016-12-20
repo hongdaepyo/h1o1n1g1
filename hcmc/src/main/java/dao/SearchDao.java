@@ -10,4 +10,5 @@ public interface SearchDao {
 	public List<FestivalDTO> searchList(HashMap<String, String> map);
 	public int totalCount(HashMap<String, String> map);
 	public List<FestivalDTO> monthList(HashMap<String, Integer> map);
+	public List<FestivalDTO> researchMethod(HashMap<String, String> map);
 }

@@ -10,8 +10,8 @@
 
 <script type="text/javascript"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="js/festival_info.js?ver=2"></script>
 <script type="text/javascript" src="js/ad.js?ver=1"></script>
-<script src="js/festival_info.js?ver=1"></script>
 <script type="text/javascript" src="js/month.js?ver=1"></script>
 <script src="//apis.daum.net/maps/maps3.js?apikey=945948afbe6a4f41cd89e5fd9efe678e&libraries=services"></script>
 
@@ -19,13 +19,37 @@
 <link rel="stylesheet" type="text/css" href="css/reset.css?ver=1" />
 <link rel="stylesheet" type="text/css" href="css/calendar.css?ver=1">
 
+<script src="js/jquery.magnific-popup2.js"></script>
+<link rel="stylesheet" href="css/magnific-popup.css"> 
+
 <script type="text/javascript">
 var festival; //달력에서 선택하면 축제정보 및 도시정보를 저장하는 변수
 var festival2;
 var date = new Date(); // 날짜 객체 생성
 var y = date.getFullYear(); // 현재 연도
 var m = date.getMonth(); // 현재 월
+var mem_num;
+var favor;
+var chkis;
 $(document).ready(function(){
+	
+	chkis ='${empty sessionScope.chk}' == 'true' ? true : false;
+	var chk='${sessionScope.chk}';
+	
+	if('${not empty sessionScope.mem_num}')
+	mem_num='${sessionScope.mem_num}';
+	
+	
+	
+	switch(chk){
+	case '0':console.log("운영자 로그인"); 
+	var url = "http://localhost:8090/hcmc/admin.do";
+	   $(location).attr('href',url); break;
+	case '1':console.log("일반회원 로그인");
+	         headerView('${sessionScope.id}');break;
+	case '2':alert('인증 메일을 전송했습니다. 확인해주세요.'); break;
+	}
+	
 		var w_d = $(document).width();
 		var h_d = $(document).height();
 		cal(m,y); //달력생성
@@ -34,26 +58,73 @@ $(document).ready(function(){
 		loc_filter(); //필터 이벤트 연결
 		console.log(festival2);
 		f_pic_preview(festival2); //달력항목 마우스 오버 미리보기
+		
+		//userfavor(mem_num);
+		
+		
 		console.log('${list}');		  		
 		$(document).on('click','td div span',function(e){
 			var n=$(e.target).attr('name');
+			$('.festival_picpic').empty();
 			if(n!=""){
 				festival_view(n); //축제정보 가져오기
 				festival_map(); //축제정보맵 호출
 				resize_info(w_d,h_d); //축제정보창 띄우기
+				if(chkis==false)
+				userfavor_inner(n);
 			}
 		});
 
 		$('#test_btn').click(function(){
 			$('area').remove();
 		});
+		
+		$("#header").hide();
+		$('#gnb').hide();
+		$("#login_info").hide();
+
+		
+		$("#login").on("click",function(){
+			  $('#join_form').css({"display":"none"}); 
+			  $('#sign_form').fadeToggle('normal'); 
+			  $('#sign_form').css({'position':'absolute','left':'64px','top':'84px'});
+		  });
+		  
+		  $("#join").on("click",function(){
+			  $('#sign_form').css({"display":"none"});
+			  $('#join_form').fadeToggle('normal'); 
+			  $('#join_form').css({'position':'absolute','left':'64px','top':'84px'});
+		  });
+		  
+		  $("#del button").click(function(){		  
+			  $('#sign_form').css({"display":"none"}); 
+			  $('#join_form').css({"display":"none"}); 
+		  });	
+		  
+		
 });
+//헤더
+function headerView(id){
+    $('#join_form').css({"display":"none"});  
+    $('#header').empty();
+    $('#header').append('<ul class="logo"><li><a href="#"><img src="icon/main2.png" /></a></li><li class="lo"><img src="icon/logo_text.png"/></li><li id="login"><span></span></li><li id="logout"><img src="icon/user2.png"/></li></ul>');		     
+   
+ 		     
+     $("#login_info").hide();
+	  $("#logout").on("click",function(){
+		  $('#login_info').fadeToggle('normal'); 
+		  $('#login_info').css({'position':'absolute','left':'64px','top':'84px'});
+
+	  });
+ 
+
+}//end headerView()
 
 function test2(){
 }
 
 function cal_inner(res){
-	console.log(res);
+	console.log("car_inner"+res[0].festival_num);
 	$('.prev_tooltip').remove();
 	for(var i=0;i<res.length;i++){
 		var f_num=res[i].festival_num; //축제번호
@@ -62,13 +133,22 @@ function cal_inner(res){
 		var c_num=res[i].city_num; //도시번호
 		var c_name=res[i].city[0].city_name; //도시이름
 		var s_date=new Date(res[i].festival_start); //시작날짜
+		var e_date=new Date(res[i].festival_end); //끝 날짜
 		var s_day=s_date.getDate();
+		var e_day=e_date.getDate();
+		var f_period=(e_date-s_date)/(1000*60*60*24); //축제기간
 		var d=document.getElementsByClassName(s_day); //클래스명이 시작날짜와 일치하는 DOM요소
+		var str;
+		str ='<div class="prev_tooltip"><div id="d'+f_num+'">';
+		if(res[i].festival_pic.length>0){
+		var img_name=res[i].festival_pic[0];
+		str+='<img name="'+f_num+'" src="image.do?filename='+img_name+'"/>'
+		console.log(img_name);
+		}
+		str+='</div></div>';
 		if(d.length>0){
-		console.log(f_name+'////'+s_day+'////'+d.length);
-		//$('.'+s_day+' span').attr('name',f_num);
 		$('.'+s_day).append('<span name="'+f_num+'" class="'+c_name+' '+f_theme+'">'+f_name+'\n'+c_num+'</span>');
-		$('body').append('<div class="prev_tooltip"><div id="d'+f_num+'"><img name="'+f_num+'" src="images/icon_cat.jpg"></div></div>');
+		$('body').append(str);
 		}
 	};
 }//읽어온 정보중 축제 이름과 도시 번호를 달력에 추가해줌
@@ -91,10 +171,43 @@ function festival_view_input(){
 	var city_name=festival.c.city_name;
 	var city_lati=festival.c.city_lati;
 	var city_long=festival.c.city_long;
+	fpic();
 	cal_addr(festival);
-	test2();
 	star_view(star);
 }//읽어온 축제 정보로 축제 정보창에 별점을 만들어줌
+
+function fpic(){
+	var fpic=festival.p;
+	for(var i = 0; i<fpic.length; i++){
+		console.log(fpic[i]);
+	var scr='<a href="image.do?filename='+fpic[i]+'" title="The Cleaner"><img src="image.do?filename='+fpic[i]+'" width="75" height="75"></a>';
+	$('.festival_picpic').append(scr);
+	
+	
+	}
+}////죽제 정보창에 사진추가
+
+jQuery(document).ready(function($){
+	$('.festival_picpic').magnificPopup({
+		delegate: 'a',
+		type: 'image',
+		tLoading: 'Loading image #%curr%...',
+		mainClass: 'mfp-img-mobile',
+		gallery: {
+			enabled: true,
+			navigateByImgClick: true,
+			preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		},
+		image: {
+			tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+			titleSrc: function(item) {
+				return '<small>'+festival.f.festival_name+'</small>';
+			}
+		}
+	});
+	
+});/////////magnificPopup
+
 
 function cal_addr(festival){
 	var addr=festival.c.city_address;
@@ -150,17 +263,9 @@ function cal_addr(festival){
 
 function today_color(){
 	if(m==date.getMonth())
-	$('.'+date.getDate()).prev().css({'color':'#ff8000','font-weight':'700'});
+	$('.'+date.getDate()).prev().css({'color':'#0066cc','font-weight':'700'});
 }//오늘 날짜 색깔을 바꿔서 강조해줌
 
-<%-- function remap(){
-	$.ajax({url:"<%request.getContextPath();%>/festival_map.jsp",
-		success:function(result) {
-			console.log(result)
-			$(".festival_map").html(result);
-		}
-	});
-}; --%>
 </script>
 <style type="text/css">
 html{
@@ -177,13 +282,43 @@ height: 30px;
 </style>
 </head>
 <body>
+
+<div id="header">
+     <ul class="logo">
+       <li><a href="main.do"><img src="icon/main2.png" /></a></li>
+       <li class="lo"><img src="icon/logo_text.png"/></li>
+       <li id="login"><img src="icon/login.png"/></li>
+       <li id="join"><img src="icon/join1.png"/></li>    
+     </ul>     
+   </div>
+   
+   <div id="login_info">
+    <div id="loginup_form">
+   	<div id="login_id">
+   		<span>${sessionScope.id}</span>
+   	</div>
+   	<span class="hr"></span>
+   	<div id="login_mypage">
+   		<a href="#">마이페이지</a>
+   	</div>
+   	<div id="login_logout">
+   		<a href="logout.do">로그아웃</a>
+   	</div>
+   	</div>
+   </div>
+
+   
+   <div id="gnb">     
+   </div>
+
 <div class="ad" id="ad" >
 	<a class="ad_show" id="ad_show" href="#" >
-	<img src="<%= request.getContextPath()%>/images/Koala.jpg" height = "50px" width="97%">
+	<img src="icon/banner3.jpg" height = "100px" width="100%">
+	<%-- <img src="<%= request.getContextPath()%>/images/Koala.jpg" height = "50px" width="97%"> --%>
 	</a>
 	
 	<a class="ad_close" id="ad_close" href="#">
-	<img title="배너 다시 보지 않기" src="images/x.jpg" height="50" width="2%" >
+	<img title="배너 다시 보지 않기" src="icon/x2.png" >
 	</a>
 </div>
 <br/>
@@ -213,15 +348,85 @@ height: 30px;
 </p>
 </fieldset>
 </form>
-	<div class='button' id='button'>
-	<button id='test_btn'>test</button>
-	</div>
 	<div class="cal">
 		
 	</div>
 	<div class="rrr">
 	
 	</div>
+	
+	    <div id="sign_form">
+       <div id="del">
+         <button>X</button>
+       </div>
+     <div id="signup_form">
+        <div class="arr">          
+        </div>
+        <div id="email">
+          <input type="text" id="id" placeholder="이메일">
+        </div>
+        <div id="pass">        
+          <input type="password" id="password" placeholder="비밀번호">        
+        </div>
+        <div id="checked">
+          <input type="checkbox" value="login" id="cb_saveId">
+          <label>로그인저장</label>
+        </div>
+        <div id="login_btn">로그인</a>
+        </div>
+        <div id="pass_search">
+           <a href="#">비밀번호 찾기</a>
+        </div>
+        
+        <div id="facebook">
+        <a href="https://www.facebook.com/login.php?skip_api_login=1&api_key=1637556516502515&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv2.4%2Fdialog%2Foauth%3Fredirect_uri%3Dhttp%253A%252F%252Fjasoseol.com%252Fusers%252Fauth%252Ffacebook%252Fcallback%26state%3D8cb0afe175dd079d7ed5000717c01194220a43049fca581a%26scope%3Demail%26response_type%3Dcode%26client_id%3D1637556516502515%26ret%3Dlogin%26logger_id%3D2d8c7c4a-ae37-4e1c-989f-c078ad71b7e2&cancel_url=http%3A%2F%2Fjasoseol.com%2Fusers%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D8cb0afe175dd079d7ed5000717c01194220a43049fca581a%23_%3D_&display=page&locale=ko_KR&logger_id=2d8c7c4a-ae37-4e1c-989f-c078ad71b7e2">
+          <img src="http://jasoseol.com/assets/index/icon-facebook-af12cbb0400bc3af9442327fc336f5773948cc5dfa58dae29609bf314bf68788.png"/>
+          <p>페이스북 로그인</p>
+        </a>
+        </div>
+        
+        <div id="naver">
+        <a href="https://nid.naver.com/oauth2.0/authorize?client_id=c8V5Z8ypkyCWSg6w2Cm7&redirect_uri=http%3A%2F%2Fjasoseol.com%2Fusers%2Fauth%2Fnaver%2Fcallback&response_type=code&state=395462cbdc00ce3249bdf0fc26f6604f9867f5d4b7c43180">
+        <img src="http://jasoseol.com/assets/index/icon-naver-66dfe17006198397f124d459c13c71dcfd559fc996537875fe40c61af124774a.png"/>
+        <p>네이버 로그인</p>
+        </a>
+        </div>
+     </div>
+   </div>
+   
+   <div id="join_form">
+   <div id="del">
+         <button>X</button>
+       </div>
+     <div id="joinup_form">
+        <div class="arr">          
+        </div>
+        <div id="email">
+          <input type="text" id="id_email" placeholder="이메일">
+        </div>
+        <div id="pass">        
+          <input type="password" id="id_pass" placeholder="비밀번호(8자이상)">        
+        </div>
+        <div id="pass_en">        
+          <input type="password" placeholder="비밀번호 재입력">        
+        </div>        
+        <div id="join_btn">회원가입</div>
+        
+        <div id="facebook">
+        <a href="https://www.facebook.com/login.php?skip_api_login=1&api_key=1637556516502515&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv2.4%2Fdialog%2Foauth%3Fredirect_uri%3Dhttp%253A%252F%252Fjasoseol.com%252Fusers%252Fauth%252Ffacebook%252Fcallback%26state%3D8cb0afe175dd079d7ed5000717c01194220a43049fca581a%26scope%3Demail%26response_type%3Dcode%26client_id%3D1637556516502515%26ret%3Dlogin%26logger_id%3D2d8c7c4a-ae37-4e1c-989f-c078ad71b7e2&cancel_url=http%3A%2F%2Fjasoseol.com%2Fusers%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D8cb0afe175dd079d7ed5000717c01194220a43049fca581a%23_%3D_&display=page&locale=ko_KR&logger_id=2d8c7c4a-ae37-4e1c-989f-c078ad71b7e2">
+          <img src="http://jasoseol.com/assets/index/icon-facebook-af12cbb0400bc3af9442327fc336f5773948cc5dfa58dae29609bf314bf68788.png"/>
+          <p>페이스북 로그인</p>
+        </a>
+        </div>
+        
+        <div id="naver">
+        <a href="https://nid.naver.com/oauth2.0/authorize?client_id=c8V5Z8ypkyCWSg6w2Cm7&redirect_uri=http%3A%2F%2Fjasoseol.com%2Fusers%2Fauth%2Fnaver%2Fcallback&response_type=code&state=395462cbdc00ce3249bdf0fc26f6604f9867f5d4b7c43180">
+        <img src="http://jasoseol.com/assets/index/icon-naver-66dfe17006198397f124d459c13c71dcfd559fc996537875fe40c61af124774a.png"/>
+        <p>네이버 로그인</p>
+        </a>
+        </div>
+     </div>
+   </div>
 	
 <div class="bodywrap">
 	<div class="infowrap">
@@ -230,11 +435,11 @@ height: 30px;
 			<div class="festival_header inner_gap">
 			<div class="fh_top inner_gap">
 				<button name="close">X</button>
-				<button id="tt">test</button>
 				<a href="" target="_blank"><img alt="홈페이지로 이동합니다." src="images/icon_home.png" width=20px height=20px></a>
 				<div class="view_count">
           			<img src="icon/view1.png" width=20px, height=20px/>
           			<span id="viewcount"></span>
+          			<img id="favor_insert" src="icon/heart-no.png" width=20px, height=20px>
         		 </div>
 			</div>
 			
@@ -246,15 +451,18 @@ height: 30px;
 			<div class="festival_detail inner_gap">
 				<span class="content">////축제날짜</span>
 			</div>
+			
+			<div class="festival_picpic inner_gap"></div>
 				
 			<div class="festival_map inner_gap">
 			
 <%--  			<jsp:include page="festival_map.jsp" flush="true"></jsp:include> --%>
-			<%@ include file="map_test.jsp" %>
+			<%@ include file="festival_map.jsp" %>
 			</div>
 
 		</div>
 	</div>
 </div>
+
 </body>
 </html>

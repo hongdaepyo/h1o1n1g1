@@ -52,7 +52,7 @@
 		</collection>
 	</resultMap>
 
-	<select id="board_list1" resultMap="list">
+	<select id="boardboard" resultType="dto.BoardDTO" parameterType="int" resultMap="list">
 		SELECT bmf.*, rrm.*
 		FROM
 		(SELECT
@@ -94,7 +94,8 @@
 		WHERE
 		r.mem_num = rm.mem_num
 		ORDER BY r.mem_num ASC) rrm
-		WHERE bmf.bbnum = rrm.rbnum(+)
+		WHERE bmf.bbnum = #{board_num}
+		AND bmf.bbnum = rrm.rbnum(+)
 		ORDER BY bmf.bbnum DESC
 	</select>
 
@@ -153,6 +154,7 @@
 	<select id="board_fesList" resultType="dto.FestivalDTO">
 	SELECT festival_num, festival_name
 	FROM f_festival
+	WHERE festival_num NOT IN(1)
 	ORDER BY festival_num ASC
 	</select>
 
@@ -161,9 +163,19 @@
 	</select>
 
 	<insert id="favor_insert" parameterType="dto.FavorDTO">
+	<if test="festival_num!=1">
 		INSERT INTO f_favor
-		VALUES(SEQ_f_favor_f_favor_num.nextval,#{mem_num},#{festival_num},#{favor_star})
+		VALUES(SEQ_f_favor_favor_num.nextval,#{mem_num},#{festival_num},#{favor_star})
+	</if>
 	</insert>
+	
+	<update id="favor_update" parameterType="dto.FavorDTO">	
+	<if test="festival_num!=1">
+		UPDATE f_favor SET
+		favor_star=#{favor_star}
+		WHERE mem_num=#{mem_num} AND festival_num=#{festival_num}
+	</if>
+	</update>
 	
 	
 	<select id="board_list" resultType="dto.BoardDTO" parameterType="dto.PageDTO" resultMap="list">

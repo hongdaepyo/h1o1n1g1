@@ -32,4 +32,11 @@ public interface BoardDAO {
 	public List<BoardPicDTO> PicViewMethod(int board_num);
 	
 	public void favorInsertMethod(FavorDTO fdto);
+	
+	public void favorUpdateMethod(FavorDTO fdto);
+	
+	public BoardDTO boardboardMethod(int board_num);
+	
+	public ReplyDTO reprepMethod(int rep_num);
+	
 }// end interface

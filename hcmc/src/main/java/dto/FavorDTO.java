@@ -1,9 +1,11 @@
 package dto;
 
 public class FavorDTO {
+	private int f_favor_num;
 	private int mem_num;
 	private int festival_num;
 	private float favor_star;
+	
 	
 	public FavorDTO() {
 	}
@@ -31,4 +33,13 @@ public class FavorDTO {
 	public void setFavor_star(float favor_star) {
 		this.favor_star = favor_star;
 	}
+
+	public int getF_favor_num() {
+		return f_favor_num;
+	}
+
+	public void setF_favor_num(int f_favor_num) {
+		this.f_favor_num = f_favor_num;
+	}
+
 }

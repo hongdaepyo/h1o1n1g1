@@ -2,6 +2,7 @@
 	margin: 0;
 	padding: 0;
 	border: 0;
+	background-color: ;
 }
 
 
@@ -76,16 +77,24 @@ ul{
 .logo #logout{
 	float: right;
 	position: absolute;
-	right: 80px;
+	right: 100px;
 }
+
 
 .logo #logout img{
-	position:absolute;
-	top:20px;
-	width: 50px;
-	height: 50px;	
+    position: absolute;
+    top: 50px;
+    width: 50px;
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    white-space: nowrap;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+    border: 1px solid #0066cc;
 }
-
 /* 텍스트창 */
 #com{
 	position: relative;
@@ -95,7 +104,7 @@ ul{
 }
 #com ul{
 	position: relative;
-	width: 1000px;
+	width: 1200px;
 	height: 80px;
 	margin-left: 20%;
 }
@@ -111,28 +120,59 @@ ul{
 
 #com ul li #loca{
 	width: 150px;
-	height: 50px;
-	background-color: #666666;
-	border: 1px solid #bfbfbf;
-	color:#bfbfbf;
+	height: 34px;
+	background-color: #fff;
+	border: 1px solid #bfbfbf;\
+	font: normal 14px '\5FAE\8F6F\96C5\9ED1';
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 0 26px 0 10px;
+    overflow: hidden;
+    text-align: left;
+    outline: none;
+    white-space: nowrap;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+	text-align: center;
+	
 }
 
 #com ul li #the{
 	width: 150px;
-	height: 50px;
-	background-color: #666666;
-	border: 1px solid #bfbfbf;
-	color:#bfbfbf;
+	height: 34px;
+	background-color: #fff;
+	border: 1px solid #bfbfbf;\
+	font: normal 14px '\5FAE\8F6F\96C5\9ED1';
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 0 26px 0 10px;
+    overflow: hidden;
+    text-align: left;
+    outline: none;
+    white-space: nowrap;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+	text-align: center;
 }
 
 #com ul li .yy{
-   width: 150px;
-   height: 50px;
-   background-color: #666666;
-   border: 1px solid #bfbfbf;
-   color:#bfbfbf;
-   text-align: center;
+    border: 1px solid #bfbfbf;
+    font: normal 14px '\5FAE\8F6F\96C5\9ED1';
+    width: 150px;
+    height: 34px;
+    border-radius: 3px;
+    background: #fff;
+    cursor: pointer;
+    padding: 0 26px 0 10px;
+    overflow: hidden;
+    text-align: left;
+    outline: none;
+    white-space: nowrap;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+    text-align: center;
 }
+
 
 #com #order{
 	position: relative;
@@ -162,15 +202,59 @@ ul{
 	background-color: #666666;
 }
 /* 월 축제 */
-#month_wrap{
+
+
+
+ #slider-demo a {
+  background-color: #ededed;
+  border-radius: 50%;
+  color: #444;
+  font-size: 5em;
+  line-height: 60px;
+  padding-bottom: 12px;
+  position: relative;
+  text-decoration: none;
+  width: 72px;
+  z-index: 2;
+} 
+
+#slider-demo a:hover {
+  color: black;
+  background-color: #cdcdcd;
+}
+
+#slider-demo a, #slider-inner {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+
+
+#slider-inner ul li {
+    float: left;
+    position: relative;
+    width: 25%;
+    height: 300px;
+    margin-left: 6%;
+    border: 1px solid #bfbfbf;
+    color: #666666;
+    text-align: center;
+}
+
+
+
+#slider-demo{
 	position: relative;
 	width:100%;
 	height:500px;
-	margin-top:100px;
+	/* margin-top:100px; */
 	background-color: #f4f4f4;
+    text-align: center;
 }
 
-#month_wrap .ss{
+
+#slider-demo .ss{
 	position: relative;
 	display:block;
 	text-align:center;
@@ -182,7 +266,7 @@ ul{
 	margin-left: 8%;
 }
 
-#month_wrap .fe{
+#slider-demo .fe{
 	position: relative;
     display: block;
     text-align: center;
@@ -194,30 +278,21 @@ ul{
     margin-left: 13%;
 }
 
-#month_wrap .flag img{
+#slider-demo .flag img{
 	position: relative;
-    width:150px;
+    width: 150px;
     height: 100px;
     top: -320px;
-    margin-left: 10%;
+    margin-left: -70%;
 }
 
-#month_wrap #month_festival{
-	position: relative;
-    width: 60%;
-    height: 400px;
-    margin-left: 20%;
-    margin-top: -401px;
-    border: 1px solid #bfbfbf;
-}
 
-#month_festival ul{
+#slider-inner ul{
 	float:left;
 	position: relative;
 	width:90%;
 	height: 80%;
 	margin-top:3%;
-	margin-left:5%;
 }
 
 p.touch_left_btn {
@@ -240,24 +315,12 @@ p.touch_right_btn {
 }
 
 
-#month_festival ul li{
-	float:left;
-	position: relative;
-	width:25%;
-	height: 300px;
-	margin-top: -180px;
-	margin-left:5%;
-	border: 1px solid #bfbfbf;
-	color:#666666;
-	text-align:center;
-}
-
-#month_festival ul li img{
+#slider-inner ul li img{
 	width:100%;
 	height: 200px;
 }
 
-#month_festival ul li .name{
+#slider-inner ul li .name{
 	font-size: 20px;
 	font-weight: 500;
 	text-align: center;
@@ -283,9 +346,16 @@ span .year, .addr{
 
 
 
-/* 검색창 */
+/* 검색화면*/
 #bodywrap{
 	min-height:50vh;
+}
+
+#bodywrap > div > div > span{
+	display: block;
+    text-align: center;
+    color: #bfbfbf;
+    margin-top: 8%;
 }
 
 #bodywrap .current{
@@ -309,9 +379,9 @@ span .year, .addr{
 	border : 1px solid #bfbfbf;
 }
 
-.search_w:hover{
+/* .search_w:hover{
 	background-color: #0066ff;
-}
+} */
 
 .search .search_w .pic{
 	position: relative;
@@ -346,16 +416,20 @@ span .year, .addr{
 	color:#666666;
 }
 
+
 .write p{
 	margin-top: 5px;
 	color:#666666;
 	/* #bfbfbf */
 }
+
+
 .write span{
 	display:block;
 	margin-top: 5px;
 	color:#666666;
 }
+
 
 .search_w .view{
 	position: relative;
@@ -366,6 +440,7 @@ span .year, .addr{
 	text-align: center;	
 }
 
+
 .search_w .view img{
 	width:20px;
 	height: 20px;
@@ -374,19 +449,33 @@ span .year, .addr{
 
 /* 로그인/회원가입 */
 
-#wrap #sign_form, #join_form{
-   width: 250px;
-   height: 310px;
-   margin-left:80%;
-   border:2px solid #666666;
-   background-color:#bfbfbf;
-   border-radius:5px;
-   z-index:30;
-   display: none;
+#sign_form, #join_form{
+	width: 250px;
+	height: 310px;
+	margin-left:80%;
+	border:1px solid rgba(0,0,0,0.15);
+	background-color:#fff;
+	border-radius:5px;
+	z-index:30;
+	display: none;
+	box-shadow: 0 6px 12px rgba(0,0,0,0.175);
 }
 
+#login_info{
+	width: 250px;
+	height: 150px;
+	margin-left:80%;
+	border:1px solid rgba(0,0,0,0.15);
+	background-color:#fff;
+	border-radius:5px;
+	z-index:30;
+	display: none;
+	box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+}
+
+
 #join_form{
-   height: 300px;
+	height: 300px;
 }
 
 
@@ -395,6 +484,55 @@ span .year, .addr{
 	width: 10%;
 	height: 10%;
 	margin-left:90%;
+}
+
+#loginup_form{
+	position:relative;
+	width:80%;
+	height:90%;
+	margin-left:10%;
+	margin-top: 10%;
+}
+#login_id{
+	position:relative;
+	width:100%;
+	height:20%;
+	border-radius: 5px;
+	border: 1px solid #666666;
+}
+
+#login_id>span {
+    display: block;
+    width: 80%;
+    height: 80%;
+    margin-top:2px;
+    font-size:14px;
+    margin-left: 20px;
+    text-align: center;
+    
+}
+
+#loginup_form span.hr{
+	position: relative;
+	display:block;
+	width:100%;
+	height: 10%;
+	border-bottom: 1px solid #666666;
+}
+
+#login_mypage{	
+	position:relative;
+	width:100%;
+	height:20%;
+	top:10px;	
+	text-align: center;
+}
+#login_logout{	
+	position:relative;
+	width:100%;
+	height:20%;	
+	text-align: center;
+	top:5px;
 }
 
 
@@ -421,6 +559,7 @@ span .year, .addr{
 	margin-left:5%;
 	margin-top:14%;
 	border-radius: 5px;
+	border: 1px solid #666666;
 	
 }
 
@@ -438,6 +577,7 @@ span .year, .addr{
 	margin-left:5%;
 	margin-top:5px;
 	border-radius: 5px;
+	border: 1px solid #666666;
 	
 }
 
@@ -458,6 +598,7 @@ span .year, .addr{
 }
 
 #pass_en> input{
+	border:1px solid #666666;
 	cursor:auto;
 	width: 100%;
 	height: 100%;
@@ -475,7 +616,7 @@ button{
 	width:80%;
 	margin-left:5%;
 	text-align: center;
-	color:white;
+	color:#666666;
 	
 }
 #login_btn{
@@ -499,12 +640,12 @@ button{
 	margin-top:5%;
 	margin-left:5%;
 	text-align: center;
-	border-bottom: 1px solid white;
+	border-bottom: 1px solid #666666;
 }
 
 #pass_search > a{
 	text-decoration: none;
-	color:white;
+	color:#666666;
 }
 
 #facebook{
@@ -517,7 +658,7 @@ button{
 
 #facebook a{
 	text-decoration: none;
-	color:white;
+	color:#666666;
 	font-size: 13px;
 	text-align: center;
 }
@@ -531,7 +672,7 @@ button{
 #facebook a img p{
 	text-align: center;
 	font-size: 14px;
-	color:white;
+	color:#666666;
 }
 
 #naver{
@@ -545,7 +686,7 @@ button{
 
 #naver a{
 	text-decoration: none;
-	color:white;
+	color:#666666;
 	font-size: 13px;
 	text-align: center;
 }
@@ -556,10 +697,10 @@ button{
 	width: 30px;
 }
 
-#naver a img p{
+#navera img p{
 	text-align: center;
 	font-size: 14px;
-	color:white;
+	color:#666666;
 }
 
 #join_btn{
@@ -575,6 +716,17 @@ button{
 	text-decoration: none;
 	cursor: pointer;
 }	
+
+
+.arr::before{
+	border-bottom:20px solid #d8d8d8;
+	top:-20px;
+	right: 97px;
+}
+
+*:before, *:after{
+	box-sizing:border-box;
+}
 
 /*  footer */
 

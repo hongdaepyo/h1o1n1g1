@@ -27,7 +27,13 @@
 	<select id="fes_info_city" parameterType="int" resultType='dto.CityDTO'>
 		select c.*
 		from f_festival f, f_city c 
-		where f.city_num=c.city_num and f.city_num=#{festival_num}
+		where f.city_num=c.city_num and f.city_num=#{city_num}
+	</select>
+	
+	<select id="fes_info_pic" parameterType="int" resultType='java.lang.String'>
+		select *
+		from f_festival_pic
+		where festival_num=#{festival_num}
 	</select>
 	
 	<resultMap type="dto.FestivalDTO" id="fes_list">
@@ -47,21 +53,38 @@
 			<result column="city_lati" property="city_lati"/>
 			<result column="city_long" property="city_long"/>
 		</collection>
+		<collection property="festival_pic" javaType="java.util.List" ofType="String">
+			<result column="festival_pic" property="festival_pic"/>
+		</collection>
 	</resultMap>
 	
 	<select id="list" resultMap="fes_list" parameterType="hashMap">
 	<![CDATA[
-		select f.*, c.city_name, c.city_address, c.city_lati, c.city_long
-		from f_festival f, f_city c
+		select f.*, c.city_name, c.city_address, c.city_lati, c.city_long, fp.festival_pic
+		from f_festival f, f_city c, f_festival_pic fp
 		where festival_start >= TO_DATE(#{y1},'YYYYMM') AND festival_start< TO_DATE(#{y2},'YYYYMM')
-		and f.city_num=c.city_num
-		order by festival_num
+		and f.city_num=c.city_num and f.festival_num=fp.festival_num(+)
 	]]>
 	</select>
+	
+	<resultMap type="dto.FestivalDTO" id="fes_pic_list">
+		<result column="festival_num" property="festival_num"/>
+		<result column="festival_name" property="festival_name"/>
+		
+	</resultMap>
+	
+	<select id="favor_list" resultType="dto.FavorDTO" parameterType="int">
+		select mem_num, festival_num from f_favor where mem_num=#{mem_num}
+	</select>
+	
 	
 	<update id="readCount" parameterType="int">
      update f_festival set festival_count=festival_count+1 where festival_num=#{num}
     </update>
+    
+    <insert id="favor_insert" parameterType="hashMap">
+    	insert into f_favor(f_favor_num, festival_num, mem_num) values(SEQ_f_favor_favor_num.nextval, #{fn}, #{mn}) 
+    </insert>
 
 
 </mapper>

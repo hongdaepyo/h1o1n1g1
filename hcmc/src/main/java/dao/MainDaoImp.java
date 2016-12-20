@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import dto.BoardDTO;
+import dto.FestivalDTO;
 
 public class MainDaoImp implements MainDao{
 	private SqlSessionTemplate sqlSession;
@@ -19,8 +20,13 @@ public class MainDaoImp implements MainDao{
 
 	@Override
 	public List<BoardDTO> mainMethod() {
-		System.out.println("daodaodao"+sqlSession.selectList("main.board"));
 		return sqlSession.selectList("main.board");
+	}
+
+	@Override
+	public List<FestivalDTO> cityMethod(String city_name) {
+		System.out.println("city_name : "+city_name);
+		return sqlSession.selectList("main.city_festival",city_name);
 	}
 
 }

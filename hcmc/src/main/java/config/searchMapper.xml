@@ -5,7 +5,7 @@
 
 <mapper namespace="search">
    
-   <resultMap type="dto.FestivalDTO" id="list_fe">
+    <resultMap type="dto.FestivalDTO" id="list_fe">
     <result column="festival_num" property="festival_num"/>
    	<result column="festival_name" property="festival_name"/>
    	<result column="festival_content" property="festival_content"/>
@@ -18,17 +18,33 @@
       <result column="city_address" property="city_address"/>
       <result column="city_name" property="city_name"/>
      </collection>
+     <collection property="festival_pic" javaType="java.util.List" ofType="java.lang.String">
+      <result column="festival_pic" property="festival_pic"/>
+     </collection>
    </resultMap>
    
    <select id="search_list" resultMap="list_fe" parameterType="dto.FestivalDTO">   
-    <![CDATA[
-    select f.festival_num, f.festival_name, f.festival_content, c.city_address, f.festival_start, f.festival_end, f.festival_count
-    from F_CITY c, F_FESTIVAL f
+    <![CDATA[    
+    select p.festival_pic,f.festival_num, f.festival_name, f.festival_content, c.city_address, f.festival_start, f.festival_end, f.festival_count
+    from F_CITY c, F_FESTIVAL f, F_FESTIVAL_PIC p
     where c.city_num = f.city_num 
+     and f.festival_num = p.festival_num(+)
      and c.city_name like #{name}|| '%' and f.festival_theme=#{theme} and f.festival_start>=TO_DATE(#{start},'YYYYMMDD') 
       and f.festival_start<TO_DATE(#{start}+1,'YYYYMMDD')
    ]]>   
-  </select>
+  </select> 
+  
+  <select id="research" resultMap="list_fe" parameterType="dto.FestivalDTO">   
+    <![CDATA[    
+    select p.festival_pic,f.festival_num, f.festival_name, f.festival_content, c.city_address, f.festival_start, f.festival_end, f.festival_count
+    from F_CITY c, F_FESTIVAL f, F_FESTIVAL_PIC p
+    where c.city_num = f.city_num 
+     and f.festival_num = p.festival_num
+     and c.city_name like #{name}|| '%' and f.festival_theme=#{theme} and f.festival_start>=TO_DATE(#{start},'YYYYMMDD') 
+      and f.festival_start<TO_DATE(#{start}+1,'YYYYMMDD')
+      order by f.festival_count desc
+   ]]>   
+  </select>  
   
   <select id="totalcount" resultType="int" parameterType="dto.FestivalDTO">
   <![CDATA[
@@ -56,12 +72,21 @@
 	
 	<select id="month_festival" resultMap="list_fe" parameterType="dto.FestivalDTO">
 	<![CDATA[
-	  select f.festival_name, f.festival_start, f.festival_end, c.city_address
-	  from F_CITY c, F_FESTIVAL f
+	  select p.festival_pic, f.festival_name, f.festival_start, f.festival_end, c.city_address
+	  from F_CITY c, F_FESTIVAL f, F_FESTIVAL_PIC p
       where c.city_num = f.city_num 
+       and f.festival_num = p.festival_num
        and festival_start >= TO_DATE(${start},'YYYYMM') AND festival_start< TO_DATE(${end},'YYYYMM')    
           or festival_end >= TO_DATE(${start},'YYYYMM') AND festival_end< TO_DATE(${end},'YYYYMM')  
         ]]>
 	</select>
+	
+	<!-- <select id="city_festival" resultMap="list_fe" parameterType="java.lang.String">
+	select p.festival_pic, f.festival_name, f.festival_start, f.festival_end, c.city_address
+	from f_festival f, f_festival_pic p, f_city c
+	where f.festival_num = p. festival_num
+	 and f.city_num = c.city_num
+ 	 and c.city_name like #{city_name}
+	</select> -->
    
 </mapper>

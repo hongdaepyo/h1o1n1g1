@@ -7,14 +7,12 @@
 	border: 0;
 }
 
-p{
-	font-size: 16px;
-    font-weight: 900;
-    padding-left: 40px;
-}
-
 #ad{
 	height:30px;
+}
+
+body > form:nth-child(3) > fieldset > p{
+	padding-top: 60px;
 }
 
 .cal_title span{
@@ -26,10 +24,11 @@ p{
 	width:auto;
 	margin:0px auto;
 	text-align: center;
+	margin-top: 22px;
 }
 
 .cal_title div span:nth-of-type(2){
-	color:#ff8000;
+	color:#0066cc;
 	margin:0px auto;
 	cursor:pointer;
 }
@@ -111,13 +110,24 @@ table tr td div span img{
 	border-bottom:2px dotted grey;
 	background: #e3e3e3;
 	width:100%;
+	border-radius: 14px;
 }
 
 
 .calendar_table {
-	width: 100%;
-	overflow: visible;
-	text-align: center;
+	width: 90%;
+    overflow: visible;
+    text-align: center;
+    margin-left: 5%;
+    margin-top: 10px;
+}
+
+#ad_close > img{
+	position: relative;
+	width:20px;
+	height:20px;
+	margin-left: 83%;
+    margin-top: -86px;
 }
 
 .calendar_table tr {
@@ -127,8 +137,8 @@ table tr td div span img{
 .calendar_table th {
 	background: #808080;
 	color: white;
-	height: 15px;
-	border-radius: 15px;
+	height: 15px;	
+	min-width:174px;
 }
 
 .calendar_table td {
@@ -138,8 +148,9 @@ table tr td div span img{
 
 .preview_on{
 	display: block;
-	width:auto;
-	height:auto;
+	width:10vw;
+	height:10vw;
+	border-radius:12px;
 	z-index: 10;
 	
 }
@@ -192,3 +203,394 @@ input[type=checkbox]:checked + label:before {
     line-height: 18px;  
 
 } 
+
+
+
+/*--------------------------------------헤더--------------------------------------------------------------------------*/
+#header{
+	height:100px;
+	position:relative;
+	
+}
+
+ul{
+	list-style: none;
+	
+}
+
+
+.logo li img:nth-of-type(1){
+	width: 100px;
+	height: 80px;
+	float: left;
+	
+}
+
+
+
+.logo .lo img{
+	position: absolute;
+	width: 200px;
+	height: 100px;	
+}
+
+
+.logo #login{		
+	float: right;
+	position:absolute;
+	right: 150px;	
+	cursor: pointer;
+}
+
+
+
+.logo #login span{		
+	display:block;
+	position:absolute;
+	top:30px;
+	width: 50px;
+}
+
+
+
+.logo #login img{
+	position:absolute;
+	top:20px;
+	width: 50px;
+	height: 50px;	
+}
+
+.logo #join{
+	float: right;
+	position: absolute;
+	right: 80px;
+}
+
+.logo #join img{
+	position:absolute;
+	top:20px;
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+}
+
+.logo #logout{
+	float: right;
+	position: absolute;
+	right: 100px;
+}
+
+
+.logo #logout img{
+    position: absolute;
+    top: 50px;
+    width: 50px;
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    white-space: nowrap;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+    border: 1px solid #0066cc;
+}
+
+
+
+#gnb{
+	height:40px;
+	background-color: #666666;
+}
+
+body > form:nth-child(6) > fieldset > p{
+	font-size: 16px;
+    font-weight: 900;
+    padding-left: 40px;
+	padding-top: 60px;
+}
+
+body > form:nth-child(7) > fieldset > p{
+	font-size: 16px;
+    font-weight: 900;
+    padding-left: 40px;
+}
+
+#sign_form, #join_form{
+	width: 250px;
+	height: 310px;
+	margin-left:80%;
+	border:1px solid rgba(0,0,0,0.15);
+	background-color:#fff;
+	border-radius:5px;
+	z-index:30;
+	display: none;
+	box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+}
+
+#login_info{
+	width: 250px;
+	height: 150px;
+	margin-left:80%;
+	border:1px solid rgba(0,0,0,0.15);
+	background-color:#fff;
+	border-radius:5px;
+	z-index:30;
+	display: none;
+	box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+}
+
+
+#join_form{
+	height: 300px;
+}
+
+
+#del{
+	position: relative;
+	width: 10%;
+	height: 10%;
+	margin-left:90%;
+}
+
+#loginup_form{
+	position:relative;
+	width:80%;
+	height:90%;
+	margin-left:10%;
+	margin-top: 10%;
+}
+#login_id{
+	position:relative;
+	width:100%;
+	height:20%;
+	border-radius: 5px;
+	border: 1px solid #666666;
+}
+
+#login_id>span {
+    display: block;
+    width: 80%;
+    height: 80%;
+    margin-top:2px;
+    font-size:14px;
+    margin-left: 20px;
+    text-align: center;
+    
+}
+
+#loginup_form span.hr{
+	position: relative;
+	display:block;
+	width:100%;
+	height: 10%;
+	border-bottom: 1px solid #666666;
+}
+
+#login_mypage{	
+	position:relative;
+	width:100%;
+	height:20%;
+	top:10px;	
+	text-align: center;
+}
+#login_logout{	
+	position:relative;
+	width:100%;
+	height:20%;	
+	text-align: center;
+	top:5px;
+}
+
+
+#signup_form{
+	position:relative;
+	width:80%;
+	height:90%;
+	margin-left:10%;
+	margin-top: -10%;
+}
+
+#joinup_form{
+	position:relative;
+	width:80%;
+	height:90%;
+	margin-left:10%;
+	margin-top:-10%;
+}
+
+#email{
+	position: relative;
+	width: 90%;
+	height: 10%;
+	margin-left:5%;
+	margin-top:14%;
+	border-radius: 5px;
+	border: 1px solid #666666;
+	
+}
+
+#email> input{
+	cursor:auto;
+	width: 100%;
+	height: 100%;	
+	border-radius: 5px;
+}
+
+#pass{
+	position: relative;
+	width: 90%;
+	height: 10%;
+	margin-left:5%;
+	margin-top:5px;
+	border-radius: 5px;
+	border: 1px solid #666666;
+	
+}
+
+#pass> input{
+	cursor:auto;
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+}
+
+#pass_en{
+	position: relative;
+	width: 90%;
+	height: 10%;
+	margin-left:5%;
+	margin-top:5px;
+	border-radius: 5px;
+	    border: 1px solid #666666;
+}
+
+#pass_en> input{
+	cursor:auto;
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+}
+
+button{
+	background-color: transparent;
+}
+
+
+#checked{
+	position: relative;
+	top:10px;
+	width:80%;
+	margin-left:5%;
+	text-align: center;
+	color:#666666;
+	
+}
+#login_btn{
+	position: relative;
+	width: 90%;
+	height:10%;
+	margin-left:5%;
+	margin-top:15%;
+	background-color: #0066cc;	
+	color:#bfbfbf;
+	border-radius: 5px;
+	text-align: center;
+	text-align: center;
+	cursor: pointer;	
+}
+
+#pass_search{
+	position: relative;
+	width: 90%;
+	height: 10%;
+	margin-top:5%;
+	margin-left:5%;
+	text-align: center;
+	border-bottom: 1px solid #666666;
+}
+
+#pass_search > a{
+	text-decoration: none;
+	color:#666666;
+}
+
+#facebook{
+	position: relative;
+	width: 40%;
+	height: 30%;
+	top:10px;
+	
+}
+
+#facebook a{
+	text-decoration: none;
+	color:#666666;
+	font-size: 13px;
+	text-align: center;
+}
+
+#facebook a img{
+	margin-top:10%;
+	margin-left:30%;
+	width: 30px;
+}
+
+#facebook a img p{
+	text-align: center;
+	font-size: 14px;
+	color:#666666;
+}
+
+#naver{
+	position: relative;
+	width: 40%;
+	height: 30%;
+	top:-71px;
+	left: 50%;
+	
+}
+
+#naver a{
+	text-decoration: none;
+	color:#666666;
+	font-size: 13px;
+	text-align: center;
+}
+
+#naver a img{
+	margin-top:10%;
+	margin-left:30%;
+	width: 30px;
+}
+
+#navera img p{
+	text-align: center;
+	font-size: 14px;
+	color:#666666;
+}
+
+#join_btn{
+	position: relative;
+	width: 90%;
+	height:10%;
+	margin-left:5%;
+	margin-top:15%;
+	background-color: #0066cc;	
+	color:#bfbfbf;
+	border-radius: 5px;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+}	
+
+
+.arr::before{
+	border-bottom:20px solid #d8d8d8;
+	top:-20px;
+	right: 97px;
+}
+
+*:before, *:after{
+	box-sizing:border-box;
+}

@@ -18,5 +18,24 @@
      from f_member m, f_board b
      where m.mem_num = b.mem_num
   </select>
+  
+  <resultMap type="dto.FestivalDTO" id="list_fe_2">
+   	<result column="festival_name" property="festival_name"/>
+    <result column="festival_start" property="festival_start"/>
+    <result column="festival_end" property="festival_end"/>
+     <collection property="city" javaType="java.util.List" ofType="dto.CityDTO">
+      <result column="city_address" property="city_address"/>
+     </collection>
+     <collection property="festival_pic" javaType="java.util.List" ofType="java.lang.String">
+      <result column="festival_pic" property="festival_pic"/>
+     </collection>
+   </resultMap>
+	
+	<select id="city_festival" resultMap="list_fe_2" parameterType="java.lang.String">
+	select p.festival_pic, f.festival_name, f.festival_start, f.festival_end, c.city_address
+	from f_festival f, f_festival_pic p, f_city c
+	where f.city_num = c.city_num and f.festival_num = p.festival_num
+ 	 and c.city_name like #{city_name}
+	</select>
    
 </mapper>

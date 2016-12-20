@@ -1,8 +1,17 @@
 package service;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import dao.AdminDao;
 import dto.BoardDTO;
@@ -37,9 +46,37 @@ public class AdminServiceImp implements AdminService{
 	}//모든 회원 정보를 회원번호 순으로 정렬하여 가져와서 리턴
 
 	@Override
-	public void fUpdateProcess(FestivalDTO fdto) {
-		dao.fUpdateMethod(fdto);
-	}//FestivalDTO에 수정된 회원정보를 담아와서 업데이트 
+	public void fUpdateProcess(FestivalDTO fdto, HttpServletRequest req) {
+		List<String> sList = new ArrayList<String>();
+		if(fdto.getFestival_filename() != null){
+			for(int i=0; i<fdto.getFestival_filename().length;i++){
+				MultipartFile file= fdto.getFestival_filename()[i];
+				if(!file.isEmpty()){
+					String fileName = file.getOriginalFilename();
+					//중복파일명을 처리하기 위해 난수 발생
+					UUID random = UUID.randomUUID();
+					String root = req.getSession().getServletContext().getRealPath("/");
+					String saveDirectory = root + "temp" + File.separator;
+					File fe=new File(saveDirectory);
+					if(!fe.exists()){
+						fe.mkdirs();
+					}
+					File ff= new File(saveDirectory, random+"_"+fileName);
+					try {
+						FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(ff));
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					sList.add(random+"_"+fileName);
+				}
+			}
+			fdto.setFestival_pic(sList);
+			System.out.println("adminservice:"+sList.toString());
+		}
+		dao.fUpdateMethod(fdto);	
+	}//파일을 배열로 담아와서 스트링 리스트로 바꾼후 업데이트
 
 	@Override
 	public void bUpdateProcess(BoardDTO bdto) {
@@ -62,8 +99,38 @@ public class AdminServiceImp implements AdminService{
 		dao.fAddMethod(fdto);
 		return dao.fListMethod();
 	}//축제추가 폼에 입력된 정보를 FestivalDTO로 담아와서 입력하고 축제 정보를 다시 받아와서 리턴
-	
-	
-	
 
+	@Override
+	public void fInsProcess(FestivalDTO fdto, HttpServletRequest req) {
+		List<String> sList = new ArrayList<String>();
+		if(fdto.getFestival_filename() != null){
+			for(int i=0; i<fdto.getFestival_filename().length;i++){
+				MultipartFile file= fdto.getFestival_filename()[i];
+				if(!file.isEmpty()){
+					String fileName = file.getOriginalFilename();
+					//중복파일명을 처리하기 위해 난수 발생
+					UUID random = UUID.randomUUID();
+					String root = req.getSession().getServletContext().getRealPath("/");
+					String saveDirectory = root + "temp" + File.separator;
+					File fe=new File(saveDirectory);
+					if(!fe.exists()){
+						fe.mkdirs();
+					}
+					File ff= new File(saveDirectory, random+"_"+fileName);
+					try {
+						FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(ff));
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					sList.add(random+"_"+fileName);
+				}
+			}
+			fdto.setFestival_pic(sList);
+			System.out.println("adminservice:"+sList.toString());
+		}
+		dao.fInsMethod(fdto);		
+	}//파일을 배열로 담아와서 스트링 리스트로 바꾼후 인서트.
+	
 }

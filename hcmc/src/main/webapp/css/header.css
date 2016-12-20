@@ -4,7 +4,77 @@
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
-	border: 0;
 }
 
+ul{
+	list-style: none;
+	
+}
+
+.mypage_logo{
+	text-decoration: none;
+}
+
+.mypage_logo li img:nth-of-type(1){
+	width: 100px;
+	height: 80px;
+	float: left;
+	
+}
+
+
+
+.mypage_logo .lo img{
+	position: absolute;
+	width: 200px;
+	height: 100px;	
+}
+ #mypage_lo img{
+	position:absolute;
+	top:20px;
+	width: 50px;
+	height: 50px;	
+}
+
+ #mypage_logout{
+	float: right;
+	position: absolute;
+	right: 80px;
+}
+
+#admin_header > ul > li.mypage_logout{
+    float: right;
+    position: absolute;
+    right: 100px;
+}
+
+ #mypage_logout img{
+	position:absolute;
+	top:20px;
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+}
+
+ #logout{
+	float: right;
+	position: absolute;
+	right: 100px;
+}
+
+#admin_header ul .mypage_logout img{
+	position: absolute;
+    top: 50px;
+    width: 50px;
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    white-space: nowrap;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+    border: 1px solid #0066cc
+	
+}
 

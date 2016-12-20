@@ -1,4 +1,6 @@
 $(function(){
+
+	
 	  $("#login").hover(function(){
 		   $('#login a img').prop("src","icon/login3.png");		   
 	  },function(){
@@ -11,7 +13,9 @@ $(function(){
 	       $('#join a img').prop("src","icon/join1.png");	   
 	  });
 	  
-	 
+	  $('#recommends > li> a').on('click',function(e){
+		  e.preventDefault();
+	  });
 	  
 	  
 	  $("#top .slide #location").hover(function(){
@@ -77,10 +81,9 @@ $(function(){
 		  $(this).css({'color':'#bfbfbf'});
 	  });
 	  
-	  
 	  //지역의 이미지를 클릭할 시 검색창으로 넘긴다.
-	  $(".ff_ff li img").on("click",function(e){
-		  
+	  $(".ei-slider-thumbs li a").on("click",function(e){
+		  e.preventDefault();
 		  var name = $(e.target).parent().attr('name');
 		  $('option').filter('.'+name).prop('selected',true);
 		  $('option').not('.'+name).prop('selected',false);
@@ -100,36 +103,84 @@ $(function(){
 	  
 
 	  //검색 버튼을 누르면 값을 챙긴다.
-	  $('#datepicker, #loca, .alone').change(function(){
+	  $('.tt a').on('click',function(){
 		 var city_name =$("#loca option:selected").val();
 		 var festival_theme = $(':radio[name="theme"]:checked').val();
 		 var festival_start = $('#datepicker').val();
-		 console.log(city_name,festival_theme,festival_start);
-		 $('.tt a').attr('href',"search.do?city_name="+city_name+"&festival_theme="+festival_theme+"&festival_start="+festival_start);
+		 if(city_name!='지역명을 선택하세요'){
+			 if(festival_theme!=null){				 
+				 if(festival_start!='날짜선택'){
+					 $('.tt a').attr('href',"search.do?city_name="+city_name+"&festival_theme="+festival_theme+"&festival_start="+festival_start);
+				 }else{
+					 alert("기간을 선택해주세요");
+				 }//end festival_start!=null
+			 }else{
+				 alert("테마를 선택해주세요");
+			 }//end festival_theme!=null
+		 }else{
+			 alert("지역을 선택해주세요");			 
+		 }//end city_name!=null
+		 
+		 
 	  });//검색 칸에 값이 변하면 a 요소의 링크를 변경해줌
 	  
 	  
 	//tabs메뉴 hover  
-	  $("#tab ul li:nth-of-type(1)").hover(function(){
-		  $('#tabs-1').css({'display':'block'});
-			$('#tabs-2').css({'display':'none'});
-			$('#tabs-3').css({'display':'none'});
-	  });
-	  
-	  $("#tab ul li:nth-of-type(2)").hover(function(){
-		  $('#tabs-1').css({'display':'none'});
-			$('#tabs-2').css({'display':'block'});
-			$('#tabs-3').css({'display':'none'});
-	  });
-	  
-	  $("#tab ul li:nth-of-type(3)").hover(function(){
-		  $('#tabs-1').css({'display':'none'});
-			$('#tabs-2').css({'display':'none'});
-			$('#tabs-3').css({'display':'block'});
-	  });
-	  
-	  
-	  
+	  $("#tab ul li").on('click',function(e){
+		  var name=$(e.target).attr('name');
+			$(function(){
+				city_name="city_name="+name;
+				$.ajax({			
+					type:'POST',
+					dataType:'json',
+					url:'city.do',
+					data:city_name,
+					success:function(res){
+						city_name=res;
+						$('#menu1').empty();						 
+						for(var i = 0; i < res.length; i++){
+							var start=$.datepicker.formatDate('yy MM dd', new Date(city_name[i].festival_start));
+							var end=$.datepicker.formatDate('yy MM dd', new Date(city_name[i].festival_end));
+							/*if((i+1)%4==0){
+								$('#menu1').append('<li><img src="image.do?filename='+city_name[i].festival_pic[i]+'"/><span class="name">'+city_name[i].festival_name+'</span><span class="start">'+start+'~'+end+'</span><span class="line"></span><span class="addr">'+city_name[i].city[0].city_address+'</span></li>');
+							}	*/
+							$('#menu1').append('<li><img src="image.do?filename='+city_name[i].festival_pic[i]+'"/><span class="name">'+city_name[i].festival_name+'</span><span class="start">'+start+'~'+end+'</span><span class="line"></span><span class="addr">'+city_name[i].city[0].city_address+'</span></li>');								
+						}		 
+						
+						var mySlider = $("#menu1").bxSlider({
+							mode : "horizontal", // 가로 수평으로 슬라이드 됩니다.
+							speed : 400, // 이동 속도를 설정합니다.
+							pager : false, // 현재 위치 페이징 표시 여부 설정.
+							moveSlides : 4, // 슬라이드 이동시 갯수 설정.
+							slideWidth :1010, // 슬라이드 마다 너비 설정.
+							minSlides : 4, // 최소 노출 개수를 설정합니다.
+							maxSlides : 4, // 최대 노출 개수를 설정합니다.
+							slideMargin :10, // 슬라이드간의 간격을 설정합니다.
+							auto : true, // 자동으로 흐를지 설정합니다.
+							autoHover : true, // 마우스 오버시 정시킬지 설정합니다.
+							autoControls: true,
+							controls : false
+						// 이전 다음 버튼 노출 여부 설정합니다.
+						});
+						
+						$(".arrowup a").on("click", function() {
+							mySlider.goToPrevSlide(); // 이전 슬라이드 배너로 이동됩니다.
+							return false; // <a>에 링크를 차단합니다.
+						});
+						// 다음 버튼을 클릭하면 다음 슬라이드로 전환됩니다.
+						$(".arrowdown a").on("click", function() {
+							mySlider.goToNextSlide(); // 다음 슬라이드 배너로 이동됩니다.
+							return false;
+						});
+						
+					},
+				error:function(request,status,error){
+					//에러 메시지 띄워주는 부분
+						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
+				})
+			});			
+		    
+	  });	  
 	  
 });
 
@@ -144,35 +195,7 @@ $( function() {
     	showMonthAfterYear:true,
     	
     });
-    
-    var mySlider = $(".pic").bxSlider({
-		mode : "horizontal", // 가로 수평으로 슬라이드 됩니다.
-		speed : 500, // 이동 속도를 설정합니다.
-		pager : false, // 현재 위치 페이징 표시 여부 설정.
-		moveSlides : 1, // 슬라이드 이동시 갯수 설정.
-		slideWidth :2000, // 슬라이드 마다 너비 설정.
-		minSlides : 1, // 최소 노출 개수를 설정합니다.
-		maxSlides : 1, // 최대 노출 개수를 설정합니다.
-		slideMargin :10, // 슬라이드간의 간격을 설정합니다.
-		auto : true, // 자동으로 흐를지 설정합니다.
-		autoHover : true, // 마우스 오버시 정시킬지 설정합니다.
-		autoControls: true,
-		controls : false
-	// 이전 다음 버튼 노출 여부 설정합니다.
-	});
-    
- // 이전 버튼을 클릭하면 이전 슬라이드로 전환됩니다.
-	$("#main .touch_left_btn a").on("click", function() {
-		mySlider.goToPrevSlide(); // 이전 슬라이드 배너로 이동됩니다.
-		// <a>에 링크를 차단합니다.
-	});
-	// 다음 버튼을 클릭하면 다음 슬라이드로 전환됩니다.
-	$("#main .touch_right_btn a").on("click", function() {
-		mySlider.goToNextSlide(); // 다음 슬라이드 배너로 이동됩니다.
-		
-	});
-
-
+   
 	
   });
 
@@ -204,41 +227,9 @@ $(function(){
 		return false;
 	});
 })
+
   
   $(function() {
-		$("#menu1").AccordionImageMenu({
-			position : 'horizontal', //아코디언 가로/세로 방향을 설정 설정합니다.
-			openItem : 0, //마우스를 올리지 않았을 때 기본 열려있는 배너를 설정함. 
-			openDim : 500, //열려있는 배너의 너비를 설정함. 
-			closeDim : 250, //닫혀있는 배너의 너비를 설정함. 
-			height : 350, //배너의 높이를 설정함. 
-			duration : 300, //전환되는 속도를 설정합니다. 
-			effect : 'easeOutQuint', //전환될 때의 가속도를 설정합니다.
-			border : 0 //선의 생성을 설정합니다.
-		});
-		
-		$("#menu2").AccordionImageMenu({
-			position : 'horizontal', //아코디언 가로/세로 방향을 설정 설정합니다.
-			openItem : 0, //마우스를 올리지 않았을 때 기본 열려있는 배너를 설정함. 
-			openDim : 500, //열려있는 배너의 너비를 설정함. 
-			closeDim : 250, //닫혀있는 배너의 너비를 설정함. 
-			height : 350, //배너의 높이를 설정함. 
-			duration : 300, //전환되는 속도를 설정합니다. 
-			effect : 'easeOutQuint', //전환될 때의 가속도를 설정합니다.
-			border : 0 //선의 생성을 설정합니다.
-		});
-		
-		$("#menu3").AccordionImageMenu({
-			position : 'horizontal', //아코디언 가로/세로 방향을 설정 설정합니다.
-			openItem : 0, //마우스를 올리지 않았을 때 기본 열려있는 배너를 설정함. 
-			openDim : 500, //열려있는 배너의 너비를 설정함. 
-			closeDim : 250, //닫혀있는 배너의 너비를 설정함. 
-			height : 350, //배너의 높이를 설정함. 
-			duration : 300, //전환되는 속도를 설정합니다. 
-			effect : 'easeOutQuint', //전환될 때의 가속도를 설정합니다.
-			border : 0 //선의 생성을 설정합니다.
-		});
-		
 		$("#recommend #recommend_f #recommends").AccordionImageMenu({
 			position : 'horizontal', //아코디언 가로/세로 방향을 설정 설정합니다.
 			openItem : 0, //마우스를 올리지 않았을 때 기본 열려있는 배너를 설정함. 
@@ -279,24 +270,74 @@ $(function(){
 	});////////////////////////////////////////////////////////////////////////////////////////////
   
 
-  function searchView(res){
+  function searchView(){
+	  var name='서울';
+		$(function(){
+			city_name="city_name="+name;
+			$.ajax({			
+				type:'POST',
+				dataType:'json',
+				url:'city.do',
+				data:city_name,
+				success:function(res){
+					city_name=res;
+					$('#menu1').empty();					 
+					for(var i = 0; i < res.length; i++){
+						var start=$.datepicker.formatDate('yy MM dd', new Date(city_name[i].festival_start));
+						var end=$.datepicker.formatDate('yy MM dd', new Date(city_name[i].festival_end));
+							$('#menu1').append('<li><img src="image.do?filename='+city_name[i].festival_pic[i]+'"/><span class="name">'+city_name[i].festival_name+'</span><span class="start">'+start+'~'+end+'</span><span class="line"></span><span class="addr">'+city_name[i].city[0].city_address+'</span></li>');							
+					}
+					
+					var mySlider = $("#menu1").bxSlider({
+						mode : "horizontal", // 가로 수평으로 슬라이드 됩니다.
+						speed : 400, // 이동 속도를 설정합니다.
+						pager : false, // 현재 위치 페이징 표시 여부 설정.
+						moveSlides : 4, // 슬라이드 이동시 갯수 설정.
+						slideWidth :1010, // 슬라이드 마다 너비 설정.
+						minSlides : 4, // 최소 노출 개수를 설정합니다.
+						maxSlides : 4, // 최대 노출 개수를 설정합니다.
+						slideMargin :10, // 슬라이드간의 간격을 설정합니다.						auto : true, // 자동으로 흐를지 설정합니다.
+						autoHover : true, // 마우스 오버시 정시킬지 설정합니다.
+						autoControls: true,
+						controls : false
+					// 이전 다음 버튼 노출 여부 설정합니다.
+					});
+					
+					$(".arrowup a").on("click", function() {
+						mySlider.goToPrevSlide(); // 이전 슬라이드 배너로 이동됩니다.
+						return false; // <a>에 링크를 차단합니다.
+					});
+					// 다음 버튼을 클릭하면 다음 슬라이드로 전환됩니다.
+					$(".arrowdown a").on("click", function() {
+						mySlider.goToNextSlide(); // 다음 슬라이드 배너로 이동됩니다.
+						return false;
+					});
+					
+					$('#tabs-1 > div.bx-wrapper > div.bx-viewport').css({'height':'402px'});
+				},
+			error:function(request,status,error){
+				//에러 메시지 띄워주는 부분
+					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
+			})
+		});		
 	  
   }
   //헤더부분 변경
   function headerView(id){
-	  $('#join_form').css({"display":"none"});		
-	  $('#header').empty();
-	  $('#header').append('<ul class="logo"><li><a href="#"><img src="icon/main2.png" /></a></li><li class="lo"><img src="icon/logo_text.png"/></li><li id="login"><span>'+id+'님 환영합니다.</span></li><li id="logout"><a href="logout.do"><img src="icon/logout2.png"/></a></li></ul>');
-       
-	  $("#logout").hover(function(){
-		   $('#logout a img').prop("src","icon/logout.png");		   
-	  },function(){
-	       $('#logout a img').prop("src","icon/logout2.png");	   
-	  });
+	     $('#join_form').css({"display":"none"});  
+	     $('#header').empty();
+	     $('#header').append('<ul class="logo"><li><a href="#"><img src="icon/main2.png" /></a></li><li class="lo"><img src="icon/logo_text.png"/></li><li id="login"><span></span></li><li id="logout"><img src="icon/user2.png"/></li></ul>');		     
+	    
+	  		     
+	      $("#login_info").hide();
+		  $("#logout").on("click",function(){
+			  $('#login_info').fadeToggle('normal'); 
+			  $('#login_info').css({'position':'absolute','left':'64px','top':'84px'});
+
+		  });
 	  
-	  
-  
-  }//end headerView()
+
+}//end headerView()
   
   function memberRegister(){
 	  	//아이디 :  영문자, $,_로 시작하고 총 5-8개

@@ -3,6 +3,8 @@ package dto;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class FestivalDTO {
 	private int festival_num;
 	private int city_num;
@@ -16,6 +18,28 @@ public class FestivalDTO {
 	private String festival_content;
 	private int star;
 	private List<CityDTO> city;
+	private List<FavorDTO> favor;
+	
+	
+
+	public List<FavorDTO> getFavor() {
+		return favor;
+	}
+
+	public void setFavor(List<FavorDTO> favor) {
+		this.favor = favor;
+	}
+
+	private List<String> festival_pic;
+	private MultipartFile[] festival_filename;
+
+	public MultipartFile[] getFestival_filename() {
+		return festival_filename;
+	}
+
+	public void setFestival_filename(MultipartFile[] festival_filename) {
+		this.festival_filename = festival_filename;
+	}
 
 	public List<CityDTO> getCity() {
 		return city;
@@ -116,6 +140,14 @@ public class FestivalDTO {
 
 	public void setCity_num(int city_num) {
 		this.city_num = city_num;
+	}
+
+	public List<String> getFestival_pic() {
+		return festival_pic;
+	}
+
+	public void setFestival_pic(List<String> festival_pic) {
+		this.festival_pic = festival_pic;
 	}
 
 }// end class

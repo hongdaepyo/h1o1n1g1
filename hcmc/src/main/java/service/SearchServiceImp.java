@@ -75,6 +75,17 @@ public class SearchServiceImp implements SearchService{
 	      map.put("end", yearint2);
 		return dao.monthList(map);
 	}
+	
+	
+	
+	@Override
+	public List<FestivalDTO> researchProcess(String city_name, String festival_theme, String festival_start) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("name", city_name);
+		map.put("theme", festival_theme);
+		map.put("start", festival_start);
+		return dao.researchMethod(map);
+	}
 
 
 }

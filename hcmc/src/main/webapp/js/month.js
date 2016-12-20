@@ -43,6 +43,17 @@ $(function(){
 				window.location.reload();
 	});//이번 달 버튼
 	
+	$('#ad_show').on('click',function(e){
+		e.preventDefault();
+		var w_d = $(document).width();
+		var h_d = $(document).height();
+		festival_view(13);
+		festival_map(); //축제정보맵 호출
+		resize_info(w_d,h_d); //축제정보창 띄우기
+		if (chkis==false )
+		userfavor_inner(13);
+	});///////////////상부 배너 클릭///////////////////////////////
+	
 	
 });
 
@@ -81,7 +92,7 @@ function cal(m, y){
 			if (i === 1 && k<=theDay || dNum>lastDate) {
 				calendar += "<td> &nbsp; </td>";
 			} else {
-				calendar += "<td><span class='date'>" + dNum+"</span><div class='"+dNum+"' ><span name=''>축제추가</span></div>" + "</td>";
+				calendar += "<td><span class='date'>" + dNum+"</span><div class='"+dNum+"' ></div>" + "</td>";
 				dNum++;
 			}
 		}
@@ -100,9 +111,14 @@ function fest_list(m,y){
 		data:'month='+(m+1)+'&year='+y,
 		url:"calendar2.do",
 		success:function(res){
+			console.log(res);
 			festival2=res;
 			cal_inner(res);
-			loc_icon(); //더 손봐야됨
+			if(chkis==false)
+				userfavor(mem_num);
+			else
+				loc_icon();
+			
 		}
 	})
 }//달력에 넣어줄 축제 내용을 불러옴
@@ -120,6 +136,41 @@ function loc_icon(){
 	var city=$('table tr td span').attr('name');
 	
 	for(var i=0;i<city_list.length;i++){
-	      $('span[class*='+city_list[i]+']').prepend('<img src="images/'+city_pic[i]+'.png" width=22px, height=22px />');
+	      $('span[class*='+city_list[i]+']').prepend('<img class="loc_icon" src="images/'+city_pic[i]+'.png" width=22px, height=22px />');
 	}
 }
+
+function userfavor(mem_num){
+	$.ajax({
+		type:'post',
+		dataType:'json',
+		data:'mem_num='+mem_num,
+		url:"favorList.do",
+		success:function(res){
+			console.log('userfavor'+res);
+			favor=res;
+			$('.favor_heart, .loc_icon').remove();
+			for(var i=0;i<res.length;i++){
+				var idx=res[i].festival_num;
+				console.log(idx);
+				$('span[name="'+idx+'"]').prepend('<img class="favor_heart" src="icon/heart-yes.png" width=20px, height=20px title="즐겨찾는 축제"/>');
+			}
+			loc_icon();
+		}
+	})
+	
+}//유저가 로그인상태로 달력으로 오면 즐겨찾기된 축제에 하트를 붙여줌
+
+function userfavor_inner(n){
+	for(var i=0;i<favor.length;i++){
+		var aa=favor[i].festival_num;
+		if(n==aa){
+			$('#favor_insert').attr('src','icon/heart-yes.png');
+			break;
+		}
+		
+		if(n!=aa){
+			$('#favor_insert').attr('src','icon/heart-no.png');
+		}
+	}
+}//축제 정보창의 즐겨찾기 하트 모양을 바꿈

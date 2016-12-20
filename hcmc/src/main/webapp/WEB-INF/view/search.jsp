@@ -8,35 +8,53 @@
 <head>
 <meta charset="UTF-8">
 <title>흥 청 망 청</title>
+<link rel="stylesheet" type="text/css" href="css/demo.css" />
 <link href="css/search.css?ver=1" type="text/css" rel="stylesheet" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="js/search.js?ver=1"></script>
 
-<script src="js/festival_info.js?ver=1"></script>
-<script src="//apis.daum.net/maps/maps3.js?apikey=945948afbe6a4f41cd89e5fd9efe678e&libraries=services"></script>
+<script src="js/festival_info2.js?ver=1"></script>
+<script src="//apis.daum.net/maps/maps3.js?apikey=5ee006ef2a6a3775fb080c9b4180f51e&libraries=services"></script>
 <link rel="stylesheet" type="text/css" href="css/festival_info.css?ver=1">
 
 <!-- datepicker --> 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<!-- bxslide -->
-<!-- <link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css" media="all" /> -->
-<!-- 터치 슬라이드 플러그인 연동 -->
-<script src="js/jquery.bxslider.js"></script>
-<script src="js/jquery.bxslider.min.js"></script>
-<!-- bxSlider 플러그인 연동 -->
-<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+<!-- 사진 넘기기 -->
+<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
+<script type="text/javascript" src="js/slider.jquery.js"></script>
+<link href="css/slide_styles.css" type="text/css" rel="stylesheet" />
+<!-- select부드럽게 -->
+<link rel="stylesheet" type="text/css" href="css/jquery.selectlist.css">
+
+<script src="js/jquery.magnific-popup2.js"></script>
+<link rel="stylesheet" href="css/magnific-popup.css"> 
+
 
 <script type="text/javascript">
+
+
 var festival;
-$(document).ready(function(){
-	var chk ='${empty sessionScope.chk}' == 'true' ? true : false;
-	console.log(chk);
+var mem_num;
+
+$(document).ready(function(){   	
 	
-	if(!chk){
-		headerView('${sessionScope.id}');
-	}	
+	var chkis ='${empty sessionScope.chk}' == 'true' ? true : false;
+	var chk='${sessionScope.chk}';
+	console.log(chkis+'mem_num:${sessionScope.mem_num}/////id:${sessionScope.id}');
+	
+	if('${empty sessionScope.mem_num}'!= 'true')
+		mem_num='${sessionScope.mem_num}';
+	
+	switch(chk){
+	case '0':console.log("운영자 로그인"); 
+	var url = "http://localhost:8090/hcmc/admin.do";
+	   $(location).attr('href',url); break;
+	case '1':console.log("일반회원 로그인");
+	         headerView('${sessionScope.id}');break;
+	case '2':alert('인증 메일을 전송했습니다. 확인해주세요.'); break;
+	}
 	
 	var w_d = $(document).width();
 	var h_d = $(document).height();
@@ -49,17 +67,25 @@ $(document).ready(function(){
 	 $(document).on('click','.search_w .write h3',function(e){
 		 		
 			var n=$(e.target).prev().val();
+			$('.festival_picpic').empty();
 			if(n!=""){
 				festival_view(n); //축제정보 가져오기
 				festival_map(); //축제정보맵 호출
-				resize_info(w_d,h_d); //축제정보창 띄우기			
+				resize_info(w_d,h_d); //축제정보창 띄우기	
+				if(!'${empty sessionScope.chkis}')
+					userfavor_inner(n);
+				$('body').scrollTop(0);
 			}
 			
 			
 		});
+	 
 	 $('.bodywrap').hide();
+	 
+	 $("#login_info").hide();
 	
-	
+	 ////////////////////////////////////////////////////////////////////////////test
+	 console.log('${aList[0].festival_pic}');
 	 
 	 
 	var name='<%=request.getParameter("city_name")%>' ;
@@ -80,7 +106,7 @@ $(document).ready(function(){
 		$('.tt a').attr('href',"search.do?city_name="+city_name+"&festival_theme="+festival_theme+"&festival_start="+festival_start);
 		
 	});
-	$('.search_w').hover(function(){
+	/* $('.search_w').hover(function(e){		
 		$('.write h3').css({'color':'white'});
 		$('.write p').css({'color':'white'});
 		$('.write span').css({'color':'white'});
@@ -93,10 +119,40 @@ $(document).ready(function(){
 		$('.write span').css({'color':'#666666'});
 		$('.search_w .view').css({'color':'#666666'});
 		$('.search_w .view img').prop('src','icon/view1.png');
-	});
+	}); */
 	
+	
+ 
+	$( function() {
+	    $( "#datepicker").datepicker({
+	    	dateFormat : 'yymmdd',
+	    	monthNamesShort : ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	    	dayNamesMin : ['일','월','화','수','목','금','토'],
+	    	changeMonth : true,
+	    	changeYear : true,
+	    	showMonthAfterYear:true,
+	    	
+	    });	    		
+	  });
+
+ 	$(function() {
+	    $('#slider-inner').slider('#previous', '#next');
+	});
+	   
+	 /*  $(function(){
+			$('select').selectlist({
+				zIndex: 10,
+				width: 200,
+				height: 30
+			});		
+		}) */
+ 	
 });
 
+$(document).ready(function(){
+	var k = "${sessionScope.mem_num}";
+	$('#login_mypage a').attr('href',"http://localhost:8090/hcmc/info.do?mem_num="+k);
+})
 
 
 function festival_view_input(){
@@ -117,10 +173,42 @@ function festival_view_input(){
 	var city_name=festival.c.city_name;
 	var city_lati=festival.c.city_lati;
 	var city_long=festival.c.city_long;
+	fpic();
 	cal_addr(festival);
-	test2();
 	star_view(star);
 }//읽어온 축제 정보로 축제 정보창에 별점을 만들어줌
+
+function fpic(){
+	var fpic=festival.p;
+	for(var i = 0; i<fpic.length; i++){
+		console.log(fpic[i]);
+	var scr='<a href="image.do?filename='+fpic[i]+'" title="The Cleaner"><img src="image.do?filename='+fpic[i]+'" width="75" height="75"></a>';
+	$('.festival_picpic').append(scr);
+	
+	
+	}
+}////죽제 정보창에 사진추가
+
+jQuery(document).ready(function($){
+	$('.festival_picpic').magnificPopup({
+		delegate: 'a',
+		type: 'image',
+		tLoading: 'Loading image #%curr%...',
+		mainClass: 'mfp-img-mobile',
+		gallery: {
+			enabled: true,
+			navigateByImgClick: true,
+			preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		},
+		image: {
+			tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+			titleSrc: function(item) {
+				return '<small>'+festival.f.festival_name+'</small>';
+			}
+		}
+	});
+	
+});/////////magnificPopup
 
 function cal_addr(festival){
 	var addr=festival.c.city_address;
@@ -174,38 +262,6 @@ function cal_addr(festival){
 	
 }
 
-$(function(){
-	/* 
-	  var mySlider = $(".pic").bxSlider({
-			mode : "horizontal", // 가로 수평으로 슬라이드 됩니다.
-			speed : 500, // 이동 속도를 설정합니다.
-			pager : false, // 현재 위치 페이징 표시 여부 설정.
-			moveSlides : 3, // 슬라이드 이동시 갯수 설정.
-			slideWidth :500, // 슬라이드 마다 너비 설정.
-			minSlides : 1, // 최소 노출 개수를 설정합니다.
-			maxSlides : 3, // 최대 노출 개수를 설정합니다.
-			slideMargin :20, // 슬라이드간의 간격을 설정합니다.
-			auto : true, // 자동으로 흐를지 설정합니다.
-			autoHover : true, // 마우스 오버시 정시킬지 설정합니다.
-			autoControls: true,
-			controls : false
-		// 이전 다음 버튼 노출 여부 설정합니다.
-		});
-	     */
-	 // 이전 버튼을 클릭하면 이전 슬라이드로 전환됩니다.
-		$(".touch_left_btn a").on("click", function() {
-			mySlider.goToPrevSlide(); // 이전 슬라이드 배너로 이동됩니다.
-			return false;// <a>에 링크를 차단합니다.
-		});
-		// 다음 버튼을 클릭하면 다음 슬라이드로 전환됩니다.
-		$(".touch_right_btn a").on("click", function() {
-			mySlider.goToNextSlide(); // 다음 슬라이드 배너로 이동됩니다.
-			return false;
-			
-		});
-	
-});
-
 
 </script>
 
@@ -230,9 +286,50 @@ $(function(){
        <li id="join"><img src="icon/join1.png"/></li>    
      </ul>     
    </div>
+   
+      
+   <div id="login_info">
+    <div id="loginup_form">
+   	<div id="login_id">
+   		<span>${sessionScope.id}</span>
+   	</div>
+   	<span class="hr"></span>
+   	<div id="login_mypage">
+   		<a href="#">마이페이지</a>
+   	</div>
+   	<div id="login_logout">
+   		<a href="logout.do">로그아웃</a>
+   	</div>
+   	</div>
+   </div>
 
    
    <div id="gnb">     
+   </div>
+   
+      <!-- 월 축제 뿌려주기 -->
+   
+   <div id="slider-demo">  
+     <span class="ss"><img src="icon/festival.png"/></span>
+   <span class="flag"><img src="icon/flag.png"/></span>
+    <span class="fe">    
+     <% Calendar cal = Calendar.getInstance();%> 
+     <%=  cal.get(Calendar.MONTH)+1 %>월
+     </span>
+     <a href="#" id="previous">«</a>
+     <div id="slider-inner">       
+       <ul>      
+        <c:forEach items="${month}" var="m" varStatus="status">
+          <c:if test="${!empty m.festival_pic[0]}">
+         	 <li class="img"><img src="image.do?filename=${m.festival_pic[status.index]}"/><br/>
+          </c:if>
+          <span class="name">${m.festival_name}</span><br/>
+          <span class="year"><fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${m.festival_start}"/>~<fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${m.festival_end}"/></span><br/>
+          <span class="addr">${m.city[0].city_address}</span></li>
+        </c:forEach>       
+       </ul>
+     </div>
+       <a href="#" id="next">»</a>
    </div>
    
    <div id="com">
@@ -242,11 +339,10 @@ $(function(){
               <select id="loca" name="location">
                 <option value="서울" class="서울">   서                    울</option>
                 <option value="경기" class="경기">   경                    기</option>
-                <option value="인천" class="인천">   인                    천</option>
+                <option value="경상" class="경상">   경                    상</option>
                 <option value="강원" class="강원">   강                    원</option>
                 <option value="충청" class="충청">   충                    청</option>
                 <option value="전라" class="전라">   전                    라</option>
-                <option value="경상" class="경상">   경                    상</option>
                 <option value="제주" class="제주">   제                    주</option>
               </select>                 
           </form> 
@@ -257,7 +353,7 @@ $(function(){
                 <option value="연인" class="연인">연 인</option>
                 <option value="가족" class="가족">가 족</option>
                 <option value="친구" class="친구">친 구</option>
-                <option value="니홀로" class="나홀로">나홀로</option>
+                <option value="혼자" class="혼자">혼자</option>
               </select>                 
           </form>
           </li>
@@ -273,45 +369,26 @@ $(function(){
            </div>            
           </ul>          
    </div>
-   <!-- 월 축제 뿌려주기 -->
-   <div id="month_wrap">
-   <span class="ss"><img src="icon/festival.png"/></span>
-   <span class="flag"><img src="icon/flag.png"/></span>
-    <span class="fe">    
-  <% Calendar cal = Calendar.getInstance();%> 
-  <%=  cal.get(Calendar.MONTH)+1 %>월</span>
-     <div id="month_festival">
-       <ul>
-       <p class="touch_left_btn"> <!-- 이전 버튼 -->
-        <a href="#">
-         <img src="icon/prev.png" alt="이전 배너" />
-        </a>
-     </p>
-        <c:forEach items="${month}" var="m">
-          <li class="img"><img src="image/ff.jpg"/><br/>
-          <span class="name">${m.festival_name}</span><br/>
-          <span class="year"><fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${m.festival_start}"/>~<fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${m.festival_end}"/></span><br/>
-          <span class="addr">${m.city[0].city_address}</span></li>
-        </c:forEach>      
-     <p class="touch_right_btn"> <!-- 다음 버튼 -->
-        <a href="#">
-         <img src="icon/next.png" alt="다음 배너" />
-        </a>
-     </p>   
-       </ul>
-     </div>
-   </div>
+
+   
+   
+   
+   
    <div id="totalPage">
      <p>총 게시물 : ${pv.totalCount}</p>
    </div>
    <div id="bodywrap">  
-   		   
+   	<c:choose>    
+       <c:when test="${!empty aList}">	   
      <c:forEach items="${aList}" var="dto">
      <div class="search">
        <div class="search_w"> 
+         
        <!-- 버튼눌렀을때 이동 -->
          <div class="pic">
-         <img src="image/flower.jpg"/>
+         <c:if test="${!empty dto.festival_pic}">
+         <img src="image.do?filename=${dto.festival_pic[0]}"/>
+         </c:if>
          </div>
          <div class="write">
          <input type="hidden" id="num" value="${dto.festival_num}">
@@ -323,10 +400,18 @@ $(function(){
          <div class="view">
           <img src="icon/view1.png"/>
           <span id="count">${dto.festival_count}</span>
-         </div>
+         </div>       
        </div>
      </div>
 	</c:forEach>
+	</c:when> 
+         <c:otherwise>
+         <div class="search">
+       <div class="search_w"> 
+         <span>검색한 데이터가 존재하지 않습니다.</span>
+         </div></div>
+         </c:otherwise>
+        </c:choose>
 	
 	<!-- 이전  -->
 		<c:if test="${pv.startPage>1}">
@@ -354,30 +439,37 @@ $(function(){
    
    	
 <div class="bodywrap">
-	<div class="infowrap">
-		<div class="info_mask"></div>
-		<div class="info_inner">
-			<div class="festival_header">
-			<button id="tt">test</button>
-			<div class="fh_top">
-				<button name="close">X</button>
-				<a href=""><img alt="홈페이지로 이동합니다." src="http://imgdb.kr/aGif.dn" width=20px height=20px></a>
-			</div>
-				<c:out value=""/>
-				<span class="title"></span>
-				<span class="period"></span>
-				
-				<div class="star"></div>
-			</div>
-			<div class="festival_detail"></div>
-				<span class="content">////축제날짜</span>
-			<div class="festival_map">
-			
-			<%@ include file="map_test.jsp" %>
-			</div>
+   <div class="infowrap">
+      <div class="info_mask"></div>
+      <div class="info_inner">
+         <div class="festival_header inner_gap">
+         <div class="fh_top inner_gap">
+            <button name="close">X</button>
+            <a href="" target="_blank"><img alt="홈페이지로 이동합니다." src="images/icon_home.png" width=20px height=20px></a>
+            <div class="view_count">
+                   <img src="icon/view1.png" width=20px, height=20px/>
+                   <span id="viewcount"></span>
+                   <img id="favor_insert" src="icon/heart-no.png" width=20px, height=20px>
+               </div>
+         </div>
+            <span class="title"></span>
+            <span class="period"><span></span><span></span></span>
+            
+            <div class="star"></div>
+         </div>
+         <div class="festival_detail inner_gap">
+            <span class="content">////축제날짜</span>
+         </div>
+         
+         <div class="festival_picpic inner_gap"></div>
+         
+         <div class="festival_map inner_gap">
+         
+         <%@ include file="festival_map_xxx.jsp" %>
+         </div>
 
-		</div>
-	</div>
+      </div>
+   </div>
 </div>
 
    
@@ -398,7 +490,7 @@ $(function(){
         </div>
         <div id="checked">
           <input type="checkbox" value="login" id="cb_saveId">
-          <label>자동로그인</label>
+          <label>로그인저장</label>
         </div>
         <div id="login_btn">로그인</a>
         </div>

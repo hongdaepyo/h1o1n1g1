@@ -35,6 +35,22 @@
 		city_num=#{city_num} where festival_num=#{festival_num}
 	</update>
 	
+	<delete id="festival_pic_delete" parameterType="dto.FestivalDTO">
+		delete from f_festival_pic where festival_num=#{festival_num}
+	</delete>
+	
+	<insert id="festival_pic_insert" parameterType="dto.FestivalDTO">
+		INSERT ALL
+		<foreach collection="festival_pic" item="festival_pic">
+			INTO f_festival_pic VALUES(#{festival_pic, jdbcType=VARCHAR},#{festival_num})
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+	
+	<delete id="f_delete" parameterType="dto.FestivalDTO">
+		delete from f_festival where festival_num=#{festival_num}
+	</delete>
+	
 	 <update id="b_update" parameterType="dto.BoardDTO">
 	 	update f_board set board_head=#{board_head}, board_date=#{board_date}, festival_num=#{festival_num}
 	 	where board_num=#{board_num}
@@ -43,6 +59,19 @@
 	 <update id="m_update" parameterType="dto.MemberDTO">
 	    update f_member set mem_id=#{mem_id,jdbcType=VARCHAR}, mem_nickname=#{mem_nickname} where mem_num=#{mem_num}
 	 </update>
+	 
+	 <insert id="f_insert" parameterType="dto.FestivalDTO">
+	 	insert all
+	 	into f_festival
+	 	values(SEQ_f_festival_festival_num.nextval, #{festival_name}, #{festival_start}, #{festival_end}, #{festival_hpage}, #{festival_theme},
+	 	#{festival_time}, #{festival_count}, #{festival_content}, #{city_num})
+	 	<if test="festival_filename[0]!=null">
+	 	<foreach collection="festival_pic" item="festival_pic">
+	 		into f_festival_pic values(#{festival_pic, jdbcType=VARCHAR}, SEQ_f_festival_festival_num.nextval)
+	 	</foreach>
+	 	</if>
+	 	select * from dual
+	 </insert>
 	 
 	
 </mapper>

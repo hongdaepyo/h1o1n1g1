@@ -27,8 +27,7 @@ public class MailService {
 		Authenticator auth = new MyAuthentication();
 		
 		
-		//String shacode=SHA256(mailaddr); //회원의 이메일을 암호화
-		String shacode=SHA256("test2@test.com");
+		String shacode=SHA256(mailaddr); //회원의 이메일을 암호화
 		req.getSession().setAttribute("mailcode", shacode);
 		// session 생성 및  MimeMessage생성
 		Session session = Session.getDefaultInstance(p, auth);
@@ -44,15 +43,14 @@ public class MailService {
 
 
 			// 이메일 수신자
-//			InternetAddress to = new InternetAddress(mailaddr);
-			InternetAddress to = new InternetAddress("h3o3n3g3@naver.com");
+			InternetAddress to = new InternetAddress(mailaddr);
 			
-			
+			String message= "http://localhost:8090/hcmc/hub.do?mem_num="+mem_num+"&ecode="+shacode;
 			msg.setRecipient(Message.RecipientType.TO, to);
 			// 이메일 제목
-			msg.setSubject("메일 전송 테스트", "UTF-8");
+			msg.setSubject("흥청망청 회원가입 인증메일", "UTF-8");
 			// 이메일 내용
-			msg.setText("<a href='http://localhost:8090/hcmc/hub.do?mem_num="+mem_num+"&ecode="+shacode+"' target='_self' style='cursor: pointer; white-space: pre;'>hcmc123123</a>");
+			msg.setText("회원 가입을 축하드립니다.\n\n 아래 링크를 클릭하시면 회원가입이 완료됩니다.\n\n<a href="+message+"' target='_self' style='cursor: pointer; white-space: pre;'>"+message+"</a>","UTF-8");
 			// 이메일 헤더
 			msg.setHeader("content-Type", "text/html");
 			// 메일보내기

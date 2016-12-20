@@ -17,7 +17,7 @@ DROP TABLE f_member CASCADE CONSTRAINTS;
 
 DROP SEQUENCE SEQ_f_board_board_num;
 DROP SEQUENCE SEQ_f_city_city_num;
-DROP SEQUENCE SEQ_f_favor_f_favor_num;
+DROP SEQUENCE SEQ_f_favor_favor_num;
 DROP SEQUENCE SEQ_f_festival_festival_num;
 DROP SEQUENCE SEQ_f_map_map_num;
 DROP SEQUENCE SEQ_f_member_mem_num;
@@ -30,7 +30,7 @@ DROP SEQUENCE SEQ_f_rep_rep_num;
 
 CREATE SEQUENCE SEQ_f_board_board_num INCREMENT BY 1 START WITH 1 NOCACHE NOCYCLE;
 CREATE SEQUENCE SEQ_f_city_city_num INCREMENT BY 1 START WITH 1 NOCACHE NOCYCLE;
-CREATE SEQUENCE SEQ_f_favor_f_favor_num INCREMENT BY 1 START WITH 1 NOCACHE NOCYCLE;
+CREATE SEQUENCE SEQ_f_favor_favor_num INCREMENT BY 1 START WITH 1 NOCACHE NOCYCLE;
 CREATE SEQUENCE SEQ_f_festival_festival_num INCREMENT BY 1 START WITH 1 NOCACHE NOCYCLE;
 CREATE SEQUENCE SEQ_f_map_map_num INCREMENT BY 1 START WITH 1 NOCACHE NOCYCLE;
 CREATE SEQUENCE SEQ_f_member_mem_num INCREMENT BY 1 START WITH 1 NOCACHE NOCYCLE;
@@ -44,7 +44,7 @@ CREATE TABLE f_board
 (
 	board_num number NOT NULL,
 	board_head varchar2(20) NOT NULL,
-	board_content varchar2(1000),
+	board_content varchar2(3000),
 	board_date date,
 	mem_num number NOT NULL,
 	festival_num number NOT NULL,
@@ -72,11 +72,11 @@ CREATE TABLE f_city
 
 CREATE TABLE f_favor
 (
-	f_favor_num number NOT NULL,
+	favor_num number NOT NULL,
 	mem_num number NOT NULL,
 	festival_num number NOT NULL,
 	favor_star number,
-	PRIMARY KEY (f_favor_num)
+	PRIMARY KEY (favor_num)
 );
 
 
@@ -90,7 +90,7 @@ CREATE TABLE f_festival
 	festival_theme varchar2(20) NOT NULL,
 	festival_time varchar2(50),
 	festival_count number,
-	festival_content varchar2(1000),
+	festival_content varchar2(3000),
 	city_num number NOT NULL,
 	PRIMARY KEY (festival_num)
 );
@@ -129,7 +129,7 @@ CREATE TABLE f_rep
 (
 	rep_num number NOT NULL,
 	rep_date date,
-	rep_content varchar2(1000),
+	rep_content varchar2(3000),
 	board_num number NOT NULL,
 	mem_num number NOT NULL,
 	PRIMARY KEY (rep_num)
@@ -198,69 +198,29 @@ ALTER TABLE f_rep
 	REFERENCES f_member (mem_num) ON DELETE CASCADE
 ;
 
+select * from f_festival
+select * from f_favor
 
-insert into F_CITY values(SEQ_f_city_city_num.nextval,'제주도','제주특별자치도 서귀포시 표선면 녹산로 464-65',33.399067,126.706934);
-insert into F_CITY values(SEQ_f_city_city_num.nextval,'강원도','강원 정성군 남면 문곡3리(민둥산 일원)',37.265587,128.722715);
+select * from f_favor where mem_num = 1
 
-insert into F_FESTIVAL values(SEQ_f_festival_festival_num.nextval,'제주 유채꽃 축제',sysdate,   sysdate,'http://www.jejuflowerfestival.com',   '가족',   '제한없음',0,'유채꽃은',1);
-insert into F_FESTIVAL values(SEQ_f_festival_festival_num.nextval,'민둥산억새꽃 축제','2016/09/24','2016/11/13','http://ariaritour.com','가족','제한없음',0,'민둥산 억새꽃 축제는 산',2);
-
-insert into F_CITY values(SEQ_f_city_city_num.nextval,'제주도','제주특별자치도 서귀포시 표선면 녹산로 464-65',33.399067,126.706934);
-insert into F_CITY values(SEQ_f_city_city_num.nextval,'강원도','강원 정성군 남면 문곡3리(민둥산 일원)',37.265587,128.722715);
-insert into F_CITY values(SEQ_f_city_city_num.nextval,'서울','강원 정성군 남면 문곡3리(민둥산 일원)',37.265587,128.722715);
-insert into F_CITY values(SEQ_f_city_city_num.nextval,'경기도','강원 정성군 남면 문곡3리(민둥산 일원)',37.265587,128.722715);
-insert into F_CITY values(SEQ_f_city_city_num.nextval,'충청도','강원 정성군 남면 문곡3리(민둥산 일원)',37.265587,128.722715);
-insert into F_CITY values(SEQ_f_city_city_num.nextval,'전라도','강원 정성군 남면 문곡3리(민둥산 일원)',37.265587,128.722715);
-
-
-insert into F_FESTIVAL values(SEQ_f_festival_festival_num.nextval,'제주 유채꽃 축제',sysdate,   sysdate,'http://www.jejuflowerfestival.com',   '가족',   '제한없음',0,'유채꽃은',1);
-insert into F_FESTIVAL values(SEQ_f_festival_festival_num.nextval,'민둥산억새꽃 축제','2016/09/24','2016/11/13','http://ariaritour.com','가족','제한없음',0,'민둥산 억새꽃 축제는 산',2);
-insert into F_FESTIVAL values(SEQ_f_festival_festival_num.nextval,'test','2016/10/24','2016/12/13','http://ariaritour.com','가족','제한없음',0,'민둥산 억새꽃 축제는 산',3);
-insert into F_FESTIVAL values(SEQ_f_festival_festival_num.nextval,'test1','2016/11/24','2016/01/13','http://ariaritour.com','가족','제한없음',0,'민둥산 억새꽃 축제는 산',4);
-insert into F_FESTIVAL values(SEQ_f_festival_festival_num.nextval,'test2','2016/12/24','2016/03/13','http://ariaritour.com','가족','제한없음',0,'민둥산 억새꽃 축제는 산',5);
-insert into F_FESTIVAL values(SEQ_f_festival_festival_num.nextval,'test3','2016/05/24','2016/10/13','http://ariaritour.com','가족','제한없음',0,'민둥산 억새꽃 축제는 산',6);
-
-
-
-INSERT INTO f_member
-		VALUES(SEQ_f_member_mem_num.nextval,'jun@admin.com','a1234','운영자','v');
-INSERT INTO f_member
-		VALUES(SEQ_f_member_mem_num.nextval,'one@admin.com','a1234','일반회원1','n');
-INSERT INTO f_city
-		VALUES(SEQ_f_city_city_num.nextval,'서울','종로구 종각역','1','1');
-INSERT INTO f_map
-		VALUES(SEQ_f_map_map_num.nextval,'03112345678','테스트치킨','맛집',1);
-INSERT INTO f_festival
-		VALUES(SEQ_f_festival_festival_num.nextval,'test_festival','2016/11/11','2016/11/12','HTTP://www.test.com','싱글','종일',0,'test입니다.',1);
-INSERT INTO f_festival
-		VALUES(SEQ_f_festival_festival_num.nextval,'test_festival222','2016/11/11','2016/11/12','HTTP://www.test.com','싱글','종일',0,'test입니다.',1);
-
-INSERT INTO f_board
-		VALUES(SEQ_f_board_board_num.nextval,'일반','test3','2016/11/14',1,1);
-INSERT INTO f_board
-		VALUES(SEQ_f_board_board_num.nextval,'문의','test4','2016/11/14',2,1);
-		
-select replace(festival_content, chr(34), '\' || chr(34)) from f_festival where festival_num=1;
-SELECT * FROM f_board
-SELECT * FROM f_festival
-SELECT * FROM f_member
-SELECT * FROM f_rep
-SELECT * FROM f_board_pic
+select * from F_MEMBER where mem_num = 1
+select * from f_festival_pic
 select * from F_CITY
-select * from F_FESTIVAL_PIC
+select f.*, c.city_name, c.city_address, c.city_lati, c.city_long, fp.festival_pic
+		from f_festival f, f_city c, f_festival_pic fp
+		where festival_start >= TO_DATE(201611,'YYYYMM') AND festival_start< TO_DATE(201612,'YYYYMM')
+		and f.city_num=c.city_num and f.festival_num=fp.festival_num(+)
+		order by festival_num
 
-update F_MEMBER set mem_admin=2 where mem_num=4;
-update f_festival set festival_content='&quot;test축제입니다' where festival_num=1
+select f.*, fp.*
+from f_festival f, f_festival_pic fp
+where f.festival_num=fp.festival_num(+) and festival_start >= TO_DATE(201611,'YYYYMM') AND festival_start< TO_DATE(201612,'YYYYMM')
 
-UPDATE f_board SET
-		board_head='문의',board_content='test',board_date=sysdate,festival_num='2'
-		WHERE board_num=60
-		
-select f.*, c.city_name, c.city_address, c.city_lati, c.city_long
-from f_festival f, f_city c
-where f.city_num=c.city_num
+delete from f_festival_pic where festival_pic = 'e5afa437-39d5-4129-8ce5-37c880ae3754_Hydrangeas.jpg'
 
-select f.*, c.city_name, c.city_address, c.city_lati, c.city_long
-from f_festival f, f_city c
-where festival_start >= TO_DATE('201611','YYYYMM') AND  festival_start <  TO_DATE('201612','YYYYMM')
-		and f.city_num=c.city_num;
+ select p.festival_pic,f.*,c.*
+    from F_CITY c, F_FESTIVAL f, F_FESTIVAL_PIC p
+    where c.city_num = f.city_num 
+     and f.festival_num = p.festival_num(+) and c.city_name like '서울' || '%' 
+     and f.festival_theme='연인' and f.festival_start>=TO_DATE(20161101,'YYYYMMDD') 
+     and f.festival_start<TO_DATE(20161230,'YYYYMMDD')

@@ -6,6 +6,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import dto.CityDTO;
+import dto.FavorDTO;
 import dto.FestivalDTO;
 
 public class CalendarDaoImp implements CalendarDao{
@@ -40,6 +41,20 @@ public class CalendarDaoImp implements CalendarDao{
 		sqlSession.update("cal.readCount", festival_num);		
 	}
 
+	@Override
+	public void favorInsertMethod(HashMap<String, Integer> map) {
+		sqlSession.insert("cal.favor_insert",map);
+	}
 
+	@Override
+	public List<FavorDTO> FavorListMethod(int mem_num) {
+		System.out.println("logindao"+mem_num);
+		return sqlSession.selectList("cal.favor_list",mem_num);
+	}//회원이 즐겨찾기 등록한 모든 즐겨찾기 목록을 가져옴
+	
+	@Override
+	public List<String> fespicMethod(int festival_num) {
+		return sqlSession.selectList("cal.fes_info_pic",festival_num);
+	}
 	
 }

@@ -40,25 +40,28 @@ $(function(){
 	  });
 	  
 	  
+	  $("#order .view").on("click",function(e){
+		  
+		  var city_name = $("#loca option:selected").val();
+		  var festival_start = $("#datepicker").val();
+		  
+		  alert(city_name,festival_start);
+		  
+		  $.ajax({
+			    type:'POST',
+			    dataType:'json',
+				url:'research.do',
+				data:'city_name='+city_name+'&festival_theme='+festival_theme+'&festival_start='+festival_start,
+				success:Research			  
+		  })
+		  
+	  });
 	
 	  
 });
 
   
-$( function() {
-    $( "#datepicker").datepicker({
-    	dateFormat : 'yymmdd',
-    	monthNamesShort : ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-    	dayNamesMin : ['일','월','화','수','목','금','토'],
-    	changeMonth : true,
-    	changeYear : true,
-    	showMonthAfterYear:true,
-    	
-    });
-    
-	
-  });
-  
+
 
   
   ///////////////////회원 가입, 로그인 버튼//////////////////////////////////////////////////////////////////////////
@@ -79,22 +82,34 @@ $( function() {
 	});////////////////////////////////////////////////////////////////////////////////////////////
   
 
+  function Research(res){
+		city_name=res;
+		$(".search_w").empty();
+		for(var i = 0; i < res.length; i++){
+		var start=$.datepicker.formatDate('yy MM dd', new Date(city_name[i].festival_start));
+		var end=$.datepicker.formatDate('yy MM dd', new Date(city_name[i].festival_end));
+		
+		$(".search_w").append(' <div class="pic"><img src="image.do?filename='+city_name[i].festival_pic[0].festival_pic+'"/></div><div class="write"><input type="hidden" id="num" value="'+city_name[i].festival_num+'"><h3>'+city_name[i].festival_name+'</h3><hr/><p>'+city_name[i].festival_content+'</p><span>'+city_name[i].city[0].city_address+'</span><span>'+start+'~'+end+'</span></div><div class="view"><img src="icon/view1.png"/><span id="count">'+city_name[i].festival_count+'</span></div>');
+		}
+		
+		}//조회순으로 정렬
   
-  //헤더부분 변경
+//헤더부분 변경
   function headerView(id){
-	  $('#join_form').css({"display":"none"});		
-	  $('#header').empty();
-	  $('#header').append('<ul class="logo"><li><a href="#"><img src="icon/main2.png" /></a></li><li class="lo"><img src="icon/logo_text.png"/></li><li id="login"><span>'+id+'님 환영합니다.</span></li><li id="logout"><a href="logout.do"><img src="icon/logout2.png"/></a></li></ul>');
-       
-	  $("#logout").hover(function(){
-		   $('#logout a img').prop("src","icon/logout.png");		   
-	  },function(){
-	       $('#logout a img').prop("src","icon/logout2.png");	   
-	  });
+	     $('#join_form').css({"display":"none"});  
+	     $('#header').empty();
+	     $('#header').append('<ul class="logo"><li><a href="main.do"><img src="icon/main2.png" /></a></li><li class="lo"><img src="icon/logo_text.png"/></li><li id="login"></li><li id="logout"><img src="icon/user2.png"/></li></ul>');		     
+	    
+	  		     
+	      $("#login_info").hide();
+		  $("#logout").on("click",function(){
+			  $('#login_info').fadeToggle('normal'); 
+			  $('#login_info').css({'position':'absolute','left':'64px','top':'84px'});
+
+		  });
 	  
-	  
-  
-  }//end headerView()
+
+}//end headerView()
   
   function memberRegister(){
 	  	//아이디 :  영문자, $,_로 시작하고 총 5-8개

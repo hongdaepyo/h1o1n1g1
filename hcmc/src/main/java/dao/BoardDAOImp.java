@@ -80,4 +80,19 @@ public class BoardDAOImp implements BoardDAO {
 		sqlSession.insert("board.favor_insert", fdto);
 	}
 
+	@Override
+	public void favorUpdateMethod(FavorDTO fdto) {
+		sqlSession.update("board.favor_update", fdto);
+	}
+
+	@Override
+	public BoardDTO boardboardMethod(int board_num) {
+		return sqlSession.selectOne("board.boardboard",board_num);
+	}
+
+	@Override
+	public ReplyDTO reprepMethod(int rep_num) {
+		return sqlSession.selectOne("board.reprep", rep_num);
+	}
+
 }// end class

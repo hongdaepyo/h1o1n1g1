@@ -2,8 +2,11 @@ package service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import dao.MyPageDao;
 import dto.BoardDTO;
+import dto.FavorDTO;
 import dto.FestivalDTO;
 import dto.MemberDTO;
 
@@ -38,9 +41,25 @@ public class MyPageServiceImp implements MyPageService{
 	}//패스워드 업데이트
 
 	@Override
-	public List<?> myFavorListProcess(int mem_num) {
+	public List<FavorDTO> myFavorListProcess(int mem_num) {
 		return dao.MyFavorListMethod(mem_num);
 	}//나의 즐겨찾기 조회 //아직 안쓰임
+
+	@Override
+	public void memberDeleteProcess(int mem_num) {
+		dao.memberDeleteMethod(mem_num);
+		
+	}
+
+	@Override
+	public List<FestivalDTO> myPageFList() {
+		return dao.myPageFListMethod();
+	}
+
+	@Override
+	public void myFavorDelProcess(int favor_num) {
+		dao.myFavorDeleteMethod(favor_num);
+	}
 
 	
 	

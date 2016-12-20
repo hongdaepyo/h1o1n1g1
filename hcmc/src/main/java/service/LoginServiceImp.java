@@ -1,11 +1,13 @@
 package service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import dao.LoginDao;
+import dto.FavorDTO;
 import dto.MemberDTO;
 
 public class LoginServiceImp implements LoginService{
@@ -52,6 +54,9 @@ public class LoginServiceImp implements LoginService{
 		MemberDTO memdto=dao.LoginSearch(mdto);
 		if(dao.LoginCount(mdto)){ //입력된 아이디와 비밀번호가 일치하는 회원이 있는지를 판단하는 조건
 			char memAdmin=dao.LoginSelect(mdto.getMem_id()).getMem_admin(); //로그인한 계정의 권한(0=관리자, 1=일반회원, 2=비인증회원)
+			if(memAdmin=='0'){
+				req.getSession().setAttribute("chk", 0);
+			}
 			if(memAdmin=='1'){//일반회원
 			req.getSession().setAttribute("chk", 1); //세션에 일반회원이라는 것을 표시하는 chk를 저장
 			req.getSession().setAttribute("mem_num", memdto.getMem_num()); //세션에 회원번호 저장
@@ -91,5 +96,6 @@ public class LoginServiceImp implements LoginService{
 			return "인증실패";
 		}
 	}//end AuthorChange 발송된 인증메일의 링크를 눌러 들어오면 해당 회원의 권한을 일반회원으로 바꾸어줌
+	
 	
 }

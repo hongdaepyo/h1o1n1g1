@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import dto.FavorDTO;
 import dto.MemberDTO;
 
 public class LoginDaoImp implements LoginDao{
@@ -69,5 +70,7 @@ public class LoginDaoImp implements LoginDao{
 	public void AuthUpdate(int mem_num) {
 		sqlSession.update("login.authUpdate",mem_num);
 	}//회원번호가 일치하는 회원의 권한을 일반회원으로 업데이트해줌
+
+	
 
 }

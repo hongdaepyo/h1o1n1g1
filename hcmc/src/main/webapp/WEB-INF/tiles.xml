@@ -13,7 +13,7 @@
 
 	<definition name="menu1" extends="index">
 		<put-attribute name="title" value="내가 쓴 글 관리" />
-		<put-attribute name="body" value="/WEB-INF/view/mypage-board.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/body-menu1.jsp" />
 
 	</definition>
 	

@@ -1,7 +1,7 @@
 $(function(){
-	//var mem_num='${dto.mem_num}';
-	//var nick = '${dto.mem_nickname}';
-	//nick_view(nick);
+	var mem_num='${dto.mem_num}';
+	var nick = '${dto.mem_nickname}';
+	nick_view(nick);
 	if($(window).width()>660){
 		$('menu').css('padding-top','40px')
 	}
@@ -63,16 +63,13 @@ function nick_update(str){
 		data:'mem_num='+mem_num+'&mem_nickname='+str,
 		url:"nickUpdate.do",
 		success:function(data){
-			/*console.log(data);
-			var url='info.do?mem_num='+mem_num;
-			$(location).attr('href',url);*/
 			window.location.reload();
 			
 			
 		},
 		error:function(request,status,error){
 			//에러 메시지 띄워주는 부분
-			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 			alert('형식에 맞지 않습니다.');
 		}
 	})
@@ -86,12 +83,13 @@ function pw_update(p, n){
 		data:'mem_num='+n+'&mem_pass='+p,
 		url:"pwUpdate.do",
 		success:function(){
-			console.log()
-			alert('비밀번호 변경 완료');
+			//console.log()
+			//alert('비밀번호 변경 완료');
 		},
 		error:function(request,status,error){
 		//에러 메시지 띄워주는 부분
-		alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
-
-	})
+		//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			alert("비밀번호가 변경되었습니다.");
+		}
+	});
 }//end pw_update()

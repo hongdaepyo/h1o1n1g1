@@ -16,7 +16,10 @@ $(function() {
 		    removeMarker2();
 			onClickCategory();  //닫을 때 마커도 같이 제거
 			$('#keyword').val("");
-			$('#placesList .item').remove();
+			$('#placesList').empty();
+			$('.festival_picpic').empty();
+			if (chkis==false )
+			userfavor(mem_num);
 		});
 		
 		$('.star').mouseover(function(e){			
@@ -25,27 +28,34 @@ $(function() {
 			$(this).append('<div id="tooltip"><div class="tipBody">'+tip+'/5.0</div></div>');
 		}).mousemove(function(e){
 			var pos=$(e.target).offset();
-			$('#tooltip').css('top',e.pageY*0.6);
+			$('#tooltip').css('top',e.pageY*0.1);
 			$('#tooltip').css('left',50+e.pageX*0.2);
 		}).mouseout(function(){
 			$(this).attr('title',$('.tipBody').html());
 			$(this).children('div #tooltip').remove();
 		});
 		
-		/*$('#menu_wrap .option button').on('click',function(){
-			console.log('눌렸다');
-			searchPlaces2();
-		});*/
-		
 		$(window).resize(function(pos){		
 			menu_pos(pos);
 		});
+		
+		$('#favor_insert').on('click',function(){
+			var yeschk=$('#favor_insert').attr('src').indexOf('yes');
+			if(yeschk>-1){
+				alert('이미 즐겨찾기에 등록 되어 있습니다.');
+				return false;
+			}
+			if (chkis==false )
+			favor_insert(mem_num);
+			else
+			alert('로그인을 해주세요!');
+		});//즐겨찾기 아이콘을 눌렀을 경우 분기처리
 		
 	})
 	
 	$('#map div[draggable]').dblclick(function(){
 			$('#category').toggle(500);
-		})
+		})//지도:스카이뷰 버튼을 더블클릭하면 카테고리 메뉴를 토글
 	
 	
 
@@ -65,7 +75,10 @@ function bgclose(e) {
 	    removeMarker2();
 		onClickCategory(); //닫을 때 마커도 같이 제거
 		$('#keyword').val("");
-		$('#placesList .item').remove();	
+		$('#placesList').empty();	
+		$('.festival_picpic').empty();
+		if (chkis==false )
+		userfavor(mem_num);
 	}
 }//반투명 배경 누르면 축제정보창을 닫음
 
@@ -80,8 +93,9 @@ function festival_view(n){
 			console.log(res);
 			festival=res;
 			//조회수 값
-			$("#count").text(res.f.festival_count);
+			$("#viewcount").text(res.f.festival_count);
 			festival_view_input();
+			
 		},
 		error:function(request,status,error){
 		//에러 메시지 띄워주는 부분
@@ -102,14 +116,12 @@ function star_view(s){
 		$('.star').append('<img src="http://cfile218.uf.daum.net/R320x0/27062A345837159404E141" width="15px" height="30px">');
 	}
 	}
-}
+}//해당 축제의 별점을 읽어와서 띄워줌
 
 function festival_map(){
 	$('.festival_map').css({'width':'100%','height':'350px'});
 	$('#map').css({'width':'100%','height':'350px'});
-	//$('.festival_map').append('<jsp:include page="festival_map.jsp/>');
-	//$('.festival_map').load("/hcmc/festival_map2.html");
-}
+}//축제 정보 페이지가 뜰때 지도크기를 설정
 
 function f_pic_preview(f2){
 	$(document).on('mouseover mousemove','td div span',function(e){
@@ -117,7 +129,6 @@ function f_pic_preview(f2){
 		var f_pos=$(e.target).offset();
 		$('img[name="'+f_num+'"]').addClass("preview_on");
 		$('div[id="d'+f_num+'"]').addClass("preview_on preview_div");
-		//$('div[id="d'+f_num+'"]').offset({ top:f_pos.top, left:f_pos.left+120});
 		$('div[id="d'+f_num+'"]').offset({ top:e.pageY, left:e.pageX+30});
 		$(e.target).css({'color':'red','font-weight':'bold', 'background-color':'bisque'});
 	})
@@ -131,4 +142,19 @@ function f_pic_preview(f2){
 
 function menu_pos(pos){
 	$('#menu_wrap').offset({'top':pos.top,'left':pos.left-$('#menu_wrap').width()-40});
-}
+}//키워드 검색 메뉴의 위치를 지도창 위치 기준으로 설정
+
+function favor_insert(mn){
+	
+	var fn=festival.f.festival_num;
+	$.ajax({
+		type:'get',
+		data:'festival_num='+fn+'&mem_num='+mn,
+		dataType:'json',
+		url:"favor_insert.do",
+		success:function(res){
+			if(res)
+			$('#favor_insert').attr('src','icon/heart-yes.png');
+		}
+	})
+}//즐겨찾기 등록을 하면 아이콘을 바꿔줌

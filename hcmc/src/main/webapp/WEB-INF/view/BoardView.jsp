@@ -10,14 +10,21 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/latest/normalize.css">
 <link rel="stylesheet" type="text/css" href="css/boardcss.css">
+<!-- Magnific Popup core CSS file -->
+<link rel="stylesheet" href="css/magnific-popup.css"> 
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<!-- Magnific Popup core JS file -->
+<script src="js/jquery.magnific-popup.js"></script>
+<script src="js/autosize.js"></script>
+
 <script type="text/javascript">
-var board_num = '';
-var rep_num = '';
+var board_num;
+var rep_num;
 var bool_sw = true;
 var res1;
 var file;
+var fes_num;
 
 //board_content 글 체크 시작
 function writefnChkByte(obj, maxByte){
@@ -81,6 +88,7 @@ function updatefnChkByte(obj, maxByte){
 
 $(document).ready(function() {
 	$('.board_head').on('change', festival_select);
+	$('.board_head_update').on('change', festival_select_update);
 	$('.delete').on('click',function(){board_delete(this);});
 	$('.rep_delete').on('click',function(){rep_delete(this);});
 	$('.rep_insert').on('click', function(){$('.rep_insert_board_num').val($(this).prop("id"));});
@@ -88,7 +96,11 @@ $(document).ready(function() {
 	$('.rep_update').on('click',function(){rep_num = $(this).prop("id");});
 	$('.boardWrite_filename').on('change',function(){imgArr(this);});
 	$('.boardUpdate_filename').on('change', function(){imgArr(this);});
-
+	
+	//textarea resize 시작
+	autosize($('textarea'));
+	//textarea resize 끝
+	
 	//board content 내용 체크 시작
 	$(".boardWrite_submit_new").on('click',function(e) {
 		var boardWrite_content = $(".boardWrite_content").val();
@@ -235,22 +247,60 @@ $(document).ready(function() {
 	//board 수정
 	$(document).on("click",'.update-openMask',function(e){
  		e.preventDefault();
-		wrapWindowByMask();
+ 		wrapWindowByMask();
+ 		board_param="board_num="+board_num;
+ 		$.ajax({
+			type : 'POST',
+			dataType : 'json',
+			data : board_param,
+			url : 'boardboard.do',
+			success : function boardboard(res){
+				fes_num = res.festival_num;
+				$('.boardUpdate_content').val("");
+				$('.boardUpdate_content').val(res.board_content);
+				$('.board_head_update').val(res.board_head);
+				if(res.board_head == "후기"){
+					$('.starstar_update').css("display", "inline");
+					$.ajax({
+						type : 'POST',
+						dataType : 'json',
+						url : 'FesList.do',
+						success : fesListViewupdate
+					});
+				}
+			}
+		});
 	});
+		
 	//board - 검은 막을 눌렀을 때
 	$('.board-mask').on("click",function () {
 	    $(this).hide();
 	    file="";
 	    $('.update_holder_arr').empty();
+	    $('.festival_name_update').remove();
+	    $('.board_head_update').val('일반');
+		$('.starstar').css("display", "none");
 	    $('.boardUpdate_content').val("");
 	    $('.board-window').hide();
 	});
+	//검은 막 띄우기 끝
 	
 	//rep 수정
 	$(document).on("click",'.rep_update',function(e){
 		e.preventDefault();
 		wrapWindowByrepMask();
+		rep_param="rep_num="+rep_num;
+		$.ajax({
+			type : 'POST',
+			dataType : 'json',
+			data : rep_param,
+			url : 'reprep.do',
+			success : function(res){
+				$(".rep_update_text").val(res.rep_content);
+			}
+		});
 	});
+	
 	//rep - 검은 막을 눌렀을 때
 	$('.board-mask').on("click",function () {
 	    $(this).hide();
@@ -278,6 +328,26 @@ $(document).ready(function() {
 	}
 	//게시판 말머리 후기 선택시 축제 이름 SELECT 표시 끝
 	
+	//게시판 말머리 후기 선택시 축제 이름 SELECT 표시 시작
+	function festival_select_update() {
+		if ($(this).val() == '일반') {
+			$('.festival_name_update').remove();
+			$('.starstar_update').css("display", "none");
+		} else if ($(this).val() == '문의') {
+			$('.festival_name_update').remove();
+			$('.starstar_update').css("display", "none");
+		} else if ($(this).val() == '후기') {
+			$('.starstar_update').css("display", "inline");
+			$.ajax({
+				type : 'POST',
+				dataType : 'json',
+				url : 'FesList.do',
+				success : fesListViewupdate
+			});
+		}
+	}
+	//게시판 말머리 후기 선택시 축제 이름 SELECT 표시 끝
+	
 	//말머리 후기 축제데이터 불러오기 시작
 	function fesListView(res){
 		$('.festival_name').remove();/* ajax */
@@ -287,6 +357,32 @@ $(document).ready(function() {
 		});
 		source += '</select>';
 		$('.head-input').append(source);
+	}
+	//말머리 후기 축제데이터 불러오기 끝
+	
+	//말머리 후기 축제데이터 불러오기 시작
+	function fesListViewupdate(res){
+		$('.festival_name_update').remove();/* ajax */
+		var source = '<select class="festival_name_update" name="festival_num">';
+		$.each(res,function(index, value) {
+			source += '<option value="'+value.festival_num+'">'+value.festival_name+'</option>';
+		});
+		source += '</select>';
+		$('.head-input-update').append(source);
+		$('.festival_name_update').val(fes_num);
+	}
+	//말머리 후기 축제데이터 불러오기 끝
+	
+	//말머리 후기 축제데이터 불러오기 시작
+	function fesListViewupdate(res){
+		$('.festival_name_update').remove();/* ajax */
+		var source = '<select class="festival_name_update" name="festival_num">';
+		$.each(res,function(index, value) {
+			source += '<option value="'+value.festival_num+'">'+value.festival_name+'</option>';
+		});
+		source += '</select>';
+		$('.head-input-update').append(source);
+		$('.festival_name_update').val(fes_num);
 	}
 	//말머리 후기 축제데이터 불러오기 끝
 	
@@ -336,6 +432,14 @@ $(document).ready(function() {
 		return false;
 	}
 	//사진 섬네일 출력 끝
+	
+	//사진 표시 시작
+	$('.image-popup-fit-width').magnificPopup({
+		type: 'image',
+		closeOnContentClick: true,
+		image: {verticalFit: false}
+	});
+	//사진 표시 끝
 	
 	//사진 출력 시작
 	function picView(){
@@ -397,23 +501,20 @@ $(document).ready(function() {
 	//별점 표시 시작
 	var idx=0;
 	//star_rating();
-	$('.star_input').mouseenter(function(){
+	$('.star_input').on("mouseenter", function(){
 		star_rating();
-		$(this).mouseleave(function(){
+		$(this).on("mouseleave", function(){
 			console.log(idx);
 			$('.star_input span:lt('+idx+'):even').addClass('over-left');
 			$('.star_input span:lt('+idx+'):odd').addClass('over-right');
 			$('div span').off();
 		});
 	});
-	$('#re').click(function(){
-		star_rating();
-	});
 
 	function star_rating(){
-		$('div span').removeClass('over-left');
-		$('div span').removeClass('over-right');
-		$('div span').mouseenter(function(e){
+		$('.star_input span').removeClass('over-left');
+		$('.star_input span').removeClass('over-right');
+		$('.star_input span').mouseenter(function(e){
 			var i=$(e.target).index()+1;
 			var score=(i/2).toFixed(1);
 			idx=i;
@@ -432,6 +533,41 @@ $(document).ready(function() {
 	}
 	//별점표시 끝
 	
+	//update별점 표시 시작
+	var idx_update=0;
+	//star_rating();
+	$('.star_input_update').on("mouseenter", function(){
+		star_rating_update();
+		$(this).on("mouseleave", function(){
+			console.log(idx_update);
+			$('.star_input_update span:lt('+idx_update+'):even').addClass('over-left-update');
+			$('.star_input_update span:lt('+idx_update+'):odd').addClass('over-right-update');
+			$('div span').off();
+		});
+	});
+
+	function star_rating_update(){
+		$('.star_input_update span').removeClass('over-left-update');
+		$('.star_input_update span').removeClass('over-right-update');
+		$('.star_input_update span').mouseenter(function(e){
+			var i=$(e.target).index()+1;
+			var score=(i/2).toFixed(1);
+			idx_update=i;
+			$('.favor_star_update').val(score);
+			$('.star_input_update span:lt('+i+'):even').addClass('over-left-update');
+			$('.star_input_update span:lt('+i+'):odd').addClass('over-right-update');
+		}).mouseleave(function(e){
+			var i=$(e.target).index()+1;
+			$('.star_input_update span:lt('+i+'):even').removeClass('over-left-update');
+			$('.star_input_update span:lt('+i+'):odd').removeClass('over-right-update');
+		}).click(function(e){
+			var i=$(e.target).index()+1;
+			$('div span').off();
+			//별점으로 i 값 넘겨주면 됨
+		});
+	}
+	//update별점표시 끝	
+	
 });
 
 //무한스크롤 페이징 시작
@@ -440,6 +576,7 @@ function lastPostFunc(){
 	var currpage = 1;
 	currpage *= 1;
 	currpage += Number($(".board-view-main:last").attr("name"));
+	$("script:gt(0)").remove();
 	$.ajax({
 		type : 'get',
 		url : 'boardList.do',
@@ -448,19 +585,82 @@ function lastPostFunc(){
 			if (res != res1) {
 				res1 = res;
 				$(".board-view:last").after(res);
+				picview();
 				$(".boardwrite-input:gt(0)").remove();
 				$(".update:gt(0)").html("");
 				$(".board-mask:gt(0)").remove();
+				$("hr:gt(0)").remove();
+				$("script:gt(0)").remove();
+				$(".wrap:gt(0)").html("");
 			}
 			$("div#lastPostsLoader").remove();
+			$("script:gt(0)").remove();
 		}
 	});
 };
 //무한스크롤 페이징 끝
 
+	//사진 배치 시작
+	function picview(){
+		for(var i=0; i<$(".true").length; i++){
+			if($(".true:eq("+i+")").attr("val") == 4){
+				//console.log($(".true:eq("+i+")").attr("val"));
+				$(".picpic:eq("+i+") img").css("display","inline").css("margin","1px").css("border-radius","10px");
+				$(".picpic:eq("+i+") a:nth-of-type(1) img").css("margin","1px").css("width","620px").css("height","455px").css("float","left");
+				$(".picpic:eq("+i+") a:nth-of-type(2) img").css("margin","1px").css("margin-left","5px").css("width","220px").css("height","150px").css("position","absolute").css("float","right");
+				$(".picpic:eq("+i+") a:nth-of-type(3) img").css("margin","1px").css("margin-left","5px").css("width","220px").css("height","150px").css("margin-top","153px").css("position","absolute").css("float","right");
+				$(".picpic:eq("+i+") a:nth-of-type(4) img").css("margin","1px").css("margin-left","5px").css("width","220px").css("height","150px").css("margin-top","305px");
+			}
+			if($(".true:eq("+i+")").attr("val") == 3){
+				//console.log($(".true:eq("+i+")").attr("val"));
+				$(".picpic:eq("+i+") img").css("display","inline").css("margin","1px").css("border-radius","10px");
+				$(".picpic:eq("+i+") a:nth-of-type(1) img").css("margin","1px").css("width","620px").css("height","455px").css("float","left");
+				$(".picpic:eq("+i+") a:nth-of-type(2) img").css("margin","1px").css("margin-left","5px").css("width","220px").css("height","226px").css("position","absolute").css("float","right");
+				$(".picpic:eq("+i+") a:nth-of-type(3) img").css("margin","1px").css("margin-left","5px").css("width","220px").css("height","226px").css("margin-top","229px");
+			}
+			if($(".true:eq("+i+")").attr("val") == 2){
+				//console.log($(".true:eq("+i+")").attr("val"));
+				$(".picpic:eq("+i+") img").css("display","inline").css("margin","1px").css("border-radius","10px");
+				$(".picpic:eq("+i+") a:nth-of-type(1) img").css("margin","1px").css("width","421px").css("float","left");
+				$(".picpic:eq("+i+") a:nth-of-type(2) img").css("margin","1px").css("margin-left","5px").css("width","421px");
+			}
+			if($(".true:eq("+i+")").attr("val") == 1){
+				//console.log($(".true:eq("+i+")").attr("val"));
+				$(".picpic:eq("+i+") img").css("display","inline").css("margin","1px").css("border-radius","10px");
+				$(".picpic:eq("+i+") a:nth-of-type(1) img").css("margin","1px").css("width","850px");
+			}
+			if($(".true:eq("+i+")").attr("val") == 0){
+				//console.log($(".true:eq("+i+")").attr("val"));
+				$(".picpic:eq("+i+") img").css("display","inline").css("margin","1px").css("border-radius","10px");
+			}
+		}
+	}
+	//사진 배치 끝
+
 </script>
 </head>
-<body>
+<body onkeypress="if(event.keyCode==13)" onload="picview()">
+
+
+
+<div class="wrap">
+   <div id="header">
+     <ul class="logo">
+       <li><a href="main.do"><img src="icon/main2.png" /></a></li>
+       <li class="lo"><img src="icon/logo_text.png"/></li>  
+     </ul>     
+   </div>
+
+   
+   <div id="gnb">     
+   </div>
+   
+   <div id="text">
+    <img src="image/notice_board.png"/>
+   </div>
+</div>
+
+
 <div class="board-mask"></div>
 	<div class="update">
 		<!-- board 수정 시작 -->
@@ -470,19 +670,33 @@ function lastPostFunc(){
 				<table>
 					<tr>
 						<th>말머리</th>
-						<td class="head-input">
-						<select class="board_head"name="board_head">
-								<option value="일반" selected>일반</option>
-								<option value="문의">문의</option>
-								<option value="후기">후기</option>
+						<td class="head-input-update">
+						<select class="board_head_update" name="board_head">
+							<option value="일반" selected>일반</option>
+							<option value="문의">문의</option>
+							<option value="후기">후기</option>
 						</select>
-						</td>
+						<div class="starstar_update">
+						<div class="star_input_update">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+						</div>
+						</div>
+					<input type="hidden" class="favor_star_update" name="favor_star" />
+					</td>
 					</tr>
 					<tr>
 						<% String mem_nick=(String)session.getAttribute("mem_nick"); %>
 						<th><%=mem_nick %></th><!-- 로그인 시 닉네임 출력 -->
-						<td><textarea class="boardUpdate_content" name="board_content" cols="110" rows="10" style="resize: none" onKeyUp="javascript:updatefnChkByte(this,'2000')">내용 입력</textarea>
-						<br/>
+						<td><textarea class="boardUpdate_content" name="board_content" cols="100" rows="10" style="resize: none" onKeyUp="javascript:updatefnChkByte(this,'2000')">내용 입력</textarea>
 						<span id="updatebyteInfo">0/2000Byte</span></td>
 					</tr>
 					<tr>
@@ -503,16 +717,17 @@ function lastPostFunc(){
 		<form action="repUpdate.do" method="post">
 			<table>
 				<tr>
-					<th>${MemDTO.mem_nickname}</th>
+					<th><%=mem_nick %></th>
 					<td><input type="hidden" class="rep_update_rep_num" name="rep_num" />
-						<input type="text" class="rep_update_text" name="rep_content" value="내용 입력"/><input type="submit" class="rep_update_insert" value="댓글 수정"></td>
+						<input type="text" size="85" class="rep_update_text" name="rep_content" value="내용 입력"/>
+						<input type="submit" class="rep_update_insert" value="댓글 수정"></td>
 				</tr>
 			</table>
 		</form>
 	</div>
 	<!-- rep 수정 끝 -->
 </div>
-	
+	<c:if test="${sessionScope.mem_num !=null}">
 	<!-- board 입력창 시작 -->
 	<div class="boardwrite-input">
 		<form class="board_write_mainform" action="boardWrite.do" method="post" enctype="multipart/form-data">
@@ -544,8 +759,7 @@ function lastPostFunc(){
 				</tr>
 				<tr>
 					<th><%=mem_nick %></th><!-- 로그인 시 닉네임 출력 -->
-					<td><textarea class="boardWrite_content" name="board_content" cols="100" rows="10" style="resize: none" onKeyUp="javascript:writefnChkByte(this,'2000')" >내용 입력</textarea>
-					<br/>
+					<td><textarea class="boardWrite_content" name="board_content" cols="100" rows="3" style="resize: none" onKeyUp="javascript:writefnChkByte(this,'2000')" >내용 입력</textarea>
 					<span id="writebyteInfo">0/2000Byte</span></td>
 				</tr>
 				<tr>
@@ -554,48 +768,56 @@ function lastPostFunc(){
 					<div class="write_holder_arr"></div></td>
 				</tr>
 				<tr>
-					<th>맴버 번호</th>
-					<td><input type="text" class="mem_num" name="mem_num" value="${sessionScope.mem_num}"/></td>
+					<!-- <th>맴버 번호</th> -->
+					<td><input type="hidden" class="mem_num" name="mem_num" value="${sessionScope.mem_num}"/></td>
 				</tr>
 			</table>
 			<input type="submit" class="boardWrite_submit btn" value="게시" />
-			<br />
 		</form>
 	</div>
+	<hr class="board_hr"/>
 	<!-- board 입력창 끝 -->
-
+	</c:if>
+	
 	<div class="board-view">
 		<c:forEach items="${list}" var="BoardDTO">
 		
 			<!-- 게시글 출력 시작 -->
-			<div class="board-view-main" name="${pv.currentPage}">
+			<div class="board-view-main" name="${pv.currentPage}" >
 				<div class="board-view-main-list">
-				<c:forEach items="${BoardDTO.memList}" var="MemDTO">
-					<p>${MemDTO.mem_nickname}</p>
-				</c:forEach>
-				<p>${BoardDTO.board_head}</p>
-					<%-- <p>${BoardDTO.board_num}</p> --%>
-				<c:if test="${BoardDTO.festival_num !=1}">
-					<c:forEach items="${BoardDTO.fesList}" var="FestivalDTO">
-						<p>${FestivalDTO.festival_name}</p>
+					<c:forEach items="${BoardDTO.memList}" var="MemDTO">
+						<p class="board_nickname">${MemDTO.mem_nickname}</p>
 					</c:forEach>
-				</c:if>
-				<p><fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${BoardDTO.board_date}" /></p>
-				<p><textarea class="" name="content" cols="110" rows="10" readonly="readonly" style="resize: none">${BoardDTO.board_content}</textarea></p>
-				<div class="pic_view">
-					<div class="pic_view2">
-						<c:forEach items="${BoardDTO.board_pic}" var="img">
-							<img alt="" src="image.do?filename=${img}" width="200" />
+					<p class="vv">/</p>
+					<p class="bhead">${BoardDTO.board_head}</p>
+					<c:if test="${BoardDTO.festival_num != 1}">
+					<p class="vv">/</p>
+						<c:forEach items="${BoardDTO.fesList}" var="FestivalDTO">
+							<p class="fname">${FestivalDTO.festival_name}</p>
+						</c:forEach>
+					</c:if>
+					<p class="days"><fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${BoardDTO.board_date}" /></p>
+					<p><textarea class="" name="content" cols="110" readonly="readonly" style="resize: none">${BoardDTO.board_content}</textarea></p>
+						<c:if test="${not empty BoardDTO.board_pic}">
+						<div class="picpic">
+						<c:forEach items="${BoardDTO.board_pic}" var="img" varStatus="status">
+						<p class="${status.last}" val="${status.count}" ></p>
+							<a title="" class="image-popup-fit-width" href="image.do?filename=${img}">
+							<img alt="" src="image.do?filename=${img}" />
+							</a>
 						</c:forEach>
 						</div>
-					</div>
-					<div class="board-view-main-btn">
-						<input type="button" class="update-openMask btn" id="${BoardDTO.board_num}" value="수정"/>
-						<input type="button" class="delete btn" id="${BoardDTO.board_num}" value="삭제" />
-					</div>
+						</c:if>
+					<c:if test="${BoardDTO.mem_num eq sessionScope.mem_num}">
+						<div class="board-view-main-btn">
+							<input type="button" class="update-openMask btn" id="${BoardDTO.board_num}" value="수정"/>
+							<input type="button" class="delete btn" id="${BoardDTO.board_num}" value="삭제" />
+						</div>
+					</c:if>
 				</div>
 				<!-- 게시글 출력 끝 -->
-					
+				
+				<c:if test="${sessionScope.mem_num !=null}">
 				<!-- 댓글 입력창 시작 -->
 				<div class="board-view-main-rep">
 					<form action="repWrite.do" method="post">
@@ -604,32 +826,36 @@ function lastPostFunc(){
 								<th>${sessionScope.mem_nickname}</th><!-- 로그인 시 닉네임 출력 -->
 								<td><input type="hidden" name="mem_num" value="${sessionScope.mem_num}" />
 								<input type="hidden" class="rep_insert_board_num" name="board_num" />
-								<input type="text" class="rep_insert_text" name="rep_content" value="내용 입력"/>
+								<input type="text" size="95" class="rep_insert_text" name="rep_content" value="내용 입력"/>
 								<input type="submit" class="rep_insert btn" id="${BoardDTO.board_num}" value="댓글 게시"></td>
 							</tr>
 						</table>
 					</form>
 				</div>
 				<!-- 댓글 입력창 끝 -->
-				
+				</c:if>
 			</div>
-			<br />
 			
 			<!-- 댓글 출력 시작 -->
 			<div class="board-view-reply">
 				<c:forEach items="${BoardDTO.replyList}" var="ReplyDTO">
 					<c:if test="${BoardDTO.board_num eq ReplyDTO.board_num}">
+						<div class="reply-view">
 						<div class="board-view-reply-list">
 							<c:forEach items="${ReplyDTO.rmemList}" var="RmemDTO">
 								<p class="rep_nickname">${RmemDTO.mem_nickname}</p>
 							</c:forEach>
 							<%-- <p>${ReplyDTO.rep_num}</p> --%>
-							<p><fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${ReplyDTO.rep_date}" /></p>
+							<p class="days"><fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${ReplyDTO.rep_date}" /></p>
 							<p><textarea class="rep_content_update" name="rep_content" rows="1" cols="110" readonly="readonly" style="resize: none">${ReplyDTO.rep_content}</textarea></p>
 						</div>
+						<c:if test="${ReplyDTO.mem_num eq sessionScope.mem_num}">
 						<div class="board-view-reply-rep_btn">
 							<input type="button" class="rep_update btn" id="${ReplyDTO.rep_num}" value="댓글 수정" />
 							<input type="button" class="rep_delete btn" id="${ReplyDTO.rep_num}" value="댓글 삭제" />
+						</div>
+						<br />
+						</c:if>
 						</div>
 					</c:if>
 				</c:forEach>

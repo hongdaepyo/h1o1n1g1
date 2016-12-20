@@ -69,7 +69,7 @@
 </style>
 </head>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="//apis.daum.net/maps/maps3.js?apikey=945948afbe6a4f41cd89e5fd9efe678e&libraries=services"></script>
+    <script src="//apis.daum.net/maps/maps3.js?apikey=5ee006ef2a6a3775fb080c9b4180f51e&libraries=services"></script>
 <body>
 <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>

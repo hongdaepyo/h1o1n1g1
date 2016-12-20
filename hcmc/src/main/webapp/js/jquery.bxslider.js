@@ -189,7 +189,7 @@
 			// add a loading div to display while images are loading
 			slider.loader = $('<div class="bx-loading" />');
 			slider.viewport.prepend(slider.loader);
-			// set el to a massive width, to hold any needed slides
+			// set el to a massive width, to hold any needed slides height
 			// also strip any margin and padding from el
 			el.css({
 				width: slider.settings.mode == 'horizontal' ? (slider.children.length * 100 + 215) + '%' : 'auto',
@@ -302,7 +302,7 @@
 			// if "vertical" mode, always use adaptiveHeight to prevent odd behavior
 			if (slider.settings.mode == 'vertical') slider.settings.adaptiveHeight = true;
 			// set the viewport height
-			slider.viewport.height(getViewportHeight());
+			//slider.viewport.height(getViewportHeight());
 			// make sure everything is positioned just right (same as a window resize)
 			el.redrawSlider();
 			// onSliderLoad callback
@@ -326,7 +326,7 @@
 		/**
 		 * Returns the calculated height of the viewport, used to determine either adaptiveHeight or the maxHeight value
 		 */
-		var getViewportHeight = function(){
+		/*var getViewportHeight = function(){
 			var height = 0;
 			// first determine which children (slides) should be used in our height calculation
 			var children = $();
@@ -378,7 +378,7 @@
 			}
 
 			return height;
-		}
+		}*/
 
 		/**
 		 * Returns the calculated width to be used for the outer wrapper / viewport

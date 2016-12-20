@@ -11,6 +11,7 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="js/mypage.js?ver=1"></script>
 <base>
+<link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="css/main.css?ver=1">
 <link rel="stylesheet" href="css/mypage.css?ver=1">
@@ -22,7 +23,7 @@ $(document).ready(function(){
 	console.log(chk);
 	console.log(param);
 	if(!chk){
-		headerView('${sessionScope.id}');
+		//headerView('${sessionScope.id}');
 	}
 });
 </script>
@@ -34,23 +35,49 @@ $(document).ready(function(){
 }
 
 header {
+
+	background-color: white;
 	width: 100%;
-	height: 100px;
-	background-color: aqua;
+	height: 150px;
+	border-bottom: 40px solid #666666;
 }
+
+
+.mypage_logo li img:nth-of-type(1){
+	width: 100px;
+	height: 80px;
+	float: left;
+}
+
+.mypage_logo .mypage_lo img{
+	width: 200px;
+	height: 100px;	
+}
+
+.mypage_logo .mypage_logout{
+	float: right;
+	position: absolute;
+	right: 100px;
+}
+
+.mypage_logo .mypage_logout img{
+	position:absolute;
+	top:20px;
+}
+
+
 
 menu {
 	height: 670px;
-	background-color: #f0f0f0;
-	width: 15%;
+	width: 10%;
 	float: left;
 	font-size: 16px;
-	border-right: 2px solid #ff5e00;
+	background-color: #f0f0f0;
 }
 
 menu span {
 	text-align: center;
-	margin: 0px auto;
+	margin: 10px auto;
 	width: 100%;
 	display: block;
 	float: left;
@@ -59,7 +86,6 @@ menu span {
 section {
 	width: 80%;
 	height: 670px;
-	float: right;
 }
 
 footer {
@@ -78,10 +104,9 @@ $(document).ready(function(){
 			btnclick(e);
 		});//confirm_btn click event
 		
-	$('#tt').click(function(){
-
-	})
+	
 });
+
 //비밀번호 체크/////////////////////////////
 function check(){
 	var a=$('.current_password input').val();
@@ -102,9 +127,22 @@ function check(){
 	/* }else if(patt.test(b)){
 		alert('비밀번호 형식이 맞지 않습니다.') */
 	}else{
+		/* if(patt.test(b)){
+			pw_update(b, mem_num);
+		}else{
+			alert("비밀번호는 8~20자리, 문자, 숫자, 특수문자를 조합해야 합니다.");
+		} */
 		pw_update(b, mem_num);
 	}
 }////////////////////////////////////
+function id_delete(){
+	var a=$('.text_input').val();
+	if(a=='${dto.mem_pass}'){
+		alert("a");
+		
+	}else
+		alert("비밀번호를 확인하세요");
+}
 
 function btnclick(e){
 	var s=$(e.target).parent().attr('class');
@@ -117,15 +155,14 @@ function btnclick(e){
 					alert('닉네임을 입력해주세요');
 				};break;
 				
-	case 'password':check();break;
+	case 'password':check(); break;
 				
-	case 'delete': alert('delete');break;
+	case 'delete': id_delete();break;
 		}		
 }
 </script>
 <body>
 	<header>
-		<br />
 		<p>
 			<tiles:insertAttribute name="header" />
 		</p>

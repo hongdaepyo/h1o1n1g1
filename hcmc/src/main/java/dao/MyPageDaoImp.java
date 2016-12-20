@@ -2,9 +2,12 @@ package dao;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.mybatis.spring.SqlSessionTemplate;
 
 import dto.BoardDTO;
+import dto.FavorDTO;
 import dto.FestivalDTO;
 import dto.MemberDTO;
 
@@ -42,9 +45,25 @@ public class MyPageDaoImp implements MyPageDao{
 	}//회원 비밀번호를 변경하고 새 회원정보 리턴
 
 	@Override
-	public List<?> MyFavorListMethod(int mem_num) {
-		return sqlSession.selectOne("mypage.my_favor_list",mem_num);
-	}//내 즐겨찾기 목록을 표시 //아직 안쓰임
+	public List<FavorDTO> MyFavorListMethod(int mem_num) {
+		return sqlSession.selectList("mypage.my_favor_list",mem_num);
+	}//내 즐겨찾기 목록을 표시
+
+	@Override
+	public void memberDeleteMethod(int mem_num) {
+		// TODO Auto-generated method stub
+		 sqlSession.delete("mypage.mem_del",mem_num);
+	}
+
+	@Override
+	public List<FestivalDTO> myPageFListMethod() {
+		return sqlSession.selectList("mypage.mem_f_list");
+	}
+
+	@Override
+	public void myFavorDeleteMethod(int favor_num) {
+		sqlSession.delete("mypage.my_favor_del",favor_num);
+	}
 
 	
 

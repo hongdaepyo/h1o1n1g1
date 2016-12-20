@@ -35,6 +35,12 @@ public class SearchDaoImp implements SearchDao{
 		return sqlSession.selectList("search.month_festival",map);
 	}
 	
+	@Override
+	public List<FestivalDTO> researchMethod(HashMap<String, String> map) {
+		System.out.println("reeseseses"+map);
+		return sqlSession.selectList("search.research",map);
+	}
+	
 
 }
 	

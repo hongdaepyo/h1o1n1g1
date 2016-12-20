@@ -136,4 +136,19 @@ public class BoardServiceImp implements BoardService {
 		dao.favorInsertMethod(fdto);
 	}
 
+	@Override
+	public void favorUpdateProcess(FavorDTO fdto, HttpServletRequest request) {
+		dao.favorUpdateMethod(fdto);
+	}
+
+	@Override
+	public BoardDTO boardboardProcess(int board_num, HttpServletRequest request) {
+		return dao.boardboardMethod(board_num);
+	}
+
+	@Override
+	public ReplyDTO reprepProcess(int rep_num, HttpServletRequest request) {
+		return dao.reprepMethod(rep_num);
+	}
+
 }// end class

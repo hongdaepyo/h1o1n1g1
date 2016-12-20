@@ -1,30 +1,53 @@
 $(function(){	
-	$("#ad_close").on("click",function(){
-		$('#ad').hide(500);
-	});
 	
-	
-	$(".ad_show").on("click",function(){
-		$(this).attr('href','http://www.naver.com');
-	});
-	
-	banner_change();
+		
+		
+		$("#login").on("click",function(){
+			  $('#join_form').css({"display":"none"}); 
+			  $('#sign_form').fadeToggle('normal'); 
+			  $('#sign_form').css({'position':'absolute','left':'64px','top':'84px'});
+		  });
+		  
+		  $("#join").on("click",function(){
+			  $('#sign_form').css({"display":"none"});
+			  $('#join_form').fadeToggle('normal'); 
+			  $('#join_form').css({'position':'absolute','left':'64px','top':'84px'});
+		  });
+		  
+		  $("#del button").click(function(){		  
+			  $('#sign_form').css({"display":"none"}); 
+			  $('#join_form').css({"display":"none"}); 
+		  });	
+		  
+		  $("#ad_close").on("click",function(e){
+			  	e.preventDefault();
+				$('#ad').hide(500);
+				$("#header").delay(300).fadeIn('normal');
+				$('#gnb').delay(300).fadeIn('normal'); 
+				$('body > form:nth-child(6) > fieldset > p').css({'padding-top':'0px'});
+			 
+		  });
 	
 });
 
-function banner_change(){
-    var	pic_arr =['pet1.jpg','pet2.jpg','pet3.jpg','pet4.jpg','pet5.jpg','pet6.jpg','Koala.jpg'];
-    var i=0;
-    console.log(i);
-    var test= setInterval(img_change, 3000);
-	function img_change(){
-		$('#ad_show img, #ad_close img').fadeIn(2000);
-		$('#ad_show img').attr('src','images/'+pic_arr[i]);
-		$('#ad_show img, #ad_close img').fadeOut(1000);
-		i++;
-		if(i>=pic_arr.length)
-			i=0;
-	}
-}
+
+
+/*//헤더부분 변경
+function headerView(id){
+	     $('#join_form').css({"display":"none"});  
+	     $('#header').empty();
+	     $('#header').append('<ul class="logo"><li><a href="#"><img src="icon/main2.png" /></a></li><li class="lo"><img src="icon/logo_text.png"/></li><li id="login"><span></span></li><li id="logout"><img src="icon/user2.png"/></li></ul>');		     
+	    
+	  		     
+	      $("#login_info").hide();
+		  $("#logout").on("click",function(){
+			  $('#login_info').fadeToggle('normal'); 
+			  $('#login_info').css({'position':'absolute','left':'64px','top':'84px'});
+
+		  });
+	  
+
+}//end headerView()
+*/
 
 

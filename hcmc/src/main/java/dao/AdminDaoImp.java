@@ -40,7 +40,11 @@ public class AdminDaoImp implements AdminDao {
 	@Override
 	public void fUpdateMethod(FestivalDTO fdto) {
 		sqlSession.update("admin.f_update",fdto);
-	}//FestivalDTO에 수정된 회원정보를 담아와서 업데이트 
+		if(!fdto.getFestival_filename()[0].getOriginalFilename().equals("")){
+			sqlSession.delete("admin.festival_pic_delete",fdto); //기존 파일은 삭제하고
+			sqlSession.insert("admin.festival_pic_insert",fdto); //새 파일은 추가
+		}
+	}//FestivalDTO에 수정된 축제정보를 담아와서 업데이트 
 	
 	@Override
 	public void bUpdateMethod(BoardDTO bdto) {
@@ -61,5 +65,12 @@ public class AdminDaoImp implements AdminDao {
 	public void fAddMethod(FestivalDTO fdto) {
 		sqlSession.insert("admin.f_add",fdto);
 	}//축제추가 폼에 입력된 정보를 FestivalDTO로 담아와서 입력
+
+	@Override
+	public void fInsMethod(FestivalDTO fdto) {
+		sqlSession.insert("admin.f_insert",fdto);		
+	}
+	
+	
 
 }
